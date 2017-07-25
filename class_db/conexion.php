@@ -6,9 +6,9 @@
 function getID($id_menu){
 
 	$usuario = "root";
-	$password = "lapizzeria2016!";
-	$host = "45.33.3.227";
-	$db="db_global_lapizzeria";
+	$password = "";
+	$host = "localhost:3307";
+	$db="db_noticias_digital";
 	$db = new PDO("mysql:host=$host;dbname=$db",$usuario,$password);
 
 	$query = $db->prepare("select * from sr_submenu where id_menu='".$id_menu."' && estado_submen = 1");
@@ -22,9 +22,9 @@ function getID($id_menu){
 function login(){
 
 	$usuario = "root";
-	$password = "lapizzeria2016!";
-	$host = "45.33.3.227";
-	$db="db_global_lapizzeria";
+	$password = "";
+	$host = "localhost:3307";
+	$db="db_noticias_digital";
 	$db = new PDO("mysql:host=$host;dbname=$db",$usuario,$password);
 }
 
