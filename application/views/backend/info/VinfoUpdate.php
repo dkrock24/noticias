@@ -93,15 +93,27 @@ var fechadeldia = f.getDate()+""+(f.getMonth()+1)+""+f.getFullYear()+""+f.getHou
 
 <div class="row">
     <div class="col-md-12">
-    	<div class="panel">
-            <div class="panel-header bg-primary">
-            	Información de la Municipalidad
-            	<div class="opciones">
-                    <a href="#" id="regresar" class='btn btn-primary btn-small'>Regresar</a>
-            		<a href="#" id="updateInfo" class='btn btn-primary btn-small'>Guardar</a>
-            	</div>
+    	<div class="card card-primary">
+            <div class="card-header">
+                <div class="header-block">
+                    <div class="container">
+                        <div class="row abc">
+                            <div class="col-md-7">Información de la Empresa</div>
+                            <div class="col-md-3">
+                                <a href="#" id="regresar" class='btn btn-secondary-outline btn-edit'>Regresar</a>
+                                <a href="#" id="updateInfo" class='btn btn-secondary-outline btn-edit'>Guardar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="panel-content">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+      <div class="col-md-12">
+            <div class="card-block">
             <div class="alert alert-success alertt" role="alert"></div>
             <form action="#" method="post" id="informacionGeneral1">
             	<div class="row">

@@ -169,7 +169,7 @@ $(document).ready(function(){
 	.fa{
 		font-size: 20px;
 	}
-	.line:hover{
+	.linee:hover{
 		background: grey;
 		color: white;
 		cursor: pointer;
@@ -183,21 +183,20 @@ $(document).ready(function(){
 	}
 
 </style>
-<table>
+<table class="table">
+  <thead>
+    <tr>
+    	<th>Menus Principales.</th>
+    </tr>
+  </thead>
 
-<tr>
-	<div class="row line menu bg-dark">
-		<div class="col-md-12 ">
-			Menus
-	    </div>
-	</div>
-</tr>
-
+<tbody>
 <?php
 while ($row = mysqli_fetch_array($menus)) {
 	?>
 	<tr>
-	 <div class="row line">
+    <th scope="row">
+	 <div class="row linee">
 	    	 <div class="col-md-9">
 	    	 	<div class="menu" id='<?php echo $row['id_menu']; ?>'>
 					<i class='<?php echo $row['icon_menu']; ?>'></i>
@@ -210,8 +209,8 @@ while ($row = mysqli_fetch_array($menus)) {
 	    	 		</i>
 	    	 		<?php 
 	    	 			if($row['estado_menu']==1)
-	    	 			{	    	 				
-	    	 				?>	    	 				
+	    	 			{
+	    	 				?>
 	    	 				<i class="fa fa-dot-circle-o buton-circle" id='<?php echo $row['id_menu']; ?>' name='<?php echo $row["estado_menu"] ?>' >
 	    	 				</i>
 	    	 				<?php
@@ -230,13 +229,13 @@ while ($row = mysqli_fetch_array($menus)) {
 	    	 	</div>
 	    	 </div>
 	 </div>
-		
+		</th>
 	</tr>
 	
 	<?php
 }
 ?>
-	
+</tbody>
 </table>
 
           <!-- BEGIN MODALS -->

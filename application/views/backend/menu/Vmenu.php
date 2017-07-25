@@ -110,133 +110,150 @@ input{
 .alertt{
 	text-align: center;
 }
+
 </style>
 
+<div class="row">
+	<div class="col-md-12">
+		<div class="card card-primary">
+                  <div class="card-header">
+                        <div class="header-block">
+		<ul class="nav nav-pills">
+ 			<li id="menu_li" class="nav-item"><a href="#tab1_1" class="nav-link active" data-toggle="tab" role="tab">CREAR</a></li>
+ 			<li id="menu_li" class="nav-item"><a href="#tab1_2" class="nav-link" data-toggle="tab" role="tab">CONFIGURAR</a></li>
+ 			<li class="nav-item"> <a href="" class="nav-link" data-target="#settings-pills" aria-controls="settings-pills" data-toggle="tab" role="tab">Settings</a> </li>
+		</ul>
+		</div></div></div>
+	</div>	
+</div>
 
-<ul class="nav nav-tabs">
-  <li id="menu_li" class="active"><a href="#tab1_1" data-toggle="tab">CREAR</a></li>
-  <li id="menu_li" class=""><a href="#tab1_2" data-toggle="tab">CONFIGURAR</a></li>
-</ul>
+
 <div class="alert alert-success alertt" role="alert"></div>
+<div class="row">
+    <div class="col-md-12">
+		<div class="card-block">
+			<div class="tab-content">
+                
+				    <div class="tab-pane fade active in" id="tab1_1">
+					    <div class="row">
+					    	<div class="col-md-6 de">
+					    		<table class='table table-smoll table-hover'>
+					    			<tr>	    				
+					    				<td colspan="2">
+					    					<img src="../../../assets/images/various/menu.png" width='50px;'>
+					    					Creacion de Menu
+					    				</td>	  
+					    				
+					    			</tr>
+					    			<tr >
+					    				<td>Nombre Menu</td>
+					    				<td>
+					    					<input type='text' name='nombre_menu' id='nombre_menu' class="form-control">
+					    				</td>	    				
+					    			</tr>
+					    			<tr >
+					    				<td>Url del Archivo</td>
+					    				<td>
+					    					<input type='text' name='url_menu' id='url_menu' class="form-control">
+					    				</td>	    				
+					    			</tr>
+					    			<tr >
+					    				<td>Icon Menu</td>
+					    				<td>
+					    					<input type='text' name='icon_menu' id='icon_menu' class="form-control">
+					    				</td>	    				
+					    			</tr>
+					    			<tr >
+					    				<td>Class Menu</td>
+					    				<td>
+					    					<input type='text' name='class_menu' id='class_menu' class="form-control">
+					    				</td>
+					    				
+					    			</tr>
+					    			<tr >
+					    				<td>Estado Menu</td>
+					    				<td>
+					    					<input type='text' name='estado_menu' id='estado_menu' class="form-control">
+					    				</td>
+					    			</tr>
+					    			<tr>
+					    				<td colspan="2">
+					    					<a href="#" id='btn-menu' class='btn btn-primary'>Guardar</a>
+					    				</td>
+					    			</tr>
+					    		</table>
+					    	</div>
+					    	<div class="col-md-6 de">
+					    		<table class='table'>
+					    			<tr>
+					    				<td colspan="2">
+					    					<img src="../../../assets/images/various/submenu.png" width='50px;'>
+					    					Creacion de Sub-Menu
+					    				</td>	   				
+					    				
+					    			</tr>
+					    			<tr >
+					    				<td>Nombre Sub-Menu</td>
+					    				<td>
+					    					<input type='text' name='nombre_submenu' id='nombre_submenu' class="form-control">
+					    				</td>	    				
+					    			</tr>
+					    			<tr >
+					    				<td>Url del Archivo</td>
+					    				<td>
+					    					<input type='text' name='url_submenu' id='url_submenu' class="form-control">
+					    				</td>	    				
+					    			</tr>
+					    			<tr >
+					    				<td>Titulo Sub-Menu</td>
+					    				<td>
+					    					<input type='text' name='icon_submenu' id='icon_submenu' class="form-control">
+					    				</td>	    				
+					    			</tr>
+					    			<tr >
+					    				<td>Menu Padre</td>
+					    				<td>
+					    					<select name='menuPadre' id='menuPadre' class="form-control">
+					    					<?php
+					    					foreach ($menu as $menus) {
+					    							?>
+					    								<option value='<?php echo $menus->id_menu; ?>'>
+					    									<?php echo $menus->nombre_menu; ?>
+					    								</option>
+					    							<?php
+					    						}
+					    					?>	    						
+					    					</select>
+					    				</td>
+					    				
+					    			</tr>
+					    			<tr >
+					    				<td>Estado Sub-Menu</td>
+					    				<td>
+					    					<input type='text' name='estado_menu' id='estado_submenu' class="form-control">
+					    				</td>
+					    			</tr>
+					    			<tr>
+					    				<td colspan="2">
+					    					<a href="#" id='btn-submenu' class='btn btn-primary'>Guardar</a>
+					    				</td>
+					    			</tr>
+					    		</table>
+					    	</div>
+					    </div>   
+					</div>
 
-<div class="tab-content">
-    <div class="tab-pane fade active in" id="tab1_1">
-	    <div class="row">
-	    	<div class="col-md-6 de">
-	    		<table class='table'>
-	    			<tr>	    				
-	    				<td colspan="2">
-	    					<img src="../../../assets/images/various/menu.png" width='50px;'>
-	    					Creacion de Menu
-	    				</td>	  
-	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Nombre Menu</td>
-	    				<td>
-	    					<input type='text' name='nombre_menu' id='nombre_menu'>
-	    				</td>	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Url del Archivo</td>
-	    				<td>
-	    					<input type='text' name='url_menu' id='url_menu'>
-	    				</td>	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Icon Menu</td>
-	    				<td>
-	    					<input type='text' name='icon_menu' id='icon_menu'>
-	    				</td>	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Class Menu</td>
-	    				<td>
-	    					<input type='text' name='class_menu' id='class_menu'>
-	    				</td>
-	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Estado Menu</td>
-	    				<td>
-	    					<input type='text' name='estado_menu' id='estado_menu'>
-	    				</td>
-	    			</tr>
-	    			<tr>
-	    				<td colspan="2">
-	    					<a href="#" id='btn-menu' class='btn btn-success'>Guardar</a>
-	    				</td>
-	    			</tr>
-	    		</table>
-	    	</div>
-	    	<div class="col-md-6 de">
-	    		<table class='table'>
-	    			<tr>
-	    				<td colspan="2">
-	    					<img src="../../../assets/images/various/submenu.png" width='50px;'>
-	    					Creacion de Sub-Menu
-	    				</td>	   				
-	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Nombre Sub-Menu</td>
-	    				<td>
-	    					<input type='text' name='nombre_submenu' id='nombre_submenu'>
-	    				</td>	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Url del Archivo</td>
-	    				<td>
-	    					<input type='text' name='url_submenu' id='url_submenu'>
-	    				</td>	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Titulo Sub-Menu</td>
-	    				<td>
-	    					<input type='text' name='icon_submenu' id='icon_submenu'>
-	    				</td>	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Menu Padre</td>
-	    				<td>
-	    					<select name='menuPadre' id='menuPadre'>
-	    					<?php
-	    					foreach ($menu as $menus) {
-	    							?>
-	    								<option value='<?php echo $menus->id_menu; ?>'>
-	    									<?php echo $menus->nombre_menu; ?>
-	    								</option>
-	    							<?php
-	    						}
-	    					?>	    						
-	    					</select>
-	    				</td>
-	    				
-	    			</tr>
-	    			<tr >
-	    				<td>Estado Sub-Menu</td>
-	    				<td>
-	    					<input type='text' name='estado_menu' id='estado_submenu'>
-	    				</td>
-	    			</tr>
-	    			<tr>
-	    				<td colspan="2">
-	    					<a href="#" id='btn-submenu' class='btn btn-success'>Guardar</a>
-	    				</td>
-	    			</tr>
-	    		</table>
-	    	</div>
-	    </div>   
-	</div>
-
-	<div class="tab-pane fade in" id="tab1_2">
-	    <div class="row de">
-	    	 <div class="col-md-6 de">
-	    	 	<div class="includ"></div>
-	    	 </div>
-	    	 <div class="col-md-6 de">
-	    	 	<div class="submenu"></div>
-	    	 </div>   
-	    </div>   
+				<div class="tab-pane fade in" id="tab1_2">
+				    <div class="row de">
+				    	 <div class="col-md-6 de">
+				    	 	<div class="includ"></div>
+				    	 </div>
+				    	 <div class="col-md-6 de">
+				    	 	<div class="submenu"></div>
+				    	 </div>   
+				    </div>   
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

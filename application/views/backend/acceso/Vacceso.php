@@ -1,7 +1,7 @@
 
 <?php
 session_start();
- //include_once("../class_db/class_menus.php");
+
  
 ?>
 
@@ -247,33 +247,9 @@ session_start();
     });
   </script>
 
-<style>
-	.de{
-		border:0px solid black;
-	}
-	.fill{
-		padding: 10px;
-		top: 10px;
 
-	}
-	#menuPadre
-	{
-		width: 100%;
-	}
-	input{
-		width: 100%;
-	}
-	#btn-rol,#btn-submenu{
-		float: right;
-	}
-</style>
 <style>
-	.menu{
-		
-		border:0px solid black;
-		padding: 10px;
-		margin-bottom: 2px;
-	}
+
 	.msg1, .msg2{
 		background: #337ab7;
 		color:white;
@@ -314,13 +290,25 @@ session_start();
 
 </style>
 
+<div class="row">
+	<div class="col-md-12">
+		<div class="card card-primary">
+            <div class="card-header">
+                <div class="header-block">
+					<ul class="nav nav-pills">
+			 			<li id="menu_li" class="nav-item active" ><a  class="nav-link" href="#tab1_3" data-toggle="tab" role="tab"><i class='fa fa-navicon'></i>Menus</a></li>
+			  			<li id="menu_li" class="nav-item"><a  class="nav-link" href="#tab1_2" data-toggle="tab"><i class='fa fa-search' role="tab"></i>Buscar</a></li>
+			  			<li id="menu_li" class="nav-item"><a  class="nav-link" href="#tab1_1" data-toggle="tab" role="tab"><i class='fa fa-cogs'></i>Administrar</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
 
-<ul class="nav nav-tabs">
-  <li id="menu_li" class="active" ><a href="#tab1_3" data-toggle="tab"><i class='fa fa-navicon'></i>Menus</a></li>
-  <li id="menu_li"><a href="#tab1_2" data-toggle="tab"><i class='fa fa-search'></i>Buscar</a></li>
-  <li id="menu_li"><a href="#tab1_1" data-toggle="tab"><i class='fa fa-cogs'></i>Administrar</a></li>
-</ul>
-
+<div class="row">
+    <div class="col-md-12">
+		<div class="card-block">
 <div class="tab-content">
     <div class="tab-pane fade  in" id="tab1_1">
     	<div class="row alert-primary msg">
@@ -415,7 +403,7 @@ session_start();
 				<div class="row">
 				    <div class="col-md-12 ">
 				    	Seleccionar Rol 
-				    	<select name="roles" id="roles" class="form-control form-white" data-style="white">
+				    	<select name="roles" id="roles" class="form-control">
 					    <?php
 					    foreach ($roles as $rol) {					    
 					    ?>
@@ -439,7 +427,7 @@ session_start();
 
 	<div class="tab-pane fade active in" id="tab1_3">
 		<div class='col-md-6'>
-			<table>
+			<table class="table table-smoll table-hover">
 				<tr>
 					<div class="row line menu bg-dark">
 						<div class="col-md-12 ">
@@ -509,6 +497,8 @@ session_start();
 		</div>
 	</div>
 </div>
+
+</div></div></div>
 
 
 <!-- BEGIN MODALS -->

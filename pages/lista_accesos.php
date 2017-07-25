@@ -142,12 +142,7 @@ $(document).ready(function(){
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
-	.menu{
-		
-		border:0px solid black;
-		padding: 10px;
-		margin-bottom: 2px;
-	}
+
 
 	.opciones{
 
@@ -182,7 +177,7 @@ $(document).ready(function(){
 </style>
 
   <br><br>
-<table>
+<table class="table">
 
 
 <tr>
