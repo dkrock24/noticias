@@ -1,22 +1,11 @@
 <script>
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
-        $("a#enlance").click(function(){        
+        $("a#lista_pais").click(function(){        
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
         });
 
-        $("a#usuarios").click(function(){     
-            $(".sk-three-bounce").show();   
-            var ruta = $(this).attr('name');           
-            $(".pages").load(ruta);
-            $(".A").removeClass("active");
-            $(".B").addClass("active");
-
-            setTimeout(function() {
-                        $(".sk-three-bounce").css('display','none');
-                    }, 1000);   
-        });
 
         //Mostrar Departamentos mediante el pais
         $("#pais").change(function(){
@@ -56,59 +45,66 @@
         });
     });
 </script>
-<style>
-.save{
-	text-align: center;
-}
-.A .B{
-	cursor: pointer;
-}
-#guardar{
-	cursor: pointer;
-}
-a#usuarios{
-    cursor: pointer;
-}
+<style type="text/css">
+    .global_text{
+        color: white;
+    
+    }
+    #lista_pais{
+        text-decoration: none;
+        color: white;
+    }
+
+    
 </style>
 
-<ul class="nav nav-tabs">
-    <li id="menu_li" class="A active"><a href="#tab1_1" id="usuarios" name="../admin/Cpais/index" data-toggle="tab"><i class='fa fa-globe'></i>Lista</a></li>    
-</ul>
-<br>
-<div class="container">
-	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-4">
-			<form action="#" method="POST" name="pais" id="crearPais">
-				<div class="list-group">
-				 	<a href="#" class="list-group-item active">
-				    	<i class='fa fa-map-marker'></i>Crear Nuevo Pais
-				  	</a>
-				  	<a  class="list-group-item">
-				  		<td>Nombre :</td>
-				  		<td> <input type="text" class="form-control" name="nombre" value=""></td>
-				  	</a>
-                    <a  class="list-group-item">
-                        <td>Número Registro :</td>
-                        <td> <input type="text" class="form-control" name="registro_legal" value=""></td>
-                    </a>				  	
-				  	<a  class="list-group-item">
-				  		<td>Estado :</td>
-				  		<td> 
-				  		<select name="estado" class="form-control">
-				  			<option value="1">Activo</option>
-				  			<option value="0">Inactivo</option>
-				  		</select>
-				  		</td>
-				  	</a>
-				  	<a class="list-group-item active save" id="guardar" alt="Guarda">
-				  		<i class='fa fa-save'></i>Guarda		  		
-				  	</a>
-				</div>
-			</form>
-			
+<div class="row">
+      <div class="col-md-12">
+            <div class="card card-primary">
+                  <div class="card-header">
+                        <div class="header-block">
+                              <div class="container">
+                                    <div class="row abc">
+                                          <div class="col-md-8 global_text"><a href="#tab1_1" id="lista_pais" name="../admin/Cpais/index" data-toggle="tab"><i class='fa fa-arrow-left'></i>Regresar</a></div>
+                                          
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-		</div>
-		<div class="col-md-5"></div>
-	</div>
+<div class="col-xl-12">
+    <div class="card card-primary">
+        
+
+            <div class="card-block">
+                <p>
+                <form action="#" method="POST" name="pais" id="crearPais">
+                    <table class="table">
+                        <tr>
+                                
+                                <td> Nombre : <br><input type="text" class="form-control" name="nombre" value=""></td>
+                                
+                                <td> Número Registro :<br><input type="text" class="form-control" name="registro_legal" value=""></td>
+                              
+                                <td> Estado :<br>
+                                    <select name="estado" class="form-control input_modificado">
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
+                                    </select>
+                                </td>
+                                <td><br><a class="btn btn-default" id="guardar" alt="Guarda"><i class='fa fa-save'></i>Guarda </a> </td>
+                            </tr>
+
+                        </table>
+                        
+                        </form>
+                    </p>
+                </div>
+            <div class="card-footer"> </div>
+        
+    </div>                                
 </div>

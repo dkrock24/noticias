@@ -96,62 +96,78 @@
 a#usuarios{
     cursor: pointer;
 }
+#usuarios{
+        text-decoration: none;
+        color: white;
+    }
 </style>
 
-<ul class="nav nav-tabs">
-    <li id="menu_li" class="A active"><a href="#tab1_1" id="usuarios" name="../admin/Cpais/index" data-toggle="tab"><i class='fa fa-globe'></i>Lista</a></li>
-    
-</ul>
-<br>
-<div class="container">
-	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-4">
-			<form action="#" method="POST" name="pais" id="updatePais">
-				<div class="list-group">
-				 	<a href="#" class="list-group-item active">
-				    	<i class='fa fa-map-marker'></i>Editar Pais
-                        <i id="btn-emilinar" name="<?php echo $paises[0]->id_pais;  ?>" class="fa fa-trash-o" alt="Eliminar"></i>
-				  	</a>
-				  	<a  class="list-group-item">
-				  		<td>Nombre :</td>
-				  		<td> <input type="text" class="form-control" name="nombre" value="<?php echo $paises[0]->nombre_pais; ?>"></td>
-				  	</a>	
-                    <a  class="list-group-item">
-                        <td>Número Registro :</td>
-                        <td> <input type="text" class="form-control" name="registro_legal" value="<?php echo $paises[0]->registro_legal; ?>"></td>
-                    </a>    			  	
-				  	<a  class="list-group-item">
-				  		<td>Estado :</td>
-				  		<td> 
-				  		<select name="estado" class="form-control">
-                        <?php
-                        if($paises[0]->estado == 1)
-                        {
-                            ?>
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
-                            <?php
-                        }
-                        else
-                        {
-                            ?>
-                            <option value="0">Inactivo</option>
-                            <option value="1">Activo</option>                            
-                            <?php
-                        }
-                        ?>				  			
-				  		</select>
-				  		</td>
-				  	</a>
-				  	<a class="list-group-item active save" id="guardar" alt="Guarda" name="<?php echo $paises[0]->id_pais; ?>">
-				  		<i class='fa fa-refresh'></i>Actualizar		  		
-				  	</a>
-				</div>
-			</form>
-			
 
-		</div>
-		<div class="col-md-5"></div>
-	</div>
+
+
+<div class="row">
+      <div class="col-md-12">
+            <div class="card card-primary">
+                  <div class="card-header">
+                        <div class="header-block">
+                              <div class="container">
+                                    <div class="row abc">
+                                          <div class="col-md-8 global_text"><a href="#tab1_1" id="usuarios" name="../admin/Cpais/index" data-toggle="tab"><i class='fa fa-arrow-left'></i>Regresar</a></div>
+                                          
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-12">
+    <div class="card card-primary">
+        
+
+            <div class="card-block">
+                <p>
+                <form action="#" method="POST" name="pais" id="updatePais">
+                    <table class="table">
+                        <tr>
+                                
+                                <td> Nombre : <br><input type="text" class="form-control" name="nombre" value="<?php echo $paises[0]->nombre_pais; ?>"></td>
+                                
+                                <td> Número Registro :<br><input type="text" class="form-control" name="registro_legal" value="<?php echo $paises[0]->registro_legal; ?>"></td>
+                              
+                                <td> Estado :<br>
+                                    <select name="estado" class="form-control">
+                                    <?php
+                                    if($paises[0]->estado == 1)
+                                    {
+                                        ?>
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                        <option value="0">Inactivo</option>
+                                        <option value="1">Activo</option>                            
+                                        <?php
+                                    }
+                                    ?>                          
+                                    </select>
+                                </td>
+                                <td><br><a class="list-group-item save" id="guardar" alt="Guarda" name="<?php echo $paises[0]->id_pais; ?>">
+                        <i class='fa fa-refresh'></i> Actualizar             
+                    </a> </td>
+                            </tr>
+
+                        </table>
+                        
+                        </form>
+                    </p>
+                </div>
+            <div class="card-footer"> </div>
+        
+    </div>                                
 </div>

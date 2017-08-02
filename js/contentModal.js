@@ -57,6 +57,31 @@ $( document ).ready(function()
 	});
 
 
+	$(".btn-crear").click(function()
+    {
+        var url = $(this).attr('name');      
+        $(".pages").load(url);     
+    });
+
+
+    $("#guardarData").click(function(){
+         	var url = $(this).attr('name');
+        	$.ajax({
+            url: url,  
+            type: "post",
+            data: $('#crearData').serialize(),                           
+
+                success: function(data){   
+
+                	$(".pages").load(data);
+                
+                },
+                error:function(){
+                }
+            });
+    });
+
+
 
 });
 	

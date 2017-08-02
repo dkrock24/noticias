@@ -81,12 +81,13 @@ class usuarios_model extends CI_Model
         $this->db->insert(self::usuarios,$usuario);
     }
 
-    public function getAllUsers()
+    // rafael.gutierrez
+    public function getUsuarios()
     {
         $this->db->select('*');
         $this->db->from(self::usuarios);
-        $this->db->join(self::cargos,' on '. self::usuarios .'.cargo = id_cargo');
-        $this->db->join(self::roles,' on '. self::usuarios .'.rol = id_rol');
+        $this->db->join(self::cargos,' on '. self::cargos .'.id_cargo = '.self::usuarios.'.cargo');
+        $this->db->where(self::usuarios.'.cargo','3'); 
         $query = $this->db->get();
         //echo $this->db->queries[0];        
         if($query->num_rows() > 0 )
@@ -94,6 +95,22 @@ class usuarios_model extends CI_Model
             return $query->result();
         }        
     }
+
+    public function editUsuarios( $id_usuario )
+    {
+        $this->db->select('*');
+        $this->db->from(self::usuarios);
+        $this->db->join(self::cargos,' on '. self::cargos .'.id_cargo = '.self::usuarios.'.cargo');
+        $this->db->where(self::usuarios.'.id_usuario', $id_usuario ); 
+        $query = $this->db->get();
+        //echo $this->db->queries[0];        
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }        
+    }
+
+    
 
     public function getAllUsers2()
     {

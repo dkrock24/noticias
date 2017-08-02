@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> ModularAdmin </title>
+        <title> Noticias </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,6 +44,10 @@
                 document.write('<link rel="stylesheet" id="theme-style" href="/noticias/css/app.css">');
             }
         </script>
+        <style type="text/css">
+        select.form-control:not([size]):not([multiple]) {
+        height: calc(3.5rem - 3px);
+    }</style>
     </head>
 
     <body>

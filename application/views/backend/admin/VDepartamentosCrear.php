@@ -1,21 +1,9 @@
 <script>
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
-        $("a#enlance").click(function(){        
+        $("a#lista_pais").click(function(){        
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
-        });
-
-        $("a#usuarios").click(function(){       
-        	$(".sk-three-bounce").show(); 
-            var ruta = $(this).attr('name');           
-            $(".pages").load(ruta);
-            $(".A").removeClass("active");
-            $(".B").addClass("active");
-
-            setTimeout(function() {
-                        $(".sk-three-bounce").css('display','none');
-                    }, 1000); 
         });
 
         $("#guardar").click(function(){
@@ -52,54 +40,73 @@
 }
 </style>
 
-<ul class="nav nav-tabs">
-    <li id="menu_li" class="A active"><a href="#tab1_1" id="usuarios" name="../admin/Cdepartamentos/index" data-toggle="tab"><i class='fa fa-map-marker'></i>Lista</a></li>
-</ul>
-<br>
-<div class="container">
-	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-4">
-			<form action="#" method="POST" name="sucursal" id="crearSucursal">
-				<div class="list-group">
-				 	<a href="#" class="list-group-item active">
-				    	<i class='fa fa-map-marker'></i>Crear Nuevo Departamento
-				  	</a>				  	
 
-				  	<a class="list-group-item">
-				  		<td>Seleccionar Pais :</td>
-				  		<select name="pais" id="pais" class="form-control">
-				  		<option value=""> - - -</option>
-				  		<?php
-				  		foreach ($paises as $paise) {
-				  			?>
-				  			<option value="<?php echo $paise->id_pais ?>"><?php echo $paise->nombre_pais ?></option>
-				  			<?php
-				  		}
-				  		?>
-				  		</select>
-				  	</a>
-				  	<a  class="list-group-item">
-				  		<td>Nombre :</td>
-				  		<td> <input type="text" class="form-control" name="nombre" value=""></td>
-				  	</a>
-				  	<a  class="list-group-item">
-				  		<td>Estado :</td>
-				  		<td> 
-				  		<select name="estado" class="form-control">
-				  			<option value="1">Activo</option>
-				  			<option value="0">Inactivo</option>
-				  		</select>
-				  		</td>
-				  	</a>
-				  	<a class="list-group-item active save" id="guardar" alt="Guarda">
-				  		<i class='fa fa-save'></i>Guarda		  		
-				  	</a>
-				</div>
-			</form>
-			
 
-		</div>
-		<div class="col-md-5"></div>
-	</div>
+<div class="row">
+      <div class="col-md-12">
+            <div class="card card-primary">
+                  <div class="card-header">
+                        <div class="header-block">
+                              <div class="container">
+                                    <div class="row abc">
+                                          <div class="col-md-8 global_text"><a href="#tab1_1" id="lista_pais" name="../admin/Cdepartamentos/index" data-toggle="tab"><i class='fa fa-arrow-left'></i>Regresar</a></div>
+                                          
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<div class="col-xl-12">
+    <div class="card card-primary">
+        
+
+            <div class="card-block">
+                <p>
+                <form action="#" method="POST" name="sucursal" id="crearSucursal">
+                    <table class="table">
+                        <tr>
+	                        <td> Seleccionar Pais :<br>
+	                            <select name="pais" id="pais" class="form-control">
+							  		<option value=""> - - -</option>
+							  		<?php
+							  		foreach ($paises as $paise) {
+							  			?>
+							  			<option value="<?php echo $paise->id_pais ?>"><?php echo $paise->nombre_pais ?></option>
+							  			<?php
+							  		}
+							  		?>
+							 	</select>
+                            </td>
+                                
+                            <td> Nombre : <br><input type="text" class="form-control" name="nombre" value=""></td>
+                                
+                                <td> 
+                                	Estado :<br>
+                                	<select name="estado" class="form-control">
+				  						<option value="1">Activo</option>
+				  						<option value="0">Inactivo</option>
+				  					</select>
+                                </td>
+                              
+                                
+                            <td><br><a class="list-group-item save" id="guardar" alt="Guarda">
+				  		<i class='fa fa-save'></i>Guarda		  		
+				  	</a> </td>
+                            </tr>
+
+                        </table>
+                        
+                        </form>
+                    </p>
+                </div>
+            <div class="card-footer"> </div>
+        
+    </div>                                
+</div>
+
+
