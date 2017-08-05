@@ -92,6 +92,20 @@ class Cnoticia extends CI_Controller {
         $data['noticias'] = $this->Cnoticia_model->getNoticias( );
         $this->load->view('backend/noticia/Vnoticias.php', $data );
     }
+
+    public function editNoticias( $id_noticia )
+    {
+        $data['noticias'] = $this->Cnoticia_model->editNoticias( $id_noticia );
+        $data['categorias'] = $this->Cnoticia_model->getCategoriasNoticias(  );
+        $this->load->view('backend/noticia/VnoticiasEdit.php', $data );
+    }
+
+    public function updateNoticia( $id_noticia ){
+
+        $this->Cnoticia_model->updateNoticia( $id_noticia , $_POST );
+        echo "../noticia/Cnoticia/getNoticias/";
+
+    }
     
 
 }

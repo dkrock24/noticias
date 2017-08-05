@@ -22,7 +22,7 @@
                         <div class="header-block">
                               <div class="container">
                                     <div class="row abc">
-                                          <div class="col-md-8 global_text">Lista de Menus</div>
+                                          <div class="col-md-8 global_text">Publicaciones</div>
                                           
                                     </div>
                               </div>
@@ -67,7 +67,7 @@
 	  
 	            					<td><?php if($not->estado_noticia==1){echo "Activo";}else{echo "Inactivo"; } ?></td>
 	            					<td>
-	            						<a href="#" name="../noticia/Cnoticia/editMenuNoticia/<?php echo $not->id_noticia;  ?>" class='btn-crear btn btn-secondary btn-sm '><i class="fa fa-refresh"></i> Editar</a>
+	            						<a href="#" name="../noticia/Cnoticia/editNoticias/<?php echo $not->id_noticia;  ?>" class='btn-crear btn btn-secondary btn-sm '><i class="fa fa-refresh"></i> Editar</a>
 	            						
 	            					</td>
 	            				</tr>

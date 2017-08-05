@@ -165,9 +165,50 @@ class Cnoticia_model extends CI_Model
         }        
     }
 
-    
+    //Obtener la noticia segun el Id.
+    public function editNoticias( $id_noticia )
+    {
+        $this->db->select('*');
+        $this->db->from(self::noticias);    
+        $this->db->join(self::usuarios,' on '. 
+                        self::usuarios.'.id_usuario = '.
+                        self::noticias.'.id_usuario');    
+        $this->db->join(self::categoria,' on '. 
+                        self::categoria.'.id_categoria = '.
+                        self::noticias.'.id_categoria'); 
+        $this->db->where(self::noticias.'.id_noticia',$id_noticia )   ;
+        $query = $this->db->get();
+        
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }        
+    }
 
-    
+    public function  getCategoriasNoticias(){
+        $this->db->select('*');
+        $this->db->from(self::categoria);    
+        $this->db->where(self::categoria.'.estado_categoria',1)   ;
+        $query = $this->db->get();
+        
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }   
+    }
 
+    public function updateNoticia( $id_noticia , $data  ){
+        $info = array(
+            'id_titulo'         => $data['titulo'],
+            'contenido'         => $data['contenido1'],
+            'referencia'        => $data['referencia'],
+            'link_referencia'   => $data['enlace'],
+            'id_categoria'      => $data['categoria'],
+            'fecha_fin'         => $data['vencimiento'],
+            'estado_noticia'    => $data['estado'],
+            );
+        $this->db->where('id_noticia', $id_noticia );
+        $this->db->update(self::noticias, $info); 
+    }
 
 }
