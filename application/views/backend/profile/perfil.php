@@ -1,5 +1,8 @@
 <link rel="stylesheet" href="/noticias/css/profile.css">
+<link rel="stylesheet" href="/noticias/css/app.css">
 <link rel="stylesheet" href="/noticias/css/vendor.css">  
+
+
 <script type="text/javascript">
 $(document).ready(function () 
 {
@@ -11,7 +14,7 @@ $(document).ready(function ()
     
     $(".profilePicture").mouseout(function() 
     {
-         $('.takeAvatar').hide();
+        $('.takeAvatar').hide();
     });
 
     
@@ -58,9 +61,7 @@ $(document).ready(function ()
 
 });
 </script>
-            
-<section class="section">
-<div class="row">
+        
 
 <?php
     //var_dump($datosProfile);
@@ -69,6 +70,7 @@ $(document).ready(function ()
 
 
 ?>
+<article class="content cards-page">
     <!--       Card profile  -->
     <div class="col-xl-4">
     <div class="card card-default">
@@ -304,8 +306,5 @@ $(document).ready(function ()
     </form>
     </div>
     <!--     card profile info    -->    
-                            
-                            
-</div>
-</section>
+ </article>                     
 <?php } ?>

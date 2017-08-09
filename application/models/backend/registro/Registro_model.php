@@ -13,17 +13,19 @@ class registro_model extends CI_Model
 
     public function save_registro($register, $files)
     {
-         $dateFileCv = date("YmdHis");
-
-        if (isset($files['files']['tmp_name'])) 
+        $dateFileCv = date("YmdHis");
+        $textName = substr($register['nombres'], 0, 2);
+        $token = $dateFileCv."_".$textName; 
+        
+        if (isset($files['cvfile']['tmp_name'])) 
         {
             //-----------File Curriculum Vitae--------------------------------------
-                $varStringName = $files['files']['tmp_name'];
-                $name = $dateFileCv."_".$files['files']['name'];
-                $fileType = $files['files']['type'];
-                $fileError = $files['files']['error'];
-                $fileContent = file_get_contents($files['files']['tmp_name']);
-                $cvFile = "assets/filesCV/".$dateFileCv."_".$files['files']['name'];
+                $varStringName = $files['cvfile']['tmp_name'];
+                $name = $dateFileCv."_cvfile.pdf";
+                $fileType = $files['cvfile']['type'];
+                $fileError = $files['cvfile']['error'];
+                //$fileContent = file_get_contents($files['cvfile']['tmp_name']);
+                $cvFile = "assets/filesCV/".$name;
 
                 move_uploaded_file($varStringName, $cvFile);
             //----------------------------------------------------------------------
@@ -35,6 +37,7 @@ class registro_model extends CI_Model
              'apellidos'    => $register['apellidos'],
              'celular'    => $register['telefono'],
              'email'    => $register['email'],
+             'token_register'    =>  $token,
              'direccion'    => $register['direccion'],
              'cv_user'     => $name,
              'estado'    => 1

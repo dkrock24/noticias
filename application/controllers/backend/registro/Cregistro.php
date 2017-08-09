@@ -8,7 +8,8 @@ class Cregistro extends CI_Controller {
 		parent::__construct();		
 		$this->load->helper('url');		
 		$this->load->database('default');	
-		$this->load->model('backend/registro/registro_model');			
+		$this->load->model('backend/registro/registro_model');
+		$this->load->library('My_phpmailer');		
 	}
 
 	public function Autoregistro(){
@@ -17,9 +18,23 @@ class Cregistro extends CI_Controller {
 
 	public function saveRegistro()
 	{
-
+		$this->envio();
 		$this->registro_model->save_registro($_POST, $_FILES);
-		$this->load->view('backend/registro/Autoregistro');
+		$this->load->view('backend/registro/VregistroCorrecto.php');
+
+	}
+
+    public function envio()
+	{
+        $mail = new PHPMailer();
+        $mail->SetLanguage('es');
+        $mail->FromName = "blen7777@gmail.com";
+        $mail->From = "blen7777@gmail.com";
+        $mail->Subject = "asunto del mensaje";
+        $mail->AddAddress("blen7777@gmail.com");
+        $mail->Body = "cuerpo de mensaje";
+        $mail->IsHTML(true);
+        $mail->Send();
 	}
 	
 }

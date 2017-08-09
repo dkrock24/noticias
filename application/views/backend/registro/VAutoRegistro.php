@@ -87,7 +87,7 @@ $(document).ready(function ()
         <label for="firstname">Curriculum Vitae </label>
         <div class="row">
             <div class="col-sm-6"> 
-                <input type="file" id="files" name="files[]" class="form-control underlined" accept="application/pdf" required=""> 
+                <input type="file" id="cvfile" name="cvfile" class="form-control underlined" accept="application/pdf" required=""> 
             </div>
             <div class="col-sm-6"> 
                 <input type="number" pattern="[0-9.]*" class="form-control underlined" name="telefono" id="telefono" placeholder="Teléfono" required=""> 
