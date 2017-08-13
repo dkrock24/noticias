@@ -15,7 +15,7 @@ class registro_model extends CI_Model
     {
         $dateFileCv = date("YmdHis");
         $textName = substr($register['nombres'], 0, 2);
-        $token = $dateFileCv."_".$textName; 
+        $token = $dateFileCv."_".strtoupper($textName); 
         
         if (isset($files['cvfile']['tmp_name'])) 
         {

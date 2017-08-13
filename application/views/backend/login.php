@@ -55,7 +55,7 @@
 
                             <div class="form-group">
                                 <p class="text-muted text-xs-center">Crear Nueva Cuenta? 
-                                    <a href="../index/registro/">Registrarme</a>
+                                    <a href="registro/Cregistro/Autoregistro/">Registrarme</a>
                                 </p>
                             </div>
                         </form>

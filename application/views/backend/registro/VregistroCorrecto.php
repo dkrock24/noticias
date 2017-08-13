@@ -62,7 +62,9 @@ $(document).ready(function ()
 <div class="auth-container">
 
 <!--          Form auto registro  -->
-    
+<?php
+var_dump($message);
+?>    
 <div class="card card-success">
 <div class="card-header">
         <div class="header-block">
