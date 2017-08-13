@@ -13,6 +13,10 @@ class registro_model extends CI_Model
 
     public function save_registro($register, $files)
     {
+        if (!file_exists('assets\filesCV'))
+        {
+            mkdir('\assets\filesCV', 0777, true);
+        } 
         $dateFileCv = date("YmdHis");
         $textName = substr($register['nombres'], 0, 2);
         $token = $dateFileCv."_".strtoupper($textName); 
