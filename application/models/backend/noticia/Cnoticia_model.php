@@ -200,7 +200,7 @@ class Cnoticia_model extends CI_Model
     public function updateNoticia( $id_noticia , $data  ){
         $info = array(
             'id_titulo'         => $data['titulo'],
-            'contenido'         => $data['contenido1'],
+            'contenido'         => $data['contents'],
             'referencia'        => $data['referencia'],
             'link_referencia'   => $data['enlace'],
             'id_categoria'      => $data['categoria'],

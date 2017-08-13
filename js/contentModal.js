@@ -65,6 +65,7 @@ $( document ).ready(function()
 
 
     $("#guardarData").click(function(){
+    	
          	var url = $(this).attr('name');
         	$.ajax({
             url: url,  
