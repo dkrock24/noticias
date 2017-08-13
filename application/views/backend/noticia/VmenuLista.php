@@ -1,15 +1,8 @@
 
+<script src="../../../js/tableGlobal.js"></script>
 
-
-<style type="text/css">
-	.encabezado{
-		color: white;
-	}
-	#guardar{
-		float: right;
-	}
-</style>
-
+<link href="../../../assets/css/bootstrap.css" rel="stylesheet" />
+<link href="../../../assets/css/custom.css" rel="stylesheet" />
 
 <div class="row">
       <div class="col-md-12">
@@ -35,7 +28,7 @@
 	        <div class="card-block">
 	            <div class="row">
 	            	<div class="col-md-12">
-	            		<table class="table table-striped table-hover table-condensed" id="myTable2">
+	            		<table class="table table-striped table-hover table-condensed" id="my-table">
 	            			<thead>
 	            			<tr>
 	            				<th>#</th>
@@ -44,7 +37,7 @@
 	            				<th>Pagina</th>
 	            				<th>Seccion</th>
 	            				<th>Creado</th>
-	            				<th>Estado</th>
+	            				<th>Activo</th>
 	            				<th>Acción</th>
 	            			</tr>
 	            			</thead>
@@ -62,10 +55,20 @@
 	            					<td><?php echo $cat->pages; ?></td>
 	            					<td><?php echo $cat->seccion; ?></td>
 	            					<td><?php 	$abc = new DateTime($cat->creado);	echo $abc->format('M-d-Y'); ?></td>
-	            					<td><?php if($cat->estado_menu==1){echo "Activo";}else{echo "Inactivo"; } ?></td>
+	            					<td>
+									<?php 
+                                    if($cat->estado_menu == 1){ 
+                                        ?><div class="btn-success btn-sm">Si</div><?php
+                                        
+                                    }else{
+                                     ?><div class="btn-danger btn-sm">No</div>
+                                     <?php
+                                    }  
+                                ?>
+	            					</td>
 	            					<td>
 	            						<a href="#" name="../noticia/Cnoticia/editMenuNoticia/<?php echo $cat->id_menu;  ?>" class='btn-crear btn btn-secondary btn-sm '><i class="fa fa-refresh"></i> Editar</a>
-	            						<a href="#" name="../noticia/Cnoticia/subMenuNoticia/<?php echo $cat->id_menu;  ?>" class='btn-crear btn btn-success btn-sm'><i class="fa fa-check"></i> Sub menu</a>
+	            						<a href="#" name="../noticia/Cnoticia/subMenuNoticia/<?php echo $cat->id_menu;  ?>" class='btn-crear btn btn-success btn-sm'><i class="fa fa-check"></i> Sub Menus</a>
 	            					</td>
 	            				</tr>
 	            			<?php
@@ -77,10 +80,8 @@
 	            	</div>
 
 	            	<div class="col-md-12 text-center">
-	            <ul class="pagination " id="myPager">
-	                
-	            </ul>
-	        </div>
+                    <ul class="pagination hidden-xs pull-right" id="myPager"></ul>
+                </div>
 
 
 	            </div>
@@ -89,32 +90,4 @@
 	</div>
 </div>
 
-
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
-<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-
-
-
-
-
-
-
-<script src="../../../js/tableGlobal.js"></script>
 <script src="../../../js/contentModal.js"></script>
-
-<script type="text/javascript">
-	function drawData(data){
-
-		var jdata = jQuery.parseJSON(data);
-
-		for (var i in jdata) {
-			$("#categoria").val(jdata[i].nombre_categoria);
-			$("#descripcion").val(jdata[i].descripcion_categoria);
-			$("#id_categoria").val(jdata[i].id_categoria);
-
-    	}
-	}
-</script>

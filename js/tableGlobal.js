@@ -102,19 +102,8 @@
     
     }
 };
-    /*
+    
     $(document).ready(function(){
-
-        $('#myTable2').dataTable({            
-            "paging": false,
-            "pagingType": "full_numbers",
-            "ordering": false,
-            "info":     false
-
-        });
         $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
-        
-
-
-    });*/
+    });
 

@@ -1,0 +1,16 @@
+.encabezado{
+        color: white;
+      }
+      #guardar{
+        float: right;
+      }
+    .global_text{
+        color: white;
+    }
+    thead tr th 
+    {
+        height: 50px;
+        background-color: #f39c12;
+        border-color:#e67e22;
+        border-bottom:3px solid black;
+    }

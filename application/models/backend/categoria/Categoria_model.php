@@ -64,4 +64,18 @@ class Categoria_model extends CI_Model
         $this->db->where('id_categoria', $categoria['id_categoria'] );
         $this->db->update(self::categoria, $data);  
     }
+
+    // INSERTAR CATEGORIA
+    public function  insertCategoria( $categoria ){
+        session_start();
+        $data = array(
+            'nombre_categoria'    => $categoria['categoria'],
+            'descripcion_categoria'    => $categoria['descripcion'],
+            'id_usuario'    => $_SESSION['idUser'],            
+            'estado_categoria'    => $categoria['estado']
+            );        
+        $this->db->insert(self::categoria, $data);  
+    }
+
+    
 }

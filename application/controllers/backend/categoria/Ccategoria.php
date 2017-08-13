@@ -34,6 +34,19 @@ class Ccategoria extends CI_Controller {
     // Desabilita la categoria por su ID
     public function inactivarCategoria( $id_categoria , $estado ){
     	$cat = $this->Categoria_model->inactivarCategoria( $id_categoria , $estado );
-    	echo "../categoria/Ccategoria/index";
+    	//echo "../categoria/Ccategoria/index";
+        $this->index();
+    }
+
+    // Vista para crear la categoria
+    public function nuevaCategoria(  ){
+        
+        $this->load->view('backend/categoria/VnuevaCategoria.php');
+    }
+
+    // Vista para insertar la categoria
+    public function insertCategoria(  ){
+        $this->Categoria_model->insertCategoria( $_POST );
+        echo "../categoria/Ccategoria/index";
     }
 }
