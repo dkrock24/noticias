@@ -8,20 +8,17 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" />
 
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
         <link rel="stylesheet" href="/noticias/css/vendor.css">
         <!-- Theme initialization -->
 
-
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-        <script src="/noticias/js/jquery.js"></script>
-
-        <script src="/noticias/js/vendor.js"></script>
-
-        <script src="/noticias/js/app.js"></script>
+        
+        <script type="text/javascript" src="/noticias/js/jquery.js"></script> 
+        
 
         <?php
             foreach ($lib_login as $value) {
@@ -353,11 +350,16 @@
 
 
     </body>
-
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-
     
+    <script src="/noticias/js/vendor.js"></script>
+    <script src="/noticias/js/app.js"></script>
 
-    
+
+
+
+  <!-- include summernote -->
+    <link href="../../../assets/dist/summernote.css" rel="stylesheet">
+    <script src="../../../assets/dist/summernote.js"></script>
+    <script src="../../../assets/dist/summernote.min.js"></script>
 
 </html>

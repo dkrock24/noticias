@@ -15,8 +15,8 @@ class Index extends CI_Controller {
 	}
 
 	public function demo(){
-		echo "yes";
-		exit();
+		$this->load->view('demo.html');
+		
 	}
 
 	public function index()

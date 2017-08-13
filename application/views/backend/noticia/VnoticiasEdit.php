@@ -1,34 +1,28 @@
+   
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.0.2/css/material-design-iconic-font.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/froala_editor.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/froala_style.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/plugins/table.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/plugins/image.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/plugins/fullscreen.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/plugins/char_counter.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/plugins/colors.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/plugins/emoticons.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/plugins/image_manager.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/plugins/line_breaker.css">
-<link rel="stylesheet" href="../../../assets/plugins/editor/css/plugins/quick_insert.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" />
+  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 
 
+    <link href="../../../assets/dist/summernote.css" rel="stylesheet">
+    <script src="../../../assets/dist/summernote.js"></script>
+    <script src="../../../assets/dist/summernote.min.js"></script>
 
 <script>
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
+      $('.summernote').summernote();
+       $.noConflict();
         $("a#lista_pais").click(function(){        
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
         });
         
     });
+
+
 </script>
+
 
 <style type="text/css">
     .global_text{
@@ -132,8 +126,8 @@
                     <br>
                     <div class="row">
                         <div class="col-xl-12">
-                            <label>Contenido</label><br>
-                            <textarea class="textarea form-control" id="edit"  name="contenido1" style="width: 810px; height: 200px"><?php echo $noticias[0]->contenido; ?></textarea>
+                          <label>Contenido</label><br>                          
+                          <textarea name="contents" class="summernote" id="contents" title="Contents"><?php echo $noticias[0]->contenido ?></textarea>
                         </div>
                     </div>
                     <br>
@@ -174,36 +168,14 @@
         
     </div>                                
 </div>
-
+<script src="../../../js/tableGlobal.js"></script>
 <script src="../../../js/contentModal.js"></script>
 
-<script type="text/javascript" src="../../../assets/plugins/editor/js/froala_editor.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/table.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/image.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/lists.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/fullscreen.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/link.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/print.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/word_paste.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/align.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/char_counter.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/colors.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/emoticons.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/entities.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/font_family.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/font_size.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/forms.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/image_manager.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/line_breaker.min.js"></script>
-<script type="text/javascript" src="../../../assets/plugins/editor/js/plugins/quick_insert.min.js"></script>
 
 
-  <script>
-    $(function(){
-      $('#edit').froalaEditor()
-    });
-  </script>
 
+
+  
 
 
 

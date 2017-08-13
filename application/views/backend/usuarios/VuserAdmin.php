@@ -1,32 +1,9 @@
+<script src="../../../js/tableGlobal.js"></script>
+
+<link href="../../../assets/css/bootstrap.css" rel="stylesheet" />
+<link href="../../../assets/css/custom.css" rel="stylesheet" />
 
 
-<script>
-
-
-
-
-</script>
-
-<style>
-
-</style>
-
-
-
-
-
-<style type="text/css">
-  .encabezado{
-    color: white;
-  }
-  #guardar{
-    float: right;
-  }
-  .global_text{
-        color: white;
-    
-    }
-</style>
 
 
 <div class="row">
@@ -53,7 +30,7 @@
           <div class="card-block">
               <div class="row">
                 <div class="col-md-12">
-                  <table class="table table-striped table-hover table-condensed" id="myTable2">
+                  <table class="table table-striped table-hover table-condensed" id="my-table">
                     <thead>
                     <tr>
                       <th>#</th>
@@ -65,7 +42,7 @@
                       <th>Usuario</th>
                       <th>Genero</th>
                       <th>Creado</th>
-                      <th>Estado</th>
+                      <th>Activo</th>
                       <th>Acción</th>
                     </tr>
                     </thead>
@@ -86,7 +63,15 @@
                         <td><?php echo $cat->usuario; ?></td>
                         <td><?php echo $cat->genero; ?></td>
                         <td><?php $abc = new DateTime($cat->fecha_creacion);    echo $abc->format('M-d-Y'); ?></td>
-                        <td><?php if($cat->estado==1){echo "Activo";}else{echo "Inactivo"; } ?></td>
+                        <td><?php 
+                                    if($cat->estado == 1){ 
+                                        ?><div class="btn-success btn-sm">Si</div><?php
+                                        
+                                    }else{
+                                     ?><div class="btn-danger btn-sm">No</div>
+                                     <?php
+                                    }  
+                                ?></td>
                         <td>
                           <a href="#" name="../usuarios/Cusuarios/editUsuarios/<?php echo $cat->id_usuario;  ?>" class='btn-crear btn btn-secondary btn-sm '><i class="fa fa-refresh"></i> Editar</a>
                           
@@ -100,11 +85,10 @@
                   </table>
                 </div>
 
-                <div class="col-md-12 text-center">
-              <ul class="pagination " id="myPager">
-                  
-              </ul>
-          </div>
+              <div class="col-md-12 text-center">
+            
+            <ul class="pagination hidden-xs pull-right" id="myPager"></ul>
+        </div>
 
 
               </div>
@@ -114,20 +98,6 @@
 </div>
 
 
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
-<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-
-
-
-
-
-
-
-<script src="../../../js/tableGlobal.js"></script>
-<script src="../../../js/contentModal.js"></script>
 
 <script type="text/javascript">
   function drawData(data){
@@ -142,5 +112,7 @@
       }
   }
 </script>
+
+<script src="../../../js/contentModal.js"></script>
 
 
