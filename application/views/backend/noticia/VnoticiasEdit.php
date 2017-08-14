@@ -11,8 +11,9 @@
 <script>
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
+      $.noConflict();
       $('.summernote').summernote();
-       $.noConflict();
+       
         $("a#lista_pais").click(function(){        
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
