@@ -18,48 +18,42 @@ class Cregistro extends CI_Controller {
 
 	public function saveRegistro()
 	{
-		//$this->envio();
+		
+		$dateToken = date("YmdHis");
+        $textName = substr($_POST['nombres'], 0, 2);
+        $token = $dateToken."_".strtoupper($textName); 
+		$this->registro_model->save_registro($_POST, $_FILES, $token);
+		$this->envio($_POST['email'], $token);
+		$this->load->view('backend/registro/VregistroCorrecto.php', $data);
 
-		$mail = new PHPMailer();
-        $mail->IsSMTP(); // we are going to use SMTP
-        $mail->SMTPAuth   = true; // enabled SMTP authentication
-        $mail->SMTPSecure = "ssl";  // prefix for secure protocol to connect to the server
-        $mail->Host       = "smtp.gmail.com";      // setting GMail as our SMTP server
-        $mail->Port       = 465;                   // SMTP port to connect to GMail
+	}
+
+    public function envio($email, $token)
+	{
+       $mail = new PHPMailer();
+
+		$mail->IsSMTP();                                      // set mailer to use SMTP
+		$mail->SMTPAuth = true;     // turn on SMTP authentication
+		//$mail->SMTPSecure = "tls";
+		$mail->Host = "smtp.gmail.com";  // specify main and backup server
+		$mail->Port = 465;
         $mail->Username   = "blen7777@gmail.com";  // user email address
-        $mail->Password   = "Pamebeya2017";            // password in GMail
-        $mail->SetFrom('info@yourdomain.com', 'Firstname Lastname');  //Who is sending the email
+        $mail->Password   = "2017@Pamebeya";            // password in GMail
+        $mail->SetFrom('info@notiinfo.com', 'Noticias Online');  //Who is sending the email
         $mail->AddReplyTo("blen7777@gmail.com","Firstname Lastname");  //email address that receives the response
-        $mail->Subject    = "Email subject";
-        $mail->Body      = "HTML message";
+        $mail->Subject    = "Validacion de registro";
+        $mail->Body      = "Gracias por querer ser parte de esta plataforma. para 
+        poder contienual con el proceso de inscripcion tiene que compiar el siguiente token
+        en la input que se te pide en la plataforma ".$token;
         $mail->AltBody    = "Plain text message";
-        $destino = "blen7777@gmail.com"; // Who is addressed the email to
-        $mail->AddAddress($destino, "John Doe");
+        $destino = $email; // Who is addressed the email to
+        $mail->AddAddress($destino, "Enscripcion");
 
         if(!$mail->Send()) {
             $data["message"] = "Error: " . $mail->ErrorInfo;
         } else {
             $data["message"] = "Message sent correctly!";
         }
-        //$this->load->view('sent_mail',$data);
-
-
-		$this->registro_model->save_registro($_POST, $_FILES);
-		$this->load->view('backend/registro/VregistroCorrecto.php', $data);
-
-	}
-
-    public function envio()
-	{
-        $mail = new PHPMailer();
-        $mail->SetLanguage('es');
-        $mail->FromName = "blen7777@gmail.com";
-        $mail->From = "blen7777@gmail.com";
-        $mail->Subject = "asunto del mensaje";
-        $mail->AddAddress("blen7777@gmail.com");
-        $mail->Body = "cuerpo de mensaje";
-        $mail->IsHTML(true);
-        $mail->Send();
 	}
 	
 }

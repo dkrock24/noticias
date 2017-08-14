@@ -14,7 +14,7 @@ class profile_model extends CI_Model
     public function getUserData($userLogged)
     {
          $query = $this->db->query('Select * from sr_usuarios u
-                                    where u.id_usuario = '.$userLogged);
+                                    where u.id_usuario = 4');
          return $query->result(); 
         
     }

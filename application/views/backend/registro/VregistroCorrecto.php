@@ -63,7 +63,7 @@ $(document).ready(function ()
 
 <!--          Form auto registro  -->
 <?php
-var_dump($message);
+//var_dump($message);
 ?>    
 <div class="card card-success">
 <div class="card-header">

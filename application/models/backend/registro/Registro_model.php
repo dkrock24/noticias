@@ -11,16 +11,13 @@ class registro_model extends CI_Model
         
     }
 
-    public function save_registro($register, $files)
+    public function save_registro($register, $files, $token)
     {
-        if (!file_exists('assets\filesCV'))
+        if (!is_dir('assets\filesCV'))
         {
-            mkdir('\assets\filesCV', 0777, true);
+            mkdir('assets\filesCV', 0777, true);
         } 
         $dateFileCv = date("YmdHis");
-        $textName = substr($register['nombres'], 0, 2);
-        $token = $dateFileCv."_".strtoupper($textName); 
-        
         if (isset($files['cvfile']['tmp_name'])) 
         {
             //-----------File Curriculum Vitae--------------------------------------
@@ -28,7 +25,6 @@ class registro_model extends CI_Model
                 $name = $dateFileCv."_cvfile.pdf";
                 $fileType = $files['cvfile']['type'];
                 $fileError = $files['cvfile']['error'];
-                //$fileContent = file_get_contents($files['cvfile']['tmp_name']);
                 $cvFile = "assets/filesCV/".$name;
 
                 move_uploaded_file($varStringName, $cvFile);

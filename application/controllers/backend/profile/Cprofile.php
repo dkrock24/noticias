@@ -14,7 +14,7 @@ class Cprofile extends CI_Controller {
 
 	public function ViewProfile()
 	{
-		$data['datosProfile'] = $this->profile_model->getUserData($userLogged);	
+		$data['datosProfile'] = $this->profile_model->getUserData($userLogged = 2);	
 		$this->load->view('backend/profile/perfil.php', $data);
 	}
 
