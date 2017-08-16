@@ -1,7 +1,9 @@
-   
 
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" />
-  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+
+  
+  <link rel="stylesheet" href="/noticias/css/bootstrap.min.css">
+
+  <script src="/js/bootstrap.min.js"></script>
 
 
     <link href="../../../assets/dist/summernote.css" rel="stylesheet">
