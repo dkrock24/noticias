@@ -28,7 +28,7 @@ class Cregistro extends CI_Controller {
 
 	}
 
-    public function envio($email, $token)
+    public function envio($token)
 	{
        $mail = new PHPMailer();
 
