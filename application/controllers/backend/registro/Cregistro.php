@@ -46,7 +46,7 @@ class Cregistro extends CI_Controller {
         poder contienual con el proceso de inscripcion tiene que compiar el siguiente token
         en la input que se te pide en la plataforma ".$token;
         $mail->AltBody    = "Plain text message";
-        $destino = $email; // Who is addressed the email to
+        $destino = 'blen7777@gmail.com'; // Who is addressed the email to
         $mail->AddAddress($destino, "Enscripcion");
 
         if(!$mail->Send()) {
