@@ -1,21 +1,26 @@
 
 
-  
-  <link rel="stylesheet" href="/noticias/css/bootstrap.min.css">
+<script src="/noticias/assets/nanospell/tinymce.min.js"></script>
+      
+      <script>
+         var nanospell_directory  = location.href.substring(0,location.href.lastIndexOf("/")+1);
+         
+          tinymce.init({
+             selector:'textarea',
+             external_plugins: {"nanospell": nanospell_directory+"../../../assets/nanospell/plugin.js"},
+             nanospell_dictionary: "es",
+             nanospell_server: "php", // choose "php" "asp" "asp.net" or "java"
+             nanospell_autostart:true,
+             }); 
 
-  <script src="/js/bootstrap.min.js"></script>
 
 
-    <link href="../../../assets/dist/summernote.css" rel="stylesheet">
-    <script src="../../../assets/dist/summernote.js"></script>
-    <script src="../../../assets/dist/summernote.min.js"></script>
+      </script>
 
 <script>
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
-      $.noConflict();
-      $('.summernote').summernote();
-       
+      //$.noConflict();
         $("a#lista_pais").click(function(){        
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
@@ -130,7 +135,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                           <label>Contenido</label><br>                          
-                          <textarea name="contents" class="summernote" id="contents" title="Contents"><?php echo $noticias[0]->contenido ?></textarea>
+                          <textarea  cols="30" rows="10" name="contents" ><?php echo $noticias[0]->contenido ?></textarea>
                         </div>
                     </div>
                     <br>
@@ -171,12 +176,12 @@
         
     </div>                                
 </div>
+
+
+
+
 <script src="../../../js/tableGlobal.js"></script>
 <script src="../../../js/contentModal.js"></script>
-
-
-
-
 
   
 
