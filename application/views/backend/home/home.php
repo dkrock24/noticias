@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/noticias/css/bootstrap.min.css" />
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">

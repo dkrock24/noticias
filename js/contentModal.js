@@ -65,12 +65,15 @@ $( document ).ready(function()
 
 
     $("#guardarData").click(function(){
-    	
+    	 
+		var abc = tinymce.get("contents").getContent();
+		$("#contents").html(abc);
+
          	var url = $(this).attr('name');
         	$.ajax({
             url: url,  
             type: "post",
-            data: $('#crearData').serialize(),                           
+            data: $('#crearData').serialize(),
 
                 success: function(data){   
 
