@@ -1,6 +1,7 @@
 .DS_Store
 
 assets/images/*
+assets/filesCV/*
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
