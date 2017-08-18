@@ -23,12 +23,12 @@ class Cregistro extends CI_Controller {
         $textName = substr($_POST['nombres'], 0, 2);
         $token = $dateToken."_".strtoupper($textName); 
 		$this->registro_model->save_registro($_POST, $_FILES, $token);
-		$this->envio($_POST['email'], $token);
-		$this->load->view('backend/registro/VregistroCorrecto.php', $data);
+		$this->envio($token);
+		$this->load->view('backend/registro/VregistroCorrecto.php');
 
 	}
 
-    public function envio($email, $token)
+    public function envio($token)
 	{
        $mail = new PHPMailer();
 
@@ -40,13 +40,13 @@ class Cregistro extends CI_Controller {
         $mail->Username   = "blen7777@gmail.com";  // user email address
         $mail->Password   = "2017@Pamebeya";            // password in GMail
         $mail->SetFrom('info@notiinfo.com', 'Noticias Online');  //Who is sending the email
-        $mail->AddReplyTo("blen7777@gmail.com","Firstname Lastname");  //email address that receives the response
+        $mail->AddReplyTo("blen7777@gmail.com","Notification");  //email address that receives the response
         $mail->Subject    = "Validacion de registro";
         $mail->Body      = "Gracias por querer ser parte de esta plataforma. para 
         poder contienual con el proceso de inscripcion tiene que compiar el siguiente token
         en la input que se te pide en la plataforma ".$token;
         $mail->AltBody    = "Plain text message";
-        $destino = $email; // Who is addressed the email to
+        $destino = 'blen7777@gmail.com'; // Who is addressed the email to
         $mail->AddAddress($destino, "Enscripcion");
 
         if(!$mail->Send()) {

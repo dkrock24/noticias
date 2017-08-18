@@ -1,0 +1,28 @@
+.profilePicture
+{
+  margin: 0px auto !important;
+}
+
+.profilePicture img
+{
+  vertical-align: top;
+  border-bottom: 2px solid #4f5f6f;
+  padding: 15px;
+  position: relative;
+
+}
+.cardOpacity:hover
+{
+  opacity: 0.6;
+}
+
+.takeAvatar
+{
+    display: none;
+    font-size: 30px;
+    z-index: 1001;
+    font-size: 40px !important;
+    top: 200px;
+    color: #ff4444;
+    position: absolute;
+}
