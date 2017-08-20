@@ -1,0 +1,40 @@
+.region{
+	background: black;
+	color: white;
+	padding: 3px;
+	display: inline-block;
+	font-size: 16px;
+}
+.titulo_corto{
+	display: inline;
+}
+
+.titulo_largo{
+	font-size: 18px;
+}
+
+.top-bar{
+	padding:0px;
+	background: black;
+	height: 10px;
+	margin-top: -20px;
+}
+
+.callout {
+    margin: 0 0 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(10,10,10,.25);
+    border-radius: 0;
+    position: relative;
+    background-color: #fff;
+}
+
+.column{
+	height: auto;
+    box-sizing: inherit; 
+    position: relative;
+    display: inline-block;
+}
+.noticia_detalle{
+	text-decoration: none;
+}
