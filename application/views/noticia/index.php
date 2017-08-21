@@ -8,13 +8,19 @@
     <link rel="stylesheet" href="/noticias/css/foundation.min.css">
     <link rel="stylesheet" href="/noticias/css/frontend_custom.css">
 
+    <style type="text/css">
+        .abc{
+            display: inline-flex;
+        }
+    </style>
+
 
     </head>
     
     <body>
 
         <div class="row column">
-            <h3><p class="lead">sisepudo.com</p></h3>
+            <a href="/noticias/index.php/noticia/index/index"><h3><p class="lead">sisepudo.com</p></h3></a>
         </div>
 
 
@@ -28,14 +34,16 @@
 
         <div class="row small-up-1 medium-up-2 large-up-3">
         <?php
+        if($noticias !=null)
+        {
         foreach ($noticias as $noticia) {
             ?>     
                 
-                <div class="column"><a href="../../noticia/index/detalle/<?php echo $noticia->id_noticia ?>" class="noticia_detalle">       
+                <div class="column"><a href="<?php echo base_url(); ?>/index.php/noticia/index/detalle/<?php echo $noticia->id_noticia ?>" class="noticia_detalle">       
                     <div class="callout">
                     <div class="region "><?php echo $noticia->noticia_tipo ?></div>
                     <p class="titulo_corto "><?php echo $noticia->id_titulo ?></p>
-                    <p><img src="../../../assets/imagenes_noticias/<?php echo $noticia->imagen_portada ?>" alt=""></p>
+                    <p><img src="<?php echo base_url(); ?>/assets/imagenes_noticias/<?php echo $noticia->imagen_portada ?>" alt=""></p>
                     <p class="lead titulo_largo"><?php echo $noticia->titulo_largo ?></p>
                     
                     </div>
@@ -43,24 +51,29 @@
                 </div>
                 
             <?php
+        }   
         }
         ?>
         </div>
 
 
-  <div class="row column">
-      <ul class="pagination top-bar-right" role="navigation" aria-label="Pagination">
-        <li class="disabled">Previous</li>
-        <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
-        <li><a href="#" aria-label="Page 2">2</a></li>
-        <li><a href="#" aria-label="Page 3">3</a></li>
-        <li><a href="#" aria-label="Page 4">4</a></li>
+    <div class="row column">
+        <ul class="pagination float-right" role="navigation" aria-label="Pagination">
 
-        <li><a href="#" aria-label="Page 12">12</a></li>
-        <li><a href="#" aria-label="Page 13">13</a></li>
-        <li><a href="#" aria-label="Next page">Next</a></li>
-      </ul>
+
+            <!-- Show pagination links -->
+            <?php foreach ($links as $link) 
+            {
+                echo "<li>". $link."</li>";
+            }
+            ?>
+        </ul>
+
     </div>
+
+
+
+
 
 
 <footer>

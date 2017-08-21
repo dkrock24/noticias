@@ -198,9 +198,13 @@ class Cnoticia_model extends CI_Model
     }
 
     public function updateNoticia( $id_noticia , $data  ){
+
+        parse_str( parse_url( $data['video'], PHP_URL_QUERY ), $my_array_of_vars );
+
         $info = array(
             'id_titulo'         => $data['titulo'],
             'contenido'         => $data['contents'],
+            'video_url'         => $my_array_of_vars['v'],
             'referencia'        => $data['referencia'],
             'link_referencia'   => $data['enlace'],
             'id_categoria'      => $data['categoria'],

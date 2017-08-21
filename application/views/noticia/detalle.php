@@ -7,13 +7,22 @@
     <title>sisepudo.com | Bienvenido</title>
     <link rel="stylesheet" href="/noticias/css/foundation.min.css">
     <link rel="stylesheet" href="/noticias/css/frontend_custom.css">
+    <link rel="stylesheet" type="text/css" href="/noticias/assets/slider/style.css">
+
+
+
+    <style type="text/css">
+    .delta{
+        width: 50px;
+    }
+    </style>
 
     </head>
     
     <body>
 
         <div class="row column">
-            <h3><p class="lead">sisepudo.com</p></h3>
+            <a href="/noticias/index.php/noticia/index/index"><h3><p class="lead">sisepudo.com</p></h3></a>
         </div>
 
         <!-- Navigation -->
@@ -29,8 +38,8 @@
         <div class="row columns">
             <nav aria-label="You are here:" role="navigation">
                 <ul class="breadcrumbs">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Categoria</a></li>
+                    <li><a href="../index">Inicio</a></li>
+                    <li><a href="#"><?php echo $noticias_detalle[0]->nombre_categoria; ?></a></li>
                 </ul>
             </nav>
         </div>
@@ -39,36 +48,68 @@
 ?>
     <div class="row">
         <div class="medium-4 columns">
-            <img class="thumbnail1" src="../../../../assets/imagenes_noticias/<?php echo $noticias_detalle[0]->imagen_portada; ?>">
-            <div class="row small-up-4">
-                <div class="column">
-                    <img class="thumbnail" src="https://placehold.it/250x200">
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="https://placehold.it/250x200">
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="https://placehold.it/250x200">
-                </div>
-                <div class="column">
-                    <img class="thumbnail" src="https://placehold.it/250x200">
-                </div>
-            </div>
+
+            <!-- main:begin -->
+                        <div class="main">
+                            <div class="container animation" id="anchor-3">
+                                <div class="banner" id="animation">             
+                                </div>
+                            </div>
+
+                            <div class="container thumbnail" id="anchor-4">
+                                <h2><?php echo $noticias_detalle[0]->id_titulo; ?></h2>
+                                <div class="clearfix">
+                                    <div class="banner" id="thumbnail">
+                                        <ul>
+                                        <?php
+                                        if($noticias_img != null)
+                                        {
+                                            foreach ($noticias_img as $img) {
+                                                ?>
+                                                <li><img src="../../../../assets/imagenes_noticias/<?php echo $img->path_imagen; ?>"></li>
+                                                <?php
+                                            }
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                            <li><img src="../../../../assets/imagenes_noticias/not_imagen_demo.png"></li>
+                                            <li><img src="../../../../assets/imagenes_noticias/not_imagen_demo.png"></li>
+                                            <?php
+                                        }
+                                        ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            <!-- main:end -->
+
         </div>
 
         <div class="medium-8 large-8 columns">
-            <h3><?php echo $noticias_detalle[0]->id_titulo; ?></h3>
+            <h3></h3>
             
-            <p><?php echo $noticias_detalle[0]->titulo_largo; ?></p>
+            <p></p>
             
             <p>
                <?php echo $noticias_detalle[0]->contenido; ?> 
-            </p>            
+            </p>   
+            <p>
+                <iframe width="100%" height="500px"
+                    src="https://www.youtube.com/embed/<?php echo $noticias_detalle[0]->video_url; ?>">
+                </iframe> 
+                
+                
+            </p>
+            <br>
+            <br>         
             <div class="small secondary expanded button-group">
-                <a class="button">230 Vistas</a>
+                <a class="button"><?php echo $visitas[0]->total_visitas; ?> Visitas</a>
                 <a class="button">Fecha : <?php $fecha = date_create($noticias_detalle[0]->fecha_creacion);
                                          echo date_format($fecha,"d-M-Y"); ?> </a>
                 <a class="button">Por. <?php echo $noticias_detalle[0]->nickname; ?></a>
+                <br>
             </div>
 
             <div class="column row">
@@ -101,19 +142,14 @@
                             <div class="column row">
                                 <div class="medium-1 columns"></div>
                                 <div class="medium-10 columns">
-                                <label>
-                                    <input type="text" placeholder="Comentar.....">
-                                    <input type="submit" class="button expanded" value="Submit">
-                                </label>
+                                    <label>
+                                        <input type="text" placeholder="Comentar.....">
+                                        <input type="submit" class="button expanded" value="Enviar Comentario">
+                                    </label>
+                                </div>
                             </div>
-
-                            
-
-                                
-                            </div>
-                            
-
                         </div>
+
                     </div>
 
                     <div class="tabs-panel" id="panel2">
@@ -125,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-</div>
+            </div>
 
 
         </div>
@@ -188,6 +224,13 @@
 
     <script src="/noticias/js/jquery.js"></script>
     <script src="/noticias/js/foundation.js"></script>
+
+    <script src="/noticias/assets/slider/highlight.pack.js"></script>
+
+    <script src="/noticias/assets/slider/jquery.terseBanner.min.js"></script>
+    <script src="/noticias/assets/slider/script.js"></script>
+
+    
     <script>
       $(document).foundation();
     </script>

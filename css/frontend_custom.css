@@ -33,8 +33,9 @@
 	height: auto;
     box-sizing: inherit; 
     position: relative;
-    display: inline-block;
+  
 }
 .noticia_detalle{
 	text-decoration: none;
+	color: black;
 }

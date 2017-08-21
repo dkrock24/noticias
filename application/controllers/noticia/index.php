@@ -8,18 +8,84 @@ class index extends CI_Controller {
 		parent::__construct();		
 		$this->load->helper('url');		
 		$this->load->database('default');	
+		$this->load->library('pagination');
 		$this->load->model('noticia/Noticia_model');			
 	}
 
 	public function index()
 	{
-		$data['noticias'] = $this->Noticia_model->getNoticias();
+		$config = array();
+		$config['base_url'] = base_url().'/index.php/noticia/index/index';
+
+		$total_row = $this->Noticia_model->record_count();
+		// Set total rows in the result set you are creating pagination for.
+
+		$config["total_rows"] = $total_row;
+		$config['full_tag_open'] = '<div class="pagination pagination-small pagination-centered"><ul>';
+		$config['full_tag_close'] = '</ul></div>';
+
+		// Number of items you intend to show per page.
+		$config["per_page"] = 3;
+
+		// Use pagination number for anchor URL.
+		$config['use_page_numbers'] = TRUE;
+
+		//Set that how many number of pages you want to view.
+		$config['num_links'] = $total_row;
+
+		// Open tag for CURRENT link.
+		$config['cur_tag_open'] = '&nbsp;<a class="current">';
+
+		// Close tag for CURRENT link.
+		$config['cur_tag_close'] = '</a>';
+
+		// By clicking on performing NEXT pagination.
+		$config['next_link'] = 'Siguiente';
+
+		// By clicking on performing PREVIOUS pagination.
+		$config['prev_link'] = 'Anterior';
+
+		// To initialize "$config" array and set to pagination library.
+		$this->pagination->initialize($config);
+
+		if($this->uri->segment(4))
+		{
+			$page = (($this->uri->segment(4))*2)-1 ;
+		}
+		else
+		{
+			$page = 0;
+		}
+
+		$data["noticias"] = $this->Noticia_model->fetch_data($config["per_page"] , $page  );
+		$str_links = $this->pagination->create_links();
+		$data["links"] = explode('&nbsp;',$str_links );
+
+
+
+
+		//$data['noticias'] = $this->Noticia_model->getNoticias();
 		$this->load->view('noticia/index.php',$data);
 	}
 
 	public function detalle( $id_noticia )
 	{
+		$this->getInsertVisitas( $id_noticia );
+
 		$data['noticias_detalle'] = $this->Noticia_model->getNoticiasDetalle( $id_noticia );
+		$data['noticias_img']	= $this->Noticia_model->getNoticiasImg( $id_noticia );
+		$data['visitas'] = $this->getContadorVisitas(  $id_noticia );
+
 		$this->load->view('noticia/detalle.php',$data);
+	}
+
+	// Insertar visita por noticia
+	public function getInsertVisitas( $id_noticia ){
+		$this->Noticia_model->getInsertVisitas( $id_noticia );
+	}
+
+	// Obtener el total de vistas por noticia
+	public function getContadorVisitas( $id_noticia ){
+		return $total_visitas = $this->Noticia_model->getContadorVisitas( $id_noticia );
 	}
 }

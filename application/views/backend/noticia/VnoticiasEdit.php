@@ -141,6 +141,13 @@
                     <br>
                     <div class="row">
                         <div class="col-xl-6">
+                            <label>Url Video</label><br>
+                            <input type="text" name="video" value="<?php echo $noticias[0]->video_url; ?>" class="form-control"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xl-6">
                             <label>Fecha Vencimiento</label><br>
                             <input type="text" name="vencimiento" value="<?php echo $noticias[0]->fecha_fin; ?>" class="form-control"/>
                         </div>
