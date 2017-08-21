@@ -58,6 +58,7 @@ $(document).ready(function ()
         <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> 
         </div>
          Auto registro 
+    
     </h1>
 </header>
 <div class="auth-content">

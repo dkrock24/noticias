@@ -6,6 +6,47 @@
 <script type="text/javascript">
 $(document).ready(function () 
 {
+    $(".takeAvatar").click(function()
+    {
+        $(".modalProfile").modal({
+           backdrop: 'static', 
+           keyboard: false 
+        });
+    });
+
+
+    $('#upload_file').submit(function(e) 
+    {
+        e.preventDefault();
+        $.ajax
+        ({
+            url: "../upload/Cupload/do_upload",
+            type: "POST",             
+            data: new FormData(this),
+            contentType: false,      
+            cache: false,      
+            processData:false,   
+            success: function(data)
+            {
+                if (data == 1) 
+                {
+                    $(".modal-backdrop").remove();
+                    $(".pages").load('../profile/Cprofile/ViewProfile');
+                }
+                else
+                {
+                    $(".display-error").show();
+                    $(".display-error").html(data);
+                    $(".display-error").fadeOut(4000);
+                }      
+            },
+            error:function(data)
+            {
+                alert(data);
+            }
+        });
+        return false;
+    });
 
     $(".profilePicture").mouseover(function() 
     {
@@ -46,14 +87,15 @@ $(document).ready(function ()
         var cumple = $("#fecha").val();
         $.ajax
          ({
-            url: "../Cprofile/savePersonalInfo",
+            url: "../profile/Cprofile/savePersonalInfo",
             type:"post",  
             data: {userID:userID,nombre:nombre,apellido:apellido,telefono:telefono,dui:dui,direccion:direccion,aficiones:aficiones,email:email,linksSocial:linksSocial,genero:genero,cumple:cumple},
             success: function(data)
             {
     
                 alert("Se modifico exitosamente");
-                $(".pages").load("../Cprofile/ViewProfile");
+                //$(".pages").load("../profile/Cprofile/ViewProfile");
+                $(".pages").load('../profile/Cprofile/ViewProfile');
             }
         });
       
@@ -61,8 +103,6 @@ $(document).ready(function ()
 
 });
 </script>
-        
-
 <?php
     //var_dump($datosProfile);
     foreach ($datosProfile as $value) 
@@ -70,7 +110,7 @@ $(document).ready(function ()
 
 
 ?>
-<article class="content cards-page">
+<article style="margin: 20px;" >
     <!--       Card profile  -->
     <div class="col-xl-4">
     <div class="card card-default">
@@ -85,7 +125,7 @@ $(document).ready(function ()
                 } 
                 else 
                 {
-                    echo "<img src='../../../assets/images/avatars/$value->avatar' height='250' width='250'>";
+                    echo "<img src='../../../assets/images/profilePics/$value->avatar' height='250' width='250'>";
                 }
                        
              ?>    
@@ -305,6 +345,42 @@ $(document).ready(function ()
     </div>
     </form>
     </div>
-    <!--     card profile info    -->    
- </article>                     
+    <!--     card profile info    -->                       
 <?php } ?>
+
+
+
+
+<!-- Modal para agregar foto de perfil-->
+<div class="modal fade modalProfile" role="dialog" tabindex="1">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+          <h4 class="modal-title" style="background-color: #85CE36;padding: 20px;color: white;text-align: center;font-weight: bold;">
+          Subir foto de perfil
+          </h4>
+          <hr>
+
+        <div class="modal-body">
+        
+        <div class="display-error alert alert-warning" style="display: none;"> 
+        </div>
+
+            <form method="post" action="" id="upload_file" enctype="multipart-formdata">
+                <label for="userfile">File</label>
+                <input type="file" name="userfile" id="userfile" size="20" />
+                <input type="hidden"  id="userIDView" name="userIDView" value="<?php echo $value->id_usuario; ?>"> 
+                <input type="submit" name="submit" id="submit"/>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cerrar</button>
+        </div> 
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<!-- Fin del Codigo de funcionalidad de Modals para aagregar sucursales y metodos de pago -->  
