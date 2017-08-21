@@ -13,10 +13,6 @@ class registro_model extends CI_Model
 
     public function save_registro($register, $files, $token)
     {
-        if (!is_dir('assets\filesCV/'))
-        {
-            //mkdir('assets\filesCV', 0777, true);
-        } 
         $dateFileCv = date("YmdHis");
         if (isset($files['cvfile']['tmp_name'])) 
         {
