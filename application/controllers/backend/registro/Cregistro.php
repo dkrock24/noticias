@@ -41,7 +41,7 @@ class Cregistro extends CI_Controller {
         $mail = new PHPMailer();
 		$mail->IsSMTP();         // set mailer to use SMTP
 		$mail->SMTPAuth = true;     // turn on SMTP authentication
-		//$mail->SMTPSecure = "tls";
+		$mail->SMTPSecure = "tls";
 		$mail->Host = "smtp.gmail.com";  // specify main and backup server
 		$mail->Port = 465;
         $mail->Username   = "blen7777@gmail.com";  // user email address
@@ -56,9 +56,9 @@ class Cregistro extends CI_Controller {
         $mail->AddAddress($destino, "Enscripcion");
 
         if(!$mail->Send()) {
-            $data["message"] = "Error: " . $mail->ErrorInfo;
+           echo $data["message"] = "Error: " . $mail->ErrorInfo;
         } else {
-            $data["message"] = "Message sent correctly!";
+          echo  $data["message"] = "Message sent correctly!";
         }
 	}
 	
