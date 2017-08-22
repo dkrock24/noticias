@@ -72,7 +72,11 @@ class Noticia_model extends CI_Model
     public function fetch_data( $pagina, $limit ){
 
         $query = $this->db->query('select * from sys_noticia as noticia 
-            join sys_noticia_tipo as tipo on tipo.id_noticia_tipo=noticia.id_tipo_noticia limit '.$limit.','.$pagina);
+                                    join sys_noticia_tipo as tipo on tipo.id_noticia_tipo=noticia.id_tipo_noticia 
+                                    left join sys_noticia_configuracion as config on config.id_noticia_config=noticia.id_noticia
+                                    where config.fecha_inicio <= now() and config.fecha_fin >= now() or config.fecha_inicio is null
+                                    order by config.fecha_inicio asc
+                                    limit '.$limit.','.$pagina);
         //echo $this->db->queries[1];
 
         if ($query->num_rows() > 0) 
