@@ -104,7 +104,31 @@ class Cnoticia extends CI_Controller {
 
         $this->Cnoticia_model->updateNoticia( $id_noticia , $_POST );
         echo "../noticia/Cnoticia/getNoticias/";
+    }
 
+    public function save_config_noticia( $id_noticia ){
+
+
+
+        $datetime1  = new DateTime($_POST['inicio_config']);
+        $datetime2  = new DateTime($_POST['fin_config']);
+
+        $interval   = $datetime1->diff($datetime2);
+
+        $dias = $interval->format('%mm %ad %h:%i');
+
+        $existe_config = $this->Cnoticia_model->get_validar_noticia( $id_noticia );
+
+        if(!$existe_config){
+
+            $this->Cnoticia_model->save_config_noticia( $id_noticia , $_POST , $dias );
+
+        }else{
+
+            $this->Cnoticia_model->update_config_noticia( $id_noticia , $_POST ,$dias );
+        }
+        
+        echo "../noticia/Cnoticia/getNoticias/";
     }
     
 

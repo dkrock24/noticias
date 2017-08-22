@@ -85,6 +85,25 @@ $( document ).ready(function()
             });
     });
 
+    $("#guardarData2").click(function(){
+
+
+         	var url = $(this).attr('name');
+        	$.ajax({
+            url: url,  
+            type: "post",
+            data: $('#crearData2').serialize(),
+
+                success: function(data){   
+
+                	$(".pages").load(data);
+                
+                },
+                error:function(){
+                }
+            });
+    });
+
 
 
 });

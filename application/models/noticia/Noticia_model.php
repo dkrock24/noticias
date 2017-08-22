@@ -73,7 +73,7 @@ class Noticia_model extends CI_Model
 
         $query = $this->db->query('select * from sys_noticia as noticia 
             join sys_noticia_tipo as tipo on tipo.id_noticia_tipo=noticia.id_tipo_noticia limit '.$limit.','.$pagina);
-        echo $this->db->queries[1];
+        //echo $this->db->queries[1];
 
         if ($query->num_rows() > 0) 
         {

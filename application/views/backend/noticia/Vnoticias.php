@@ -7,6 +7,7 @@
 
 -->
 <link href="../../../assets/css/custom.css" rel="stylesheet" />
+
   <!-- include libraries BS3-->
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" />
   <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script> 
@@ -42,6 +43,9 @@
         color: white;
     
     }
+    .linea{
+    	display: inline;;
+    }
 </style>
 
 <div class="row">
@@ -73,10 +77,22 @@
 	            			<tr>
 	            				<th>#</th>
 	            				<th>Usuario</th>
-	            				<th>Categoria</th>
+	            				<th title="Categoría">Categ.</th>
+	            				<th title="">Titulo</th>
 	            				<th>Creado</th>
-	            				<th>Expira</th>
-	            				<th>Activo</th>
+	            				<th>Desde</th>
+	            				<th>Hasta</th>
+	            				<th>Total</th>
+	            				<th>Restante</th>
+	            				
+	            				<th width="1%">
+	            					<table width="0%" border=0>
+	            						<td width="33%" title="Anuncio Importante"><i class="fa fa-star-half-o"></i></td>
+	            						<td width="33%" title="Categoría"><i class="fa fa-cog"></i></td>
+	            						<td width="33%"><i class="fa fa-check"></i></td>
+	            					</table>
+	            				</th>
+	            				
 	            				<th>Acción</th>
 	            			</tr>
 	            			</thead>
@@ -90,20 +106,52 @@
 	            				<tr>
 	            					<td><?php echo $count; ?></td>
 	            					<td><?php echo $not->nickname; ?></td>
-	            					<td><?php echo $not->nombre_categoria; ?></td>
-	            					<td><?php echo $not->fecha_creacion; ?></td>
-	            					<td><?php echo $not->fecha_fin; ?></td>
-	  
+	            					<td title="<?php echo $not->nombre_categoria ?>"><?php echo substr($not->nombre_categoria,0,4)."."; ?></td>
+	            					<td title="<?php echo $not->id_titulo ?>"><?php echo substr($not->id_titulo,0,20); ?></td>
+	            					<td><?php $date = date_create($not->fecha_creacion_noticia); echo date_format($date,"m/d/y"); ?></td>
+	            					<td><?php if($not->fecha_inicio){ $inicio = date_create($not->fecha_inicio);  echo date_format($inicio,"d-M-y");}  ?></td>
+	            					<td><?php if($not->fecha_fin){$fin = date_create($not->fecha_fin); echo date_format($fin,"d-M-y");}  ?></td>
+	            					<td><?php echo $not->total_dias ?></td>
 	            					<td>
-	            					<?php 
-                                    if($not->estado_noticia == 1){ 
-                                        ?><div class="btn-success btn-sm">Si</div><?php
-                                        
-                                    }else{
-                                     ?><div class="btn-danger btn-sm">No</div>
-                                     <?php
-                                    }  
-                                ?></td>
+	            					<?php
+	            						if($not->fecha_inicio != null){
+	            							
+		            						$hoy 		= strtotime("Y-m-d H-i-s");
+		            						$datetime1 	= new DateTime($hoy);
+											$datetime2 	= new DateTime($not->fecha_fin);
+											$interval 	= $datetime1->diff($datetime2);
+											
+											echo $interval->format('%mm %ad %h:%i');
+	            						}
+	            					?>
+	            					</td>
+
+	            					<td width="1%">
+	            						<table  width="100%" border=0>
+	            							<tr>
+	            								<td width="33%">
+	            									<?php if( $not->importante == 1 && $not->importante!= null ){  ?><div class="btn-success btn-sm linea">Si</div><?php  }else{ ?><div class="btn-danger btn-sm linea">No</div> <?php } ?>
+	            								</td>
+	            								<td width="33%">
+	            									<?php if( $not->fecha_inicio != null ){  ?><div class="btn-success btn-sm linea">Si</div><?php  }else{ ?><div class="btn-danger btn-sm linea">No</div> <?php } ?>
+	            								</td>
+	            								<td width="33%">
+	            									<?php 
+					                                    if($not->estado_noticia == 1){ 
+					                                        ?><div class="btn-success btn-sm linea">Si</div><?php
+					                                        
+					                                    }else{
+					                                     ?><div class="btn-danger btn-sm linea">No</div>
+					                                     <?php
+					                                    }  
+					                                ?>
+	            								</td>
+	            							</tr>
+
+	            						</table>
+
+	            					</td>
+
 	            					<td>
 	            						<a href="#" name="../noticia/Cnoticia/editNoticias/<?php echo $not->id_noticia;  ?>" class='btn-crear btn btn-secondary btn-sm '><i class="fa fa-refresh"></i> Editar</a>
 	            						
@@ -111,6 +159,8 @@
 	            				</tr>
 	            			<?php
 	            			$count++;
+	            			$inicio="";
+	            			$fin=null;
 	            			}
 	            			?>
 	            			</tbody>
@@ -129,4 +179,5 @@
 </div>
 
 <script src="../../../js/contentModal.js"></script>
+
 

@@ -9,8 +9,21 @@
     <link rel="stylesheet" href="/noticias/css/frontend_custom.css">
 
     <style type="text/css">
+        @font-face {
+            font-family: descripciones;
+            src: url(/noticias/fonts/dosis.extralight.ttf);
+        }
+        .titulo_corto{
+            font-family: Tahoma;
+            font-size: 12px;
+        }
+
         .abc{
             display: inline-flex;
+        }
+        .titulo_largo{
+            font-family: Rockwell;
+            color: #585858;
         }
     </style>
 
@@ -41,10 +54,10 @@
                 
                 <div class="column"><a href="<?php echo base_url(); ?>/index.php/noticia/index/detalle/<?php echo $noticia->id_noticia ?>" class="noticia_detalle">       
                     <div class="callout">
-                    <div class="region "><?php echo $noticia->noticia_tipo ?></div>
-                    <p class="titulo_corto "><?php echo $noticia->id_titulo ?></p>
+                    <div class="region "><?php echo strtoupper($noticia->noticia_tipo) ?></div>
+                    <p class="titulo_corto "><?php echo strtoupper($noticia->id_titulo) ?></p>
                     <p><img src="<?php echo base_url(); ?>/assets/imagenes_noticias/<?php echo $noticia->imagen_portada ?>" alt=""></p>
-                    <p class="lead titulo_largo"><?php echo $noticia->titulo_largo ?></p>
+                    <p class="lead titulo_largo"><?php echo strtoupper($noticia->titulo_largo) ?></p>
                     
                     </div>
                     </a>
@@ -72,62 +85,25 @@
     </div>
 
 
-
-
-
-
 <footer>
+
   <div class="row expanded callout secondary">
 
-    <div class="small-6 large-3 columns">
-      <p class="lead">Offices</p>
-      <ul class="menu vertical">
-        <li><a href="#">One</a></li>
-        <li><a href="#">Two</a></li>
-        <li><a href="#">Three</a></li>
-        <li><a href="#">Four</a></li>
-      </ul>
-    </div>
-
-    <div class="small-6 large-3 columns">
-      <p class="lead">Solar Systems</p>
-      <ul class="menu vertical">
-        <li><a href="#">One</a></li>
-        <li><a href="#">Two</a></li>
-        <li><a href="#">Three</a></li>
-        <li><a href="#">Four</a></li>
-      </ul>
-    </div>
-
-    <div class="small-6 large-3 columns">
-      <p class="lead">Contact</p>
-      <ul class="menu vertical">
-        <li><a href="#"><i class="fi-social-twitter"></i> Twitter</a></li>
-        <li><a href="#"><i class="fi-social-facebook"></i> Facebook</a></li>
-        <li><a href="#"><i class="fi-social-instagram"></i> Instagram</a></li>
-        <li><a href="#"><i class="fi-social-pinterest"></i> Pinterest</a></li>
-      </ul>
-    </div>
-
-    <div class="small-6 large-3 columns">
-      <p class="lead">Offices</p>
-      <ul class="menu vertical">
-        <li><a href="#">One</a></li>
-        <li><a href="#">Two</a></li>
-        <li><a href="#">Three</a></li>
-        <li><a href="#">Four</a></li>
-      </ul>
+    <div class="small-6 large-12 columns">
+        <p class="lead">Contactanos</p>
+        <ul class="menu vertical">
+            <li><a href="#"><i class="fi-social-twitter"></i> Contactanos</a></li>
+        </ul>
     </div>
 
   </div>
-
 
 </footer>
 
     <script src="/noticias/js/jquery.js"></script>
     <script src="/noticias/js/foundation.js"></script>
     <script>
-      $(document).foundation();
+        $(document).foundation();
     </script>
   </body>
 </html>

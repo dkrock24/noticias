@@ -1,16 +1,26 @@
-.encabezado{
+    .encabezado{
         color: white;
-      }
-      #guardar{
+    }
+
+    #guardar{
         float: right;
-      }
+    }
+
     .global_text{
         color: white;
     }
+
     thead tr th 
     {
         height: 50px;
         background-color: #d7dde4;
         border-color:#e67e22;
         border-bottom:3px solid black;
+    }
+
+    .noticia_detalle{
+        font-size: 13px;
+    }
+    .region{
+        font-size: 13px;
     }
