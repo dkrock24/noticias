@@ -319,18 +319,18 @@ $(document).ready(function ()
                 <?php 
                      if ($value->genero == "M") 
                         {
-                            echo "<input class='radio' type='radio' id='genero' name='genero' value='M' checked='checked'> Masculino
-                            <input class='radio' type='radio' id='genero' name='genero'  value='F'> Femenino";
+                            echo "<input type='radio' id='genero' name='genero' value='M' checked> Masculino
+                            <input type='radio' id='genero' name='genero'  value='F'> Femenino";
                         } 
                         elseif($value->genero == "F")
                         {
-                             echo "<input class='radio' type='radio' id='genero' name='genero' value='M'> Masculino
-                            <input class='radio' type='radio' id='genero' name='genero'  value='F' checked='checked'> Femenino";
+                             echo "<input type='radio' id='genero' name='genero' value='M'> Masculino
+                            <input  type='radio' id='genero' name='genero'  value='F' checked> Femenino";
                         }
                         else
                         {
-                             echo "<input class='radio' type='radio' id='genero' name='genero' value='M'  checked='checked'> Masculino
-                            <input class='radio' type='radio' id='genero' name='genero'  value='F'> Femenino";
+                             echo "<input type='radio' id='genero' name='genero' value='M' > Masculino
+                            <input type='radio' id='genero' name='genero'  value='F'> Femenino";
                         }
                 ?>
                 <span class="fa fa-check form-control-feedback"></span> 
@@ -367,11 +367,12 @@ $(document).ready(function ()
         <div class="display-error alert alert-warning" style="display: none;"> 
         </div>
 
-            <form method="post" action="" id="upload_file" enctype="multipart-formdata">
+            <form method="post" action="" id="upload_file" enctype="multipart-formdata">  
                 <label for="userfile">File</label>
-                <input type="file" name="userfile" id="userfile" size="20" />
+                <input class="btn btn-pill-left btn-secondary" type="file" name="userfile" id="userfile" size="20" />
                 <input type="hidden"  id="userIDView" name="userIDView" value="<?php echo $value->id_usuario; ?>"> 
-                <input type="submit" name="submit" id="submit"/>
+
+                <input style="margin-top: 20px;" type="submit" class="btn btn-success-outline" name="submit" id="submit"/>
             </form>
         </div>
 
