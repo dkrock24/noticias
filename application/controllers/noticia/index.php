@@ -25,7 +25,7 @@ class index extends CI_Controller {
 		$config['full_tag_close'] = '</ul></div>';
 
 		// Number of items you intend to show per page.
-		$config["per_page"] = 3;
+		$config["per_page"] = 4;
 
 		// Use pagination number for anchor URL.
 		$config['use_page_numbers'] = TRUE;

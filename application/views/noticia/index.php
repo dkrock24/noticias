@@ -25,6 +25,38 @@
             font-family: Rockwell;
             color: #585858;
         }
+
+
+        * { box-sizing: border-box; }
+
+        body {
+          font-family: sans-serif;
+        }
+
+        /* ---- grid ---- */
+
+        .grid {
+          max-width: 1200px;
+        }
+
+        /* clear fix */
+        .grid:after {
+          content: '';
+          display: block;
+          clear: both;
+        }
+
+        /* ---- .grid-item ---- */
+
+        .grid-item {
+            float: left;
+            width: 33.33%;
+            height: auto;
+
+        }
+
+
+
     </style>
 
 
@@ -45,15 +77,15 @@
         <!-- /Navigation -->
         <br>
 
-        <div class="row small-up-1 medium-up-2 large-up-3">
+        <div class="row  grid">
         <?php
         if($noticias !=null)
         {
         foreach ($noticias as $noticia) {
             ?>     
                 
-                <div class="column"><a href="<?php echo base_url(); ?>/index.php/noticia/index/detalle/<?php echo $noticia->id_noticia ?>" class="noticia_detalle">       
-                    <div class="callout">
+                <div class="column grid-item"><a href="<?php echo base_url(); ?>/index.php/noticia/index/detalle/<?php echo $noticia->id_noticia ?>" class="noticia_detalle">       
+                    <div class="callout1">
                     <div class="region "><?php echo strtoupper($noticia->noticia_tipo) ?></div>
                     <p class="titulo_corto "><?php echo strtoupper($noticia->id_titulo) ?></p>
                     <p><img src="<?php echo base_url(); ?>/assets/imagenes_noticias/<?php echo $noticia->imagen_portada ?>" alt=""></p>
@@ -67,6 +99,10 @@
         }   
         }
         ?>
+
+
+
+
         </div>
 
 
@@ -102,8 +138,18 @@
 
     <script src="/noticias/js/jquery.js"></script>
     <script src="/noticias/js/foundation.js"></script>
+    <script src="/noticias/js/isotope.min.js"></script>
     <script>
         $(document).foundation();
+
+        $(document).ready(function(){
+           $('.grid').isotope({
+                  itemSelector: '.grid-item',
+                  masonry: {
+                    columnWidth: 100
+                  }
+                });
+        });
     </script>
   </body>
 </html>
