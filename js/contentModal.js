@@ -105,6 +105,48 @@ $( document ).ready(function()
     });
 
 
+     $("#guardarDataFront").click(function(){
+
+
+         	var url = $(this).attr('name');
+        	$.ajax({
+            url: url,  
+            type: "post",
+            data: $('#crearData2').serialize(),
+
+                success: function(data){   
+
+                	location.reload();
+                
+                },
+                error:function(){
+                }
+            });
+    });
+
+    $(".input-custom2").click(function(){
+    	  var id = $(this).attr("name");
+    	  var cmt = $("#"+id).val();
+    	  var avatar = $("#avatar-respuesta").val();
+
+    	  var data = {"id_noticia":id,"cmt":cmt,"avatar":avatar}
+
+    	  $.ajax({
+            url: "../insert_respuesta/",  
+            type: "post",
+            data: data,
+
+                success: function(data){   
+
+                	location.reload();
+                
+                },
+                error:function(){
+                }
+            });
+    });
+
+
 
 });
 	

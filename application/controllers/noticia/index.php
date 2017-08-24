@@ -91,4 +91,22 @@ class index extends CI_Controller {
 	public function getContadorVisitas( $id_noticia ){
 		return $total_visitas = $this->Noticia_model->getContadorVisitas( $id_noticia );
 	}
+
+	// Insertar comentatrios
+	public function insert_comentarios( ){
+
+		$this->Noticia_model->insert_comentarios( $_POST );
+
+		$this->detalle( $_POST['id_noticia'] );
+	}
+
+	// Insertar comentatrios
+	public function insert_respuesta( ){
+
+		$this->Noticia_model->insert_respuesta( $_POST );
+
+		$this->detalle( $_POST['id_noticia'] );
+	}
+
+	
 }

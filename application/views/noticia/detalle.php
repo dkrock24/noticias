@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/noticias/css/frontend_custom.css">
 
     <link rel="stylesheet" type="text/css" href="/noticias/assets/slider/style.css">
+    <link rel="stylesheet" type="text/css" href="/noticias/assets/font-awesome/font-awesome.css">
 
 
 
@@ -44,11 +45,13 @@
         color: #999;
         font-size: 12px;
     }
-    .media .media-object { max-width: 120px; }
+    .media .media-object { max-width: 60px; }
     .media-body { position: relative; }
     .media-date { 
+        display: inline;
+        width: 20%;
         position: absolute; 
-        right: 25px;
+        right: 5px;
         top: 25px;
     }
     .media-date li { padding: 0; }
@@ -116,8 +119,37 @@
 
     .media-replied{
         width: 90%;
-        display: inline-block;
+        
     }
+    .fecha_comntario{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+    .media, .media .media {
+        margin-top: 0px;
+    }
+    .well-lg {
+        height: 100%;
+        padding: 15px;
+        border-radius: 6px;
+    }
+    .media-comment{
+        width: 100%;
+    }
+    .input-custom{
+        width: 100%;
+        border-radius: 4px;
+        display: inline;
+
+    }
+    .input-custom2{
+        float: right;
+    }
+    .ejemplo{
+        padding-left: 110px;
+    }
+
     </style>
 
      <script src="/noticias/js/jquery.js"></script>
@@ -230,26 +262,60 @@
 
                     <ul class="media-list">
                     <?php
+                    if(!isset($_COOKIE["Avatar"]))
+                    {
+                        setcookie("Avatar", rand(1,21));                        
+                    }
+
+                   
                     $validador=0;
                     foreach ($comentarios as $cmt) 
                     {
+                        // Validar si comentarios pertenecen al padre
                         if($validador != $cmt->id_comentario)
                         {
+
+                            //Id unico de comentario
                             $validador = $cmt->id_comentario;
-                        ?>
+
+                            // Contador de Respuestas
+                            if( $cmt->total_reply != null){
+                                $total_comentarios = $cmt->total_reply;
+                            }else{
+                                $total_comentarios="";
+                            }
+                    ?>
                         <li class="media">
                             <a class="pull-left" href="#">
-                                <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg" alt="profile">
+                                <img class="media-object img-circle" src="/noticias/assets/avatars_comentarios/<?php echo $cmt->avatar1; ?>.png" alt="profile">
                             </a>
                             <div class="media-body">
                                 <div class="well well-lg">                                    
-                                    <ul class="media-date text-uppercase reviews list-inline">
-                                        <li class="aaaa"><?php echo $cmt->cmt_fecha ?></li>
+                                    <ul class="media-date list-inline">
+                                        <li class="fecha_comntario">
+                                        <?php 
+                                            $fecha_cmt = new DateTime($cmt->cmt_fecha); 
+                                            echo date_format($fecha_cmt,"M-d-Y"); 
+                                        ?>
+                                        </li>                                        
                                     </ul>
-                                <p class="media-comment">    <?php echo $cmt->cmt ?>  </p>
-                                <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
-                                <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#r<?php echo $cmt->id_comentario ?>"><span class="glyphicon glyphicon-comment"></span> 2 comments</a>
-                                </div>              
+                                    <br><br>
+                                    <p class="media-comment">    <?php echo $cmt->cmt ?>  </p>
+                                    
+                                    <p class="botones-accion">
+                                        <a class="btn btn-default btn-circle text-uppercase " data-toggle="collapse" href="#r<?php echo $cmt->id_comentario ?>" id="reply">
+                                            <span class="fa fa-reply btn-responder" ></span> Responder
+                                        </a>
+                                        
+                                        <a class="btn btn-success btn-circle text-uppercase" data-toggle="collapse" href="#r<?php echo $cmt->id_comentario ?>">
+                                            <span class="fa fa-comment"></span> <?php  echo $total_comentarios  ?> Comentarios
+                                        </a>
+                                    </p>
+                                       
+                                </div>
+
+                                
+
                             </div>
 
                         <div class="collapse" id="r<?php echo $cmt->id_comentario ?>">
@@ -266,7 +332,7 @@
                                     ?>
                                         <li class="media media-replied">
                                             <a class="pull-left" href="#">
-                                                <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/ManikRathee/128.jpg" alt="profile">
+                                                <img class="media-object img-circle" src="/noticias/assets/avatars_comentarios/<?php echo $reply->avatar2; ?>.png" alt="profile">
                                             </a>
                                             <div class="media-body">
                                                 <div class="well well-lg">                                                    
@@ -284,7 +350,22 @@
                             }
                             ?>
                             </ul>  
+
+                            <div class="collapse1" id="a<?php echo $cmt->id_comentario ?>">
+                            <ul class="media-list ejemplo">
+                                <li class="media media-comment">
+                                    <input type="hidden" name="avatar-respuesta" id="avatar-respuesta" value="<?php echo  $_COOKIE["Avatar"] ?>"></input>
+                                    <textarea class="form-control input-custom" name="comentario" id="<?php echo $validador ?>"></textarea>
+                                    <botton href="#" class="btn btn-default input-custom2" name="<?php echo $validador ?>">Enviar Respuesta</botton>
+                                </li>
+                            </ul>
+
                         </div>
+
+
+                        </div>
+
+                        
 
                             
                         </li>
@@ -300,28 +381,18 @@
                     </ul> 
                         
                         <div class="media-object stack-for-small">
-                            
-                            <div class="column row">
-                                <div class="medium-1 columns">
-                                    <div class="media-object-section">
-                                        <img class="thumbnail" width="50px" src="https://placehold.it/200x200">
-                                    </div>
-                                </div>
-                                
-                                <div class="medium-10 columns">
-                                    <div class="media-object-section">
-                                        <h5>Miguel Peréz.</h5>
-                                        <p>Pienso que es una burla al pueblo salvadoreño</p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="column row">
                                 <div class="medium-1 columns"></div>
                                 <div class="medium-10 columns">
                                     <label>
-                                        <input type="text" placeholder="Comentar.....">
-                                        <input type="submit" class="button expanded" value="Enviar Comentario">
+                                    <form id="crearData2" name="crearData2">
+
+                                    
+                                        <input type="hidden" name="id_noticia" value="<?php echo  $noticias_detalle[0]->id_noticia ?>"></input>
+                                        <input type="hidden" name="avatar" value="<?php echo  $_COOKIE["Avatar"] ?>"></input>
+                                        <textarea class="form-control" id="comentario_texto" name="comentario_texto"  placeholder="Comentar....."></textarea>
+                                        <input type="buttom" id="guardarDataFront" class="form-control button expanded" name="../insert_comentarios/" value="Comentar">
+                                    </form>                                        
                                     </label>
                                 </div>
                             </div>
@@ -345,12 +416,6 @@
     </div>
 
 
-
-
-
-
-
-
 <footer>
   <div class="row expanded callout secondary">
 
@@ -358,9 +423,7 @@
       <p class="lead">Offices</p>
       <ul class="menu vertical">
         <li><a href="#">One</a></li>
-        <li><a href="#">Two</a></li>
-        <li><a href="#">Three</a></li>
-        <li><a href="#">Four</a></li>
+
       </ul>
     </div>
 
@@ -368,9 +431,7 @@
       <p class="lead">Solar Systems</p>
       <ul class="menu vertical">
         <li><a href="#">One</a></li>
-        <li><a href="#">Two</a></li>
-        <li><a href="#">Three</a></li>
-        <li><a href="#">Four</a></li>
+
       </ul>
     </div>
 
@@ -378,9 +439,7 @@
       <p class="lead">Contact</p>
       <ul class="menu vertical">
         <li><a href="#"><i class="fi-social-twitter"></i> Twitter</a></li>
-        <li><a href="#"><i class="fi-social-facebook"></i> Facebook</a></li>
-        <li><a href="#"><i class="fi-social-instagram"></i> Instagram</a></li>
-        <li><a href="#"><i class="fi-social-pinterest"></i> Pinterest</a></li>
+
       </ul>
     </div>
 
@@ -388,9 +447,7 @@
       <p class="lead">Offices</p>
       <ul class="menu vertical">
         <li><a href="#">One</a></li>
-        <li><a href="#">Two</a></li>
-        <li><a href="#">Three</a></li>
-        <li><a href="#">Four</a></li>
+
       </ul>
     </div>
 
@@ -406,10 +463,22 @@
 
     <script src="/noticias/assets/slider/jquery.terseBanner.min.js"></script>
     <script src="/noticias/assets/slider/script.js"></script>
+    <script src="/noticias/js/contentModal.js"></script>
 
     
     <script>
       $(document).foundation();
+
+
+        $(document).ready(function(){
+            $("#btn-comentar").click(function(){
+                var comentario = $("#comentario_texto").text();
+
+            });
+
+
+        });
+
     </script>
   </body>
 </html>

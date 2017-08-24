@@ -5,6 +5,7 @@ class Noticia_model extends CI_Model
     const noticias  = 'sys_noticia';
     const usuario   = 'sr_usuarios';
     const noticia_contador = 'sys_noticia_contador';
+    const comentario = 'sys_noticia_comentario';
     
     public function __construct()
     {
@@ -51,7 +52,7 @@ class Noticia_model extends CI_Model
             'ip_usuario'    => "127.0.0.1",
             'fecha_creado'    => date("Y-m-d H-i-s"),
             );        
-        $this->db->insert(self::noticia_contador, $data);  
+        //$this->db->insert(self::noticia_contador, $data);  
     }
 
     // Total de visitas por noticia
@@ -101,11 +102,41 @@ class Noticia_model extends CI_Model
 
 
     public function getComentarios( $id_noticia ){
-        $query = $this->db->query("select cmt1.id_comentario,cmt1.comentario_noticia as cmt,cmt1.comentario_fecha as cmt_fecha ,cmt2.comentario_noticia as reply,cmt2.id_padre as id_reply,cmt2.comentario_fecha as reply_fecha from sys_noticia_comentario as cmt1
-left join sys_noticia_comentario as cmt2 on cmt1.id_comentario=cmt2.id_padre
-where cmt1.id_noticia_comentario=".$id_noticia);
+        $query = $this->db->query("select cmt1.id_comentario, cmt1.comentario_noticia as cmt,cmt1.comentario_fecha as cmt_fecha ,cmt2.id_padre as id_reply ,cmt2.comentario_noticia as reply,cmt2.comentario_fecha as reply_fecha,cmt1.avatar as avatar1,cmt2.avatar as avatar2,
+            (select count(*) from sys_noticia_comentario as c where c.id_padre=cmt1.id_comentario) as total_reply
+
+            from sys_noticia_comentario as cmt1
+            left join sys_noticia_comentario as cmt2 on cmt1.id_comentario=cmt2.id_padre
+            where cmt1.id_noticia_comentario=".$id_noticia);
         return $query->result(); 
     }
+
+    public function insert_comentarios( $cmt ){
+
+        $data = array(
+            'id_noticia_comentario' => $cmt['id_noticia'],
+            'avatar'                => $cmt['avatar'],
+            'comentario_noticia'    => $cmt['comentario_texto'],
+            'comentario_fecha'      => date("Y-m-d H-i-s"),
+            'comentario_estado'     => 1,
+            );        
+        $this->db->insert(self::comentario, $data);  
+    }
+
+    public function insert_respuesta( $respuesta ){
+
+        $data = array(
+            'id_padre'          => $respuesta['id_noticia'],
+            'avatar'            => $respuesta['avatar'],
+            'comentario_noticia'=> $respuesta['cmt'],
+            'comentario_fecha'  => date("Y-m-d H-i-s"),
+            'comentario_estado' => 1,
+            );        
+        $this->db->insert(self::comentario, $data);  
+    }
+
+
+    
 
 
     
