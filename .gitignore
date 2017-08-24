@@ -1,6 +1,7 @@
 .DS_Store
 
 assets/images/*
+assets/imagenes_noticias/*
 assets/filesCV/*
 application/cache/*
 !application/cache/index.html
