@@ -106,7 +106,7 @@
         </div>
 
 
-    <div class="row column">
+    <div class="row">
         <ul class="pagination float-right" role="navigation" aria-label="Pagination">
 
 
@@ -120,7 +120,7 @@
 
     </div>
 
-
+<!--
 <footer>
 
   <div class="row expanded callout secondary">
@@ -133,14 +133,13 @@
     </div>
 
   </div>
-
-</footer>
+</footer>-->
 
     <script src="/noticias/js/jquery.js"></script>
     <script src="/noticias/js/foundation.js"></script>
     <script src="/noticias/js/isotope.min.js"></script>
     <script>
-        $(document).foundation();
+        
 
         $(document).ready(function(){
            $('.grid').isotope({
@@ -150,6 +149,7 @@
                   }
                 });
         });
+        $(document).foundation();
     </script>
   </body>
 </html>

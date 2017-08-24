@@ -8,6 +8,7 @@ class Cnoticia_model extends CI_Model
     const noticias = 'sys_noticia';
     const noticias_config = 'sys_noticia_configuracion';
     const usuarios = 'sr_usuarios';
+    const noticias_cmt = 'sys_noticia_comentario';
         
 
     
@@ -162,8 +163,9 @@ class Cnoticia_model extends CI_Model
                         self::noticias_config.'.id_noticia_config = '.
                         self::noticias.'.id_noticia','left');
         //$this->db->where(self::noticias.'.estado_noticia',1); 
+        $this->db->order_by(self::noticias_config.'.importante', "desc");
         $this->db->order_by(self::noticias.'.estado_noticia', "desc");
-        $this->db->order_by(self::noticias.'.fecha_creacion_noticia', "desc");
+        $this->db->order_by(self::noticias.'.fecha_creacion_noticia', "asc");
         
         $query = $this->db->get();
         
@@ -297,5 +299,6 @@ class Cnoticia_model extends CI_Model
         $this->db->update(self::noticias_config, $data);
     }
 
+ 
     
 }
