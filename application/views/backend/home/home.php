@@ -1,10 +1,10 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="es">
 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> Noticias </title>
+        <title> sisepudo.com </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -55,20 +55,13 @@
           <i class="fa fa-bars"></i>
         </button> </div>
                     <div class="header-block header-block-search hidden-sm-down">
-                        <form role="search">
-                            <div class="input-container"> <i class="fa fa-search"></i> <input type="search" placeholder="Buscar">
-                                <div class="underline"></div>
-                            </div>
-                        </form>
+                       Backend || Adminsitrativo - <?php echo date("M-d-Y"); ?>
                     </div>
 
                     <div class="header-block header-block-nav">
                         <ul class="nav-profile">
-                            <li class="notifications new"> <a href="" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <sup>
-                <span class="counter">8</span>
-              </sup>
+                          
+    
             </a>
                                 <div class="dropdown-menu notifications-dropdown-menu">
                                     <ul class="notifications-container">
@@ -274,9 +267,9 @@
                     </section>
                 </article>
                 <footer class="footer">
-                    <div class="footer-block buttons"> Footer Texto </div>
+                    <div class="footer-block buttons">   Copy - 2017 </div>
                     <div class="footer-block author">
-                       Mas Info Aqui
+                       
                     </div>
                 </footer>
                 <div class="modal fade" id="modal-media">

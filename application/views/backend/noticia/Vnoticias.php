@@ -84,7 +84,7 @@
 	            			<tr>
 	            				<th>#</th>
 	            				<th>Usuario</th>
-	            				<th title="Categoría">Categ.</th>
+	            		
 	            				<th title="">Titulo</th>
 	            				<th>Creado</th>
 	            				<th>Desde</th>
@@ -112,23 +112,37 @@
 	            			?>
 	            				<tr>
 	            					<td><?php echo $count; ?></td>
-	            					<td><?php echo $not->nickname; ?></td>
-	            					<td title="<?php echo $not->nombre_categoria ?>"><?php echo substr($not->nombre_categoria,0,4)."."; ?></td>
+	            					<td><?php echo $not->nickname; ?></td>	            					
 	            					<td title="<?php echo $not->id_titulo ?>"><?php echo substr($not->id_titulo,0,20); ?></td>
 	            					<td><?php $date = date_create($not->fecha_creacion_noticia); echo date_format($date,"m/d/y"); ?></td>
-	            					<td><?php if($not->fecha_inicio){ $inicio = date_create($not->fecha_inicio);  echo date_format($inicio,"d-M-y");}  ?></td>
-	            					<td><?php if($not->fecha_fin){$fin = date_create($not->fecha_fin); echo date_format($fin,"d-M-y");}  ?></td>
+	            					<td><?php if($not->fecha_inicio){ $inicio = date_create($not->fecha_inicio);  echo date_format($inicio,"d-M-y H:i");}  ?></td>
+	            					<td><?php if($not->fecha_fin){$fin = date_create($not->fecha_fin); echo date_format($fin,"d-M-y H:i");}  ?></td>
 	            					<td><?php echo $not->total_dias ?></td>
 	            					<td>
 	            					<?php
 	            						if($not->fecha_inicio != null){
 	            							
-		            						$hoy 		= strtotime("Y-m-d H-i-s");
+		            						$hoy 		= date("Y-m-d H:i:s");
 		            						$datetime1 	= new DateTime($hoy);
 											$datetime2 	= new DateTime($not->fecha_fin);
 											$interval 	= $datetime1->diff($datetime2);
 											
-											echo $interval->format('%mm %ad %h:%i');
+											if( $hoy > $not->fecha_fin ){
+												echo "<span class='btn btn-warning btn-sm'>Vencido</span>";
+											}else{
+												echo $interval->format('%mm %ad %h:%i');
+											}
+
+											/*
+											$fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
+											$fecha_entrada = strtotime("19-11-2008 21:00:00");
+											if($fecha_actual > $fecha_entrada){
+											        echo "La fecha entrada ya ha pasado";
+											}else{
+											        echo "Aun falta algun tiempo";
+											}
+											*/
+
 	            						}
 	            					?>
 	            					</td>

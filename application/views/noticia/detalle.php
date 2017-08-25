@@ -118,8 +118,8 @@
     .custom-input-file:hover .uploadPhoto { display: block; }
 
     .media-replied{
-        width: 90%;
-        
+        width: 100%;
+        clear: both;
     }
     .fecha_comntario{
         position: relative;
@@ -295,7 +295,7 @@
                                         <li class="fecha_comntario">
                                         <?php 
                                             $fecha_cmt = new DateTime($cmt->cmt_fecha); 
-                                            echo date_format($fecha_cmt,"M-d-Y"); 
+                                            echo date_format($fecha_cmt,"M-d-Y H:i"); 
                                         ?>
                                         </li>                                        
                                     </ul>
@@ -303,7 +303,7 @@
                                     <p class="media-comment">    <?php echo $cmt->cmt ?>  </p>
                                     
                                     <p class="botones-accion">
-                                        <a class="btn btn-default btn-circle text-uppercase " data-toggle="collapse" href="#r<?php echo $cmt->id_comentario ?>" id="reply">
+                                        <a class="btn btn-default btn-circle text-uppercase " data-toggle="collapse" href="#a<?php echo $cmt->id_comentario ?>" id="reply">
                                             <span class="fa fa-reply btn-responder" ></span> Responder
                                         </a>
                                         
@@ -338,8 +338,9 @@
                                                 <div class="well well-lg">                                                    
                                                     <ul class="media-date text-uppercase reviews list-inline">
                                                         
-                                                        <li class="aaaa"><?php echo $reply->reply_fecha ?></li>
+                                                        <li class="fecha_comntario"><?php echo $reply->reply_fecha ?></li>
                                                     </ul>
+                                                    <br><br>
                                                     <p class="media-comment"><?php echo $reply->reply ?></p>
                                                     
                                                 </div>              
@@ -350,8 +351,9 @@
                             }
                             ?>
                             </ul>  
+                        </div>
 
-                            <div class="collapse1" id="a<?php echo $cmt->id_comentario ?>">
+                        <div class="collapse" id="a<?php echo $cmt->id_comentario ?>">
                             <ul class="media-list ejemplo">
                                 <li class="media media-comment">
                                     <input type="hidden" name="avatar-respuesta" id="avatar-respuesta" value="<?php echo  $_COOKIE["Avatar"] ?>"></input>
@@ -359,13 +361,7 @@
                                     <botton href="#" class="btn btn-default input-custom2" name="<?php echo $validador ?>">Enviar Respuesta</botton>
                                 </li>
                             </ul>
-
                         </div>
-
-
-                        </div>
-
-                        
 
                             
                         </li>
