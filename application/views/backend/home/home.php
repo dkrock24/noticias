@@ -267,7 +267,7 @@
                     </section>
                 </article>
                 <footer class="footer">
-                    <div class="footer-block buttons">   Copy - 2017 </div>
+                    <div class="footer-block buttons">   © 2017 - sisepudo.com </div>
                     <div class="footer-block author">
                        
                     </div>
