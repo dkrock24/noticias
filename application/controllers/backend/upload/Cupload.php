@@ -15,13 +15,15 @@ class Cupload extends CI_Controller {
 	//-----Metodo para cargar foto de perfil
 	public function do_upload()
 	{
-
+		//var_dump($_FILES);
+		//var_dump($_POST);
 		session_start();
 		$userLogged = $_SESSION['idUser'];
 		$config['upload_path'] = './assets/images/profilePics/';
-		$config['allowed_types'] = 'gif|jpg|png|bmp|jpeg';
-	    $config['file_name']  = $userLogged;
-	    $config['overwrite'] = TRUE;
+		$config['allowed_types'] = "*";
+
+	    $config['file_name']  = $userLogged.".png";
+	    //$config['overwrite'] = TRUE;
 	    $config['encrypt_name'] = FALSE;
 	    $config['remove_spaces'] = TRUE;
 		$this->load->library('upload', $config);

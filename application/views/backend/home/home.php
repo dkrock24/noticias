@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="/noticias/css/vendor.css">
         <!-- Theme initialization -->
 
-        
         <script type="text/javascript" src="/noticias/js/jquery.js"></script> 
         
 
@@ -362,4 +361,7 @@
     <script src="../../../assets/dist/summernote.js"></script>
     <script src="../../../assets/dist/summernote.min.js"></script>
 
+
+    <link rel="stylesheet" href="../../../assets/plugins/jcrop/jquery.Jcrop.min.css">  
+    <script src="../../../assets/plugins/jcrop/jquery.Jcrop.min.js"></script> 
 </html>

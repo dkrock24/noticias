@@ -1,28 +1,24 @@
 <link rel="stylesheet" href="/noticias/css/profile.css">
 <link rel="stylesheet" href="/noticias/css/app.css">
 <link rel="stylesheet" href="/noticias/css/vendor.css">  
-
-
+<script src="/noticias/assets/plugins/jcrop/cropOneImage.js"></script>
 <script type="text/javascript">
 $(document).ready(function () 
 {
-    $(".takeAvatar").click(function()
-    {
-        $(".modalProfile").modal({
-           backdrop: 'static', 
-           keyboard: false 
-        });
-    });
 
-
-    $('#upload_file').submit(function(e) 
+    $('#upload_file').submit(function(e)
     {
         e.preventDefault();
+        formData = new FormData($(this)[0]);
+        var blob = dataURLtoBlob(canvas.toDataURL('image/png'));
+        //---Add file blob to the form data
+        formData.append("userfile", blob);
+        
         $.ajax
         ({
             url: "../upload/Cupload/do_upload",
             type: "POST",             
-            data: new FormData(this),
+            data: formData,
             contentType: false,      
             cache: false,      
             processData:false,   
@@ -94,7 +90,6 @@ $(document).ready(function ()
             {
     
                 alert("Se modifico exitosamente");
-                //$(".pages").load("../profile/Cprofile/ViewProfile");
                 $(".pages").load('../profile/Cprofile/ViewProfile');
             }
         });
@@ -116,16 +111,16 @@ $(document).ready(function ()
     <div class="card card-default">
         <div class="card-header cardOpacity">
             <div class="profilePicture">
-            <em class="fa fa-camera takeAvatar"></em>
+            <em class="fa fa-camera takeAvatar" data-target="#modal" data-toggle="modal"></em>
              <?php
                 
                 if ($value->avatar == null) 
                 {
-                    echo "<img src='../../../assets/images/avatars/no_user_logo.png' height='250' width='250'>";
+                    echo "<img id='imagen' src='../../../assets/images/avatars/no_user_logo.png' height='250' width='250'>";
                 } 
                 else 
                 {
-                    echo "<img src='../../../assets/images/profilePics/$value->avatar' height='250' width='250'>";
+                    echo "<img id='imagen' src='../../../assets/images/profilePics/$value->avatar' height='250' width='250'>";
                 }
                        
              ?>    
@@ -346,42 +341,56 @@ $(document).ready(function ()
     </form>
     </div>
     <!--     card profile info    -->                       
-<?php } ?>
+
 
 
 
 
 <!-- Modal para agregar foto de perfil-->
-<div class="modal fade modalProfile" role="dialog" tabindex="1">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade modalProfile" id="modal" role="dialog" tabindex="1">
+<div class="modal-dialog modal-lg">
     
-      <!-- Modal content-->
-      <div class="modal-content">
+<!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-content">
           <h4 class="modal-title" style="background-color: #85CE36;padding: 20px;color: white;text-align: center;font-weight: bold;">
           Subir foto de perfil
           </h4>
           <hr>
 
         <div class="modal-body">
-        
-        <div class="display-error alert alert-warning" style="display: none;"> 
-        </div>
+    <div class="modal-body">
+            
+    <!-- Form para subir imagenes  -->
+    <div class="conteFormUpload">
+    <div class="display-error alert alert-warning" style="display: none;"> </div>
 
-            <form method="post" action="" id="upload_file" enctype="multipart-formdata">  
-                <label for="userfile">File</label>
-                <input class="btn btn-pill-left btn-secondary" type="file" name="userfile" id="userfile" size="20" />
-                <input type="hidden"  id="userIDView" name="userIDView" value="<?php echo $value->id_usuario; ?>"> 
-
-                <input style="margin-top: 20px;" type="submit" class="btn btn-success-outline" name="submit" id="submit"/>
-            </form>
-        </div>
-
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cerrar</button>
-        </div> 
-        </div>
-      </div>
-      
+    <!-- Div para recortar imagen  -->
+        <form id="upload_file" enctype="multipart-formdata">  
+        <input class="btn btn-pill-left btn-secondary" type="file" name="userfile" id="userfile" size="20" />
+        <input type="hidden"  id="userIDView" name="userIDView" value="<?php echo $value->id_usuario; ?>" /> 
+        <br>
+        <hr class="lineView" style="display: none;">
+        <div id="views"></div>
+        <button id="cropbutton" class="btn btn-primary" type="button" style="display: none;">Crop</button>
+        <input type="submit" value="Subir Foto" class="btn btn-success" />  
+        </form>
     </div>
-  </div>
+    <!--  Fin div que contiene imagen -->
+            
+
+            
+
+       
+    </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div> 
+    </div>
+      
+</div>
+</div>
 <!-- Fin del Codigo de funcionalidad de Modals para aagregar sucursales y metodos de pago -->  
+
+<?php } ?>
+ 

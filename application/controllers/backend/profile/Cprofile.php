@@ -20,6 +20,11 @@ class Cprofile extends CI_Controller {
 		$this->load->view('backend/profile/perfil.php', $data);
 	}
 
+	public function ViewProfiles()
+	{
+		$this->load->view('backend/profile/cropper.php');
+	}
+
 	public function savePersonalInfo()
 	{	
 

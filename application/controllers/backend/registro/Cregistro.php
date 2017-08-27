@@ -39,9 +39,9 @@ class Cregistro extends CI_Controller {
 		$urlAddToken = base_url()."backend/registro/Cregistro/VregistroCorrecto";
 
         $mail = new PHPMailer();
-		$mail->IsSMTP();         // set mailer to use SMTP
+		//$mail->IsSMTP();         // set mailer to use SMTP
 		$mail->SMTPAuth = true;     // turn on SMTP authentication
-		$mail->SMTPSecure = "tls";
+		//$mail->SMTPSecure = "tls";
 		$mail->Host = "smtp.gmail.com";  // specify main and backup server
 		$mail->Port = 465;
         $mail->Username   = "blen7777@gmail.com";  // user email address
@@ -50,15 +50,15 @@ class Cregistro extends CI_Controller {
         //$mail->AddReplyTo("blen7777@gmail.com","Notification");  //email address that receives the response
         $mail->Subject    = "Validacion de registro";
         $mail->Body      = "Gracias por querer ser parte de esta plataforma. para 
-        poder contienuar con el proceso de inscripcion tiene que copiar el siguiente token y pegar en el este link <b>".$token." </b> link  ->".$urlAddToken;
+        poder continuar con el proceso de inscripcion tiene que copiar el siguiente token <b>".$token." </b> y pegar en el este link ->".$urlAddToken;
         $mail->AltBody    = "Plain text message";
         $destino = $email; // Who is addressed the email to
         $mail->AddAddress($destino, "Enscripcion");
 
         if(!$mail->Send()) {
-           echo $data["message"] = "Error: " . $mail->ErrorInfo;
+            $data["message"] = "Error: " . $mail->ErrorInfo;
         } else {
-          echo  $data["message"] = "Message sent correctly!";
+           $data["message"] = "Message sent correctly!";
         }
 	}
 	
