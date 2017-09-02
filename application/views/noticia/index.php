@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html class="no-js" lang="es">
     <head>
@@ -55,9 +54,12 @@
 
         }
 
-
-
     </style>
+
+    <script src="http://api.wipmania.com/jsonp?callback=jsonpCallback"
+        type="text/javascript"></script>
+        <!-- Theme initialization -->
+
 
 
     </head>

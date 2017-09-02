@@ -79,8 +79,17 @@ class Noticia_model extends CI_Model
         $query = $this->db->query('select * from sys_noticia as noticia 
                                     join sys_noticia_tipo as tipo on tipo.id_noticia_tipo=noticia.id_tipo_noticia 
                                     left join sys_noticia_configuracion as config on config.id_noticia_config=noticia.id_noticia
-                                    where (config.fecha_inicio <= now() and config.fecha_fin >= now() or config.fecha_inicio is null ) and noticia.estado_noticia=1
+                                    JOIN sr_usuarios as u on u.id_usuario = noticia.id_usuario
+                                    JOIN sys_pais_departamento as dep on dep.id_departamento = u.id_departamento
+                                    JOIN sys_pais as pais on pais.id_pais = dep.id_pais
+
+                                    where (config.fecha_inicio <= now() and config.fecha_fin >= now() or config.fecha_inicio is null ) 
+
+                                    and noticia.estado_noticia=1
+                                    AND pais.registro_legal="SV"
+
                                     order by config.fecha_inicio desc
+                                    
                                     limit '.$limit.','.$pagina);
         //echo $this->db->queries[1];
 

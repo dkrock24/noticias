@@ -5,7 +5,7 @@ function datos()
 
 $usuario = "root";
 $password = "";
-$host = "localhost:3307";
+$host = "localhost:3306";
 
 
 	if(isset($usuario) and isset($password) and isset($host))
@@ -22,7 +22,7 @@ function login()
 {
 	$usuario = "root";
 	$password = "";
-	$host = "localhost:3307";
+	$host = "localhost:3306";
 	return conexion($usuario,$password,$host);
 }
 

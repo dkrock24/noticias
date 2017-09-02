@@ -100,10 +100,12 @@
                 <div class="col-md-12">
                     <div class="panel with-nav-tabs panel-default">
 
-                        <div class="panel-heading">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1default" data-toggle="tab">Editar Noticia</a></li>
-                                <li><a href="#tab2default" data-toggle="tab">Configurar Noticia</a></li>
+                        <div class="card-block">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link active" data-target="#home-pills" aria-controls="home-pills" data-toggle="tab" role="tab">Editar Noticia</a>
+                                </li>
+                                <li class="nav-item"><a href="" class="nav-link" data-target="#profile-pills" aria-controls="profile-pills" data-toggle="tab" role="tab">Configurar Noticia</a></li>
                             </ul>
                         </div>
 
@@ -111,7 +113,7 @@
                             <div class="tab-content">
 
                                 <!-- Tab de Edicion de noticia -->
-                                <div class="tab-pane fade in active" id="tab1default">
+                                <div class="tab-pane fade in active" id="home-pills">
                                     <p>
                                         <form action="#" method="POST" name="pais" id="crearData">
                                             <div class="row">
@@ -220,7 +222,7 @@
                                 </div>
 
                                 <!-- Segundo Tab de Configuracion -->
-                                <div class="tab-pane fade" id="tab2default">
+                                <div class="tab-pane fade" id="profile-pills">
                                     <p>
                                         <form action="#" method="POST" name="condiguracion" id="crearData2">
                                             
@@ -298,6 +300,9 @@
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
 
             

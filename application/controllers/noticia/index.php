@@ -14,6 +14,9 @@ class Index extends CI_Controller {
 
 	public function index()
 	{
+		$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp"));
+    	$pais = $dataArray->geoplugin_countryCode;
+
 		$config = array();
 		$config['base_url'] = base_url().'/index.php/noticia/index/index';
 
@@ -59,7 +62,7 @@ class Index extends CI_Controller {
 			$page = 0;
 		}
 		//echo $config["per_page"]. " + ".$page;
-		$data["noticias"] = $this->Noticia_model->fetch_data($config["per_page"] , $page  );
+		$data["noticias"] = $this->Noticia_model->fetch_data($config["per_page"] , $page ,$pais );
 		$str_links = $this->pagination->create_links();
 		$data["links"] = explode('&nbsp;',$str_links );
 
