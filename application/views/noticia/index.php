@@ -86,11 +86,11 @@
         foreach ($noticias as $noticia) {
             ?>     
                 
-                <div class="column grid-item"><a href="<?php echo base_url(); ?>/index.php/noticia/index/detalle/<?php echo $noticia->id_noticia ?>" class="noticia_detalle">       
+                <div class="column grid-item"><a href="<?php echo base_url(); ?>noticia/index/detalle/<?php echo $noticia->id_noticia ?>" class="noticia_detalle">       
                     <div class="callout1">
                     <div class="region "><?php echo strtoupper($noticia->noticia_tipo) ?></div>
                     <p class="titulo_corto "><?php echo strtoupper($noticia->id_titulo) ?></p>
-                    <p><img src="<?php echo base_url(); ?>/assets/imagenes_noticias/<?php echo $noticia->imagen_portada ?>" alt=""></p>
+                    <p><img src="<?php echo base_url(); ?>../assets/imagenes_noticias/<?php echo $noticia->imagen_portada ?>" alt=""></p>
                     <p class="lead titulo_largo"><?php echo strtoupper($noticia->titulo_largo) ?></p>
                     
                     </div>
