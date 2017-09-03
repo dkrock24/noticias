@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/noticias/css/foundation.min.css">
     <link rel="stylesheet" href="/noticias/css/frontend_custom.css">
 
-    <link rel="stylesheet" type="text/css" href="/noticias/assets/slider/style.css">
+
     <link rel="stylesheet" type="text/css" href="/noticias/assets/font-awesome/font-awesome.css">
 
 
@@ -63,7 +63,14 @@
     }
     .media-comment { margin-bottom: 20px; }
     .media-replied { margin: 0 0 20px 50px; }
-    .media-replied .media-heading { padding-left: 6px; }
+    .media-replied .media-heading { padding-left: 1px; }
+
+    .media-replied2{
+        width: 80%;
+        margin: 0 0 20px 50px;
+        display: inline-block;
+    }
+    .media-replied2 .media-heading { padding-left: 1px; }
 
     .btn-circle {
         font-weight: bold;
@@ -117,21 +124,27 @@
     }
     .custom-input-file:hover .uploadPhoto { display: block; }
 
+    .media-list{
+        width: 100%;
+        background: none;
+    }
+
     .media-replied{
         width: 100%;
+        display: block;
         clear: both;
     }
     .fecha_comntario{
         position: relative;
-        display: inline-block;
+        display: inline-block;        
         width: 100%;
     }
     .media, .media .media {
         margin-top: 0px;
     }
     .well-lg {
-        height: 100%;
-        padding: 15px;
+        height: 10%;
+        padding: 10px;
         border-radius: 6px;
     }
     .media-comment{
@@ -147,14 +160,34 @@
         float: right;
     }
     .ejemplo{
-        padding-left: 110px;
+        padding-left: 50px;
+        width: 95%;
+
+    }
+    .total{
+        width:100%;
+        display: block;
+        clear: both;
+    }
+    .media-comment2{
+        margin-top: 5px;
+        margin-left: 1.25rem;
+        text-align: justify;
     }
 
+    .tb-btn{
+        display: inline-block;
+        overflow-x: scroll;
+    }
+
+
     </style>
-
-     <script src="/noticias/js/jquery.js"></script>
-     <script src="/noticias/js/bootstrap.min.js"></script>
-
+    <link href="/noticias/css/style.css" rel="stylesheet">
+    <link href="/noticias/css/fotorama.css" rel="stylesheet">
+    <script src="/noticias/js/jquery.js"></script>
+    <script src="/noticias/js/slider.js"></script>
+    <script src="/noticias/js/bootstrap.min.js"></script>
+    <script src="/noticias/js/fotorama.js"></script>
     </head>
     
     <body>
@@ -181,65 +214,78 @@
                 </ul>
             </nav>
         </div>
-<?php
-//var_dump($noticias_detalle);
-?>
+    <?php
+    if(isset($_COOKIE["Avatar"]))
+    {
+        $_COOKIE["Avatar"];
+    }else{
+        setcookie("Avatar", rand(1,21));
+    }
+    ?>
     <div class="row">
+
         <div class="medium-4 columns">
 
-            <!-- main:begin -->
-                        <div class="main">
-                            <div class="container animation" id="anchor-3">
-                                <div class="banner" id="animation">             
-                                </div>
-                            </div>
-
-                            <div class="container thumbnail" id="anchor-4">
-                                <h2><?php echo $noticias_detalle[0]->id_titulo; ?></h2>
-                                <div class="clearfix">
-                                    <div class="banner" id="thumbnail">
-                                        <ul>
-                                        <?php
-                                        if($noticias_img != null)
-                                        {
-                                            foreach ($noticias_img as $img) {
-                                                ?>
-                                                <li><img src="../../../../assets/imagenes_noticias/<?php echo $img->path_imagen; ?>"></li>
-                                                <?php
-                                            }
-                                        }
-                                        else
-                                        {
-                                            ?>
-                                            <li><img src="../../../../assets/imagenes_noticias/not_imagen_demo.png"></li>
-                                            <li><img src="../../../../assets/imagenes_noticias/not_imagen_demo.png"></li>
-                                            <?php
-                                        }
-                                        ?>
-                                        </ul>
+            <!-- Slider -->
+            <div class="row">
+                <div class="medium-12 columns">
+                <!-- main:begin -->
+                    <div class="main">                
+                        <div class="container thumbnail" id="anchor-4">
+                            <h2><?php echo $noticias_detalle[0]->id_titulo; ?></h2>
+                            <div class="clearfix">
+                                <div class="banner" id="thumbnail">
+                                    <div class="fotorama" data-width="400" data-ratio="700/467" data-max-width="100%">
+                                    <?php
+                                    if($noticias_img != null)
+                                    {
+                                        foreach ($noticias_img as $img) {
+                                    ?>
+                                    <img src="../../../../assets/imagenes_noticias/<?php echo $img->path_imagen; ?>">
+                                    <?php
+                                    }
+                                    }
+                                    ?>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                                              
                         </div>
+                    </div>
+                </div>
+            </div>
             <!-- main:end -->
 
+            <!-- Video -->
+            <div class="row">
+                <div class="medium-12 columns">
+                <!-- main:begin -->
+                    <div class="main">                
+                        <div class="container thumbnail" id="anchor-4">
+                            <h2>Video</h2>
+                            <div class="clearfix">
+                                <div class="banner" id="thumbnail">
+                                    <p>
+                                    <iframe width="100%" height="300px"
+                                        src="https://www.youtube.com/embed/<?php echo $noticias_detalle[0]->video_url; ?>">
+                                    </iframe> 
+                                    </p>
+                                </div>
+                            </div>                                              
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main:end -->
         </div>
 
         <div class="medium-8 large-8 columns">
-            <h3></h3>
+            <h3><?php echo $noticias_detalle[0]->titulo_largo; ?> </h3>
             
-            <p></p>
             
             <p>
                <?php echo $noticias_detalle[0]->contenido; ?> 
             </p>   
-            <p>
-                <iframe width="100%" height="500px"
-                    src="https://www.youtube.com/embed/<?php echo $noticias_detalle[0]->video_url; ?>">
-                </iframe> 
-                
-                
-            </p>
+            
             <br>
             <br>         
             <div class="small secondary expanded button-group">
@@ -262,10 +308,7 @@
 
                     <ul class="media-list">
                     <?php
-                    if(!isset($_COOKIE["Avatar"]))
-                    {
-                        setcookie("Avatar", rand(1,21));                        
-                    }
+                    
 
                    
                     $validador=0;
@@ -292,12 +335,12 @@
                             <div class="media-body">
                                 <div class="well well-lg">                                    
                                     <ul class="media-date list-inline">
-                                        <li class="fecha_comntario">
+                                        <li class="fecha_comntario"><b>
                                         <?php 
                                             $fecha_cmt = new DateTime($cmt->cmt_fecha); 
                                             echo date_format($fecha_cmt,"M-d-Y H:i"); 
                                         ?>
-                                        </li>                                        
+                                        </b></li>                                        
                                     </ul>
                                     <br><br>
                                     <p class="media-comment">    <?php echo $cmt->cmt ?>  </p>
@@ -330,21 +373,26 @@
                                     if( $reply->id_reply == $validador )
                                     {
                                     ?>
-                                        <li class="media media-replied">
+                                        <li class="media media-replied2">
                                             <a class="pull-left" href="#">
                                                 <img class="media-object img-circle" src="/noticias/assets/avatars_comentarios/<?php echo $reply->avatar2; ?>.png" alt="profile">
                                             </a>
-                                            <div class="media-body">
-                                                <div class="well well-lg">                                                    
-                                                    <ul class="media-date text-uppercase reviews list-inline">
+                                                                                              
+                                                    <ul class="text-uppercase">
                                                         
-                                                        <li class="fecha_comntario"><?php echo $reply->reply_fecha ?></li>
+                                                        <li class="fecha_comntario">
+                                                            <b><?php
+
+                                                                $reply_fecha = new DateTime($cmt->reply_fecha); 
+                                                                echo date_format($reply_fecha,"M-d-Y H:i"); 
+                                                                ?>
+                                                            </b>
+                                                        </li>
                                                     </ul>
-                                                    <br><br>
-                                                    <p class="media-comment"><?php echo $reply->reply ?></p>
                                                     
-                                                </div>              
-                                            </div>
+                                                    <p class="media-comment2"><?php echo $reply->reply ?></p>
+                                                    
+                                                
                                         </li>
                                     <?php                                
                                     }                           
@@ -356,7 +404,12 @@
                         <div class="collapse" id="a<?php echo $cmt->id_comentario ?>">
                             <ul class="media-list ejemplo">
                                 <li class="media media-comment">
-                                    <input type="hidden" name="avatar-respuesta" id="avatar-respuesta" value="<?php echo  $_COOKIE["Avatar"] ?>"></input>
+                                    <input type="hidden" name="avatar-respuesta" id="avatar-respuesta" value="<?php 
+                                        if(isset($_COOKIE["Avatar"]))
+                                            { echo  $_COOKIE["Avatar"]; } 
+                                        ?>">
+                                            
+                                    </input>
                                     <textarea class="form-control input-custom" name="comentario" id="<?php echo $validador ?>"></textarea>
                                     <botton href="#" class="btn btn-default input-custom2" name="<?php echo $validador ?>">Enviar Respuesta</botton>
                                 </li>
@@ -385,7 +438,11 @@
 
                                     
                                         <input type="hidden" name="id_noticia" value="<?php echo  $noticias_detalle[0]->id_noticia ?>"></input>
-                                        <input type="hidden" name="avatar" value="<?php echo  $_COOKIE["Avatar"] ?>"></input>
+                                        <input type="hidden" name="avatar" value="<?php 
+
+                                            echo  $_COOKIE["Avatar"]; 
+
+                                        ?>"></input>
                                         <textarea class="form-control" id="comentario_texto" name="comentario_texto"  placeholder="Comentar....."></textarea>
                                         <input type="buttom" id="guardarDataFront" class="form-control button expanded" name="../insert_comentarios/" value="Comentar">
                                     </form>                                        
@@ -411,6 +468,7 @@
         </div>
     </div>
 
+    
 
 <footer>
   <div class="row expanded callout secondary">
@@ -458,7 +516,7 @@
     <script src="/noticias/assets/slider/highlight.pack.js"></script>
 
     <script src="/noticias/assets/slider/jquery.terseBanner.min.js"></script>
-    <script src="/noticias/assets/slider/script.js"></script>
+
     <script src="/noticias/js/contentModal.js"></script>
 
     

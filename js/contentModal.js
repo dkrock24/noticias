@@ -107,7 +107,7 @@ $( document ).ready(function()
 
      $("#guardarDataFront").click(function(){
 
-
+            $("#guardarDataFront").attr("disabled",true);
          	var url = $(this).attr('name');
         	$.ajax({
             url: url,  

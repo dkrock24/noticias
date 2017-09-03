@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://45.33.3.227/noticias/index.php/';
-//$config['base_url'] = 'http://localhost/noticias';
+//$config['base_url'] = 'http://localhost/noticias/index.php/';
 
 /*
 |--------------------------------------------------------------------------

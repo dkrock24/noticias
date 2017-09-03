@@ -49,10 +49,10 @@ class Noticia_model extends CI_Model
     public function getInsertVisitas( $id_noticia ){
         $data = array(
             'id_noticia'    => $id_noticia,
-            'ip_usuario'    => "127.0.0.1",
+            'ip_usuario'    => $_SERVER['REMOTE_ADDR'],
             'fecha_creado'    => date("Y-m-d H-i-s"),
             );        
-        //$this->db->insert(self::noticia_contador, $data);  
+        $this->db->insert(self::noticia_contador, $data);  
     }
 
     // Total de visitas por noticia

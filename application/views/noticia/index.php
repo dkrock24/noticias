@@ -55,12 +55,14 @@
         }
 
     </style>
-
-    <script src="http://api.wipmania.com/jsonp?callback=jsonpCallback"
-        type="text/javascript"></script>
-        <!-- Theme initialization -->
-
-
+    <?php
+        if(isset($_COOKIE["Avatar"]))
+        {
+            $_COOKIE["Avatar"];
+        }else{
+            setcookie("Avatar", rand(1,21));
+        }
+    ?>
 
     </head>
     
