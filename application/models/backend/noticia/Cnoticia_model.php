@@ -299,6 +299,13 @@ class Cnoticia_model extends CI_Model
         $this->db->update(self::noticias_config, $data);
     }
 
+
+    public function eliminar_comentario( $id_cmt ){
+
+        $this->db->where('id_comentario', $id_cmt );
+        $this->db->delete(self::noticias_cmt);
+    }
+
  
     
 }

@@ -64,6 +64,26 @@ $( document ).ready(function()
     });
 
 
+    
+    // Eliminar comentarios
+    $(".media-replied2").click(function(){
+         
+            var url = $(this).attr('name');
+            $(this).hide();
+            $(this).remove();
+            $.ajax({
+            url: url,  
+            type: "post",
+
+                success: function(data){   
+                   
+                },
+                error:function(){
+                }
+            });
+    });
+
+
     $("#guardarData").click(function(){
     	 
 		var abc = tinymce.get("contents").getContent();

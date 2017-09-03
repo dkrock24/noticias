@@ -8,7 +8,10 @@ class Cnoticia extends CI_Controller {
 		parent::__construct();		
 		$this->load->helper('url');		
 		$this->load->database('default');	
-		$this->load->model('backend/noticia/Cnoticia_model');			
+		$this->load->model('backend/noticia/Cnoticia_model');
+        $this->load->model('noticia/Noticia_model');
+
+        			
 	}
 
 	public function index()
@@ -97,6 +100,8 @@ class Cnoticia extends CI_Controller {
     {
         $data['noticias'] = $this->Cnoticia_model->editNoticias( $id_noticia );
         $data['categorias'] = $this->Cnoticia_model->getCategoriasNoticias(  );
+        $data['comentarios'] = $this->Noticia_model->getComentarios( $id_noticia );
+
         $this->load->view('backend/noticia/VnoticiasEdit.php', $data );        
     }
 
@@ -130,6 +135,12 @@ class Cnoticia extends CI_Controller {
         
         echo "../noticia/Cnoticia/getNoticias/";
     }
+
+    public function eliminar_comentario( $id_cmt ){
+        $this->Cnoticia_model->eliminar_comentario( $id_cmt );
+    }
+
+    
     
 
 }

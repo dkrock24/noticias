@@ -121,7 +121,7 @@ class Noticia_model extends CI_Model
 
 
     public function getComentarios( $id_noticia ){
-        $query = $this->db->query("select cmt1.id_comentario, cmt1.comentario_noticia as cmt,cmt1.comentario_fecha as cmt_fecha ,cmt2.id_padre as id_reply ,cmt2.comentario_noticia as reply,cmt2.comentario_fecha as reply_fecha,cmt1.avatar as avatar1,cmt2.avatar as avatar2,
+        $query = $this->db->query("select cmt2.id_comentario as id, cmt1.id_comentario, cmt1.comentario_noticia as cmt,cmt1.comentario_fecha as cmt_fecha ,cmt2.id_padre as id_reply ,cmt2.comentario_noticia as reply,cmt2.comentario_fecha as reply_fecha,cmt1.avatar as avatar1,cmt2.avatar as avatar2,
             (select count(*) from sys_noticia_comentario as c where c.id_padre=cmt1.id_comentario) as total_reply
 
             from sys_noticia_comentario as cmt1

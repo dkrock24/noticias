@@ -2,6 +2,9 @@
 
 <script src="/noticias/assets/nanospell/tinymce.min.js"></script>
 <link href="../../../css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+<script src="/noticias/js/bootstrap.min.js"></script>
+<script src="/noticias/js/slider.js"></script>
       
       <script>
          var nanospell_directory  = location.href.substring(0,location.href.lastIndexOf("/")+1);
@@ -68,6 +71,58 @@
     .nav-tabs a{
         text-decoration: none;
     }
+    .media-object{
+        width: 100%;
+    }
+    .media .media-object { max-width: 60px; }
+
+    .media-list{
+        width: 100%;
+        background: none;
+    }
+
+    .media-replied{
+        width: 100%;
+        display: block;
+        clear: both;
+    }
+    .fecha_comntario{
+        float: left;
+        position: relative;
+        display: inline-block;        
+
+    }
+    .media, .media .media {
+        margin-top: 0px;
+    }
+    .well-lg {
+        height: 10%;
+        padding: 10px;
+        border-radius: 6px;
+    }
+    .media-comment{
+        width: 100%;
+    }
+    .media-replied2{
+        width: 80%;
+        margin: 0 0 20px 80px;
+        display: inline-block;
+        background: none;
+    }
+    .media-replied2 .media-heading { padding-left: 1px; }
+
+    .media-comment2{
+        margin-top: 5px;
+        margin-left: 1.25rem;
+        text-align: justify;
+            display: inline-block;
+    float: left;
+    position: relative;
+    margin: auto;
+    }
+
+
+
 </style>
 
 <div class="row">
@@ -105,7 +160,10 @@
                                 <li class="nav-item">
                                     <a href="" class="nav-link active" data-target="#home-pills" aria-controls="home-pills" data-toggle="tab" role="tab">Editar Noticia</a>
                                 </li>
-                                <li class="nav-item"><a href="" class="nav-link" data-target="#profile-pills" aria-controls="profile-pills" data-toggle="tab" role="tab">Configurar Noticia</a></li>
+                                <li class="nav-item"><a href="" class="nav-link" data-target="#profile-pills" aria-controls="profile-pills" data-toggle="tab" role="tab">Configurar Noticia</a>
+                                </li>
+                                <li class="nav-item"><a href="" class="nav-link" data-target="#profile-comentario" aria-controls="profile-pills" data-toggle="tab" role="tab">Comentarios</a>
+                                </li>
                             </ul>
                         </div>
 
@@ -295,6 +353,114 @@
 
                                         </form>
                                     </p>
+                                </div>
+
+                                <!-- Tercer Tab de Comentarios -->
+                                <div class="tab-pane fade" id="profile-comentario">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <ul class="media-list">
+                                            <?php
+
+                                            $validador=0;
+                                            foreach ($comentarios as $cmt) 
+                                            {
+                                                if($validador != $cmt->id_comentario)
+                                                {
+
+                                                    //Id unico de comentario
+                                                    $validador = $cmt->id_comentario;
+
+                                                    // Contador de Respuestas
+                                                    if( $cmt->total_reply != null){
+                                                        $total_comentarios = $cmt->total_reply;
+                                                    }else{
+                                                        $total_comentarios="";
+                                                    }
+                                                    ?>
+                                                    <li class="media">
+                                                        <a class="pull-left" href="#">
+                                                            <img class="media-object img-circle" src="/noticias/assets/avatars_comentarios/<?php echo $cmt->avatar1; ?>.png" alt="profile">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <div class="well well-lg">                                    
+                                                                <ul class="media-date list-inline">
+                                                                    <li class="fecha_comntario"><b>
+                                                                    <?php 
+                                                                        $fecha_cmt = new DateTime($cmt->cmt_fecha); 
+                                                                        echo date_format($fecha_cmt,"M-d-Y H:i"); 
+                                                                    ?>
+                                                                    </b></li>                                        
+                                                                </ul>
+                                                                <br><br>
+                                                                <p class="media-comment">    <?php echo $cmt->cmt ?>  </p>
+                                                                
+                                                                <p class="botones-accion">
+
+                                                                    
+                                                                    <a class="btn btn-primary btn-sm " data-toggle="collapse" href="#r<?php echo $cmt->id_comentario ?>">
+                                                                        <span class="fa fa-comment"></span> <?php  echo $total_comentarios  ?> Comentarios
+                                                                    </a>
+                                                                    <a class="btn btn-primary btn-sm " data-toggle="collapse" name="#r<?php echo $cmt->id_comentario ?>">
+                                                                        <span class="fa fa-trash"></span>  Eliminar
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="collapse" id="r<?php echo $cmt->id_comentario ?>">
+                                                            <ul class="media-list">
+
+                                                            <?php
+                                                            foreach ($comentarios as $reply)
+                                                            {
+                                                                ?>
+                                                                
+                                                                    <?php
+                                                                    if( $reply->id_reply == $validador )
+                                                                    {
+                                                                    ?>
+                                                                        <li class="media media-replied2" name="../noticia/Cnoticia/eliminar_comentario/<?php echo $reply->id ?>" id="">
+                                                                            <a class="pull-left" href="#">
+                                                                                <img class="media-object img-circle" src="/noticias/assets/avatars_comentarios/<?php echo $reply->avatar2; ?>.png" alt="profile">
+                                                                            </a>
+                                                                                                                              
+                                                                                    <ul class="">
+                                                                                        
+                                                                                        <li class="fecha_comntario">
+                                                                                            <b><?php
+
+                                                                                                $reply_fecha = new DateTime($cmt->reply_fecha); 
+                                                                                                echo date_format($reply_fecha,"M-d-Y H:i"); 
+                                                                                                ?>
+                                                                                            </b>
+                                                                                            <a class="btn btn-primary btn-sm " href="#" name="#r<?php echo $cmt->id_comentario ?>">
+                                                                                                <span class="fa fa-trash"></span>  Eliminar
+                                                                                            </a>
+                                                                                            
+                                                                                        </li>
+                                                                                        <br><br>
+                                                                                        <p class="media-comment2"><?php echo $reply->reply ?>
+                                                                                           
+                                                                                        </p>
+                                                                                    </ul>
+
+                                                                        </li>
+                                                                    <?php                                
+                                                                    }                           
+                                                            }
+                                                            ?>
+                                                            </ul>  
+                                                        </div>
+                                                    </li>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                            </ul>
+   
+                                        </div>
+                                    </div>   
                                 </div>
                             
                             </div>

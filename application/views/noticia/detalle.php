@@ -332,9 +332,7 @@
 
                     <ul class="media-list">
                     <?php
-                    
 
-                   
                     $validador=0;
                     foreach ($comentarios as $cmt) 
                     {
@@ -378,11 +376,7 @@
                                             <span class="fa fa-comment"></span> <?php  echo $total_comentarios  ?> Comentarios
                                         </a>
                                     </p>
-                                       
                                 </div>
-
-                                
-
                             </div>
 
                         <div class="collapse" id="r<?php echo $cmt->id_comentario ?>">
