@@ -53,6 +53,13 @@
             height: auto;
 
         }
+        .lead_home{
+        font-size: 1.9375rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        color: black;
+        font-weight: 400;
+    }
 
     </style>
     <?php
@@ -69,7 +76,7 @@
     <body>
 
         <div class="row column">
-            <a href="/noticias/index.php/noticia/index/index"><h3><p class="lead">sisepudo.com</p></h3></a>
+            <a href="/noticias/index.php/noticia/index/index"><h3><p class="lead_home">sisepudo.com</p></h3></a>
         </div>
 
 

@@ -75,12 +75,26 @@ class Index extends CI_Controller {
 
 	public function detalle( $id_noticia )
 	{
-		$this->getInsertVisitas( $id_noticia );
+	
 
 		$data['noticias_detalle'] 	= $this->Noticia_model->getNoticiasDetalle( $id_noticia );
 		$data['noticias_img']		= $this->Noticia_model->getNoticiasImg( $id_noticia );
 		$data['visitas'] 			= $this->getContadorVisitas(  $id_noticia );
+		$data['contador_cmt']		= $this->getContadorComentarios(  $id_noticia );
+
+		
 		$data['comentarios'] 		= $this->Noticia_model->getComentarios( $id_noticia );
+	
+		if(isset($_COOKIE["noticia".$data['noticias_detalle'][0]->id_noticia]))
+	    {
+	        $visita = $_COOKIE["noticia".$data['noticias_detalle'][0]->id_noticia];
+	    }
+	    else
+	    {
+	        //$visita = gethostbyaddr($_SERVER['SERVER_ADDR']);
+	        setcookie("noticia".$data['noticias_detalle'][0]->id_noticia, $data['noticias_detalle'][0]->id_noticia);
+	        $this->getInsertVisitas( $id_noticia );
+	    }
 
 		$this->load->view('noticia/detalle.php',$data);
 	}
@@ -93,6 +107,11 @@ class Index extends CI_Controller {
 	// Obtener el total de vistas por noticia
 	public function getContadorVisitas( $id_noticia ){
 		return $total_visitas = $this->Noticia_model->getContadorVisitas( $id_noticia );
+	}
+
+	// Obtener el total de vistas por noticia
+	public function getContadorComentarios( $id_noticia ){
+		return $total_cmt = $this->Noticia_model->getContadorComentarios( $id_noticia );
 	}
 
 	// Insertar comentatrios

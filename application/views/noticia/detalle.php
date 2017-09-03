@@ -1,18 +1,22 @@
-
 <!doctype html>
 <html class="no-js" lang="es">
     <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sisepudo.com | Bienvenido</title>
-        <link rel="stylesheet" href="/noticias/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/noticias/css/bootstrap.min.css">
     <link rel="stylesheet" href="/noticias/css/foundation.min.css">
     <link rel="stylesheet" href="/noticias/css/frontend_custom.css">
 
 
     <link rel="stylesheet" type="text/css" href="/noticias/assets/font-awesome/font-awesome.css">
 
-
+    <link href="/noticias/css/style.css" rel="stylesheet">
+    <link href="/noticias/css/fotorama.css" rel="stylesheet">
+    <script src="/noticias/js/jquery.js"></script>
+    <script src="/noticias/js/slider.js"></script>
+    <script src="/noticias/js/bootstrap.min.js"></script>
+    <script src="/noticias/js/fotorama.js"></script>
 
 
 
@@ -180,20 +184,32 @@
         overflow-x: scroll;
     }
 
+    .lead_home{
+        font-size: 1.9375rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        color: black;
+        font-weight: 400;
+    }
+    .button-group2{
+        width: 100%;
+        background: none;
+        display: inline-block;
+        text-align: center;
+    }
+    .icono_boton{
+        color: #fff;
+    }
+
 
     </style>
-    <link href="/noticias/css/style.css" rel="stylesheet">
-    <link href="/noticias/css/fotorama.css" rel="stylesheet">
-    <script src="/noticias/js/jquery.js"></script>
-    <script src="/noticias/js/slider.js"></script>
-    <script src="/noticias/js/bootstrap.min.js"></script>
-    <script src="/noticias/js/fotorama.js"></script>
+
     </head>
     
     <body>
 
-        <div class="row column">
-            <a href="/noticias/index.php/noticia/index/index"><h3><p class="lead">sisepudo.com</p></h3></a>
+        <div class="row column titulo_pagina">
+            <a href="/noticias/index.php/noticia/index/index"><h3><p class="lead_home">sisepudo.com</p></h3></a>
         </div>
 
         <!-- Navigation -->
@@ -215,11 +231,13 @@
             </nav>
         </div>
     <?php
+    $numero;
     if(isset($_COOKIE["Avatar"]))
     {
-        $_COOKIE["Avatar"];
+        $numero = $_COOKIE["Avatar"];
     }else{
-        setcookie("Avatar", rand(1,21));
+        $numero = rand(1,21);
+        setcookie("Avatar", $numero);
     }
     ?>
     <div class="row">
@@ -286,14 +304,19 @@
                <?php echo $noticias_detalle[0]->contenido; ?> 
             </p>   
             
-            <br>
-            <br>         
-            <div class="small secondary expanded button-group">
-                <a class="button"><?php echo $visitas[0]->total_visitas; ?> Visitas</a>
-                <a class="button">Fecha : <?php $fecha = date_create($noticias_detalle[0]->fecha_creacion);
+    
+            <br>  
+            <div class="column row ">    
+            
+                <div class="small secondary  button-group2">
+                <a class="button"><i class="icono_boton fa fa-eye"></i> <?php echo $visitas[0]->total_visitas; ?> Visitas</a>
+                <a class="button"><i class="icono_boton fa fa-comment"></i> <?php echo $contador_cmt[0]->total_cmt; ?> Comentarios</a>
+                <a class="button"><i class="icono_boton fa fa-calendar"></i> Fecha : <?php $fecha = date_create($noticias_detalle[0]->fecha_creacion);
                                          echo date_format($fecha,"d-M-Y"); ?> </a>
-                <a class="button">Por. <?php echo $noticias_detalle[0]->nickname; ?></a>
-                <br>
+                <a class="button"><i class="icono_boton fa fa-user"></i> Por. <?php echo $noticias_detalle[0]->nickname; ?></a>
+               
+
+            </div>
             </div>
 
             <div class="column row">
@@ -406,7 +429,7 @@
                                 <li class="media media-comment">
                                     <input type="hidden" name="avatar-respuesta" id="avatar-respuesta" value="<?php 
                                         if(isset($_COOKIE["Avatar"]))
-                                            { echo  $_COOKIE["Avatar"]; } 
+                                            { echo  $_COOKIE["Avatar"]; } else{ echo $numero; }
                                         ?>">
                                             
                                     </input>
@@ -438,11 +461,10 @@
 
                                     
                                         <input type="hidden" name="id_noticia" value="<?php echo  $noticias_detalle[0]->id_noticia ?>"></input>
-                                        <input type="hidden" name="avatar" value="<?php 
-
-                                            echo  $_COOKIE["Avatar"]; 
-
-                                        ?>"></input>
+                                        <input type="hidden" name="avatar" value="<?php if(isset($_COOKIE['Avatar'])){echo  $_COOKIE['Avatar']; }else{ echo $numero; }
+                                        ?>">
+                                            
+                                        </input>
                                         <textarea class="form-control" id="comentario_texto" name="comentario_texto"  placeholder="Comentar....."></textarea>
                                         <input type="buttom" id="guardarDataFront" class="form-control button expanded" name="../insert_comentarios/" value="Comentar">
                                     </form>                                        

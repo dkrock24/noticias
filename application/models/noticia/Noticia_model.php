@@ -65,6 +65,16 @@ class Noticia_model extends CI_Model
         return $query->result(); 
     }  
 
+    // Total de comentarios por noticia
+    public function getContadorComentarios( $id_noticia )
+    {
+        $query = $this->db->query('select count(*) as total_cmt from sys_noticia_comentario as noticia_cmt
+           
+            where noticia_cmt.id_noticia_comentario ="'. $id_noticia .'"');
+        //echo $this->db->queries[0];
+        return $query->result(); 
+    }  
+
     // Total de noticias de la tabla
     public function record_count(){
         $query = $this->db->query("select count(*) as total from sys_noticia as noticia 
@@ -116,11 +126,12 @@ class Noticia_model extends CI_Model
 
             from sys_noticia_comentario as cmt1
             left join sys_noticia_comentario as cmt2 on cmt1.id_comentario=cmt2.id_padre
-            where cmt1.id_noticia_comentario=".$id_noticia);
+            where cmt1.id_noticia_comentario=".$id_noticia ." order by cmt1.comentario_fecha");
         return $query->result(); 
     }
 
     public function insert_comentarios( $cmt ){
+
 
         $data = array(
             'id_noticia_comentario' => $cmt['id_noticia'],
