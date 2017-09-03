@@ -53,7 +53,7 @@
     .media-body { position: relative; }
     .media-date { 
         display: inline;
-        width: 20%;
+        width: 30%;
         position: absolute; 
         right: 5px;
         top: 25px;
@@ -139,6 +139,7 @@
         clear: both;
     }
     .fecha_comntario{
+        float: left;
         position: relative;
         display: inline-block;        
         width: 100%;
