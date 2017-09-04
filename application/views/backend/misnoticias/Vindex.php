@@ -124,6 +124,7 @@
 	            			<tbody id="myTable">
 	            			<?php
 	            			$count = 1;
+	            			//var_dump($noticias);
 	            			foreach ($noticias as $not)
 	            			{
 	            			?>
@@ -196,6 +197,8 @@
 	            					{
 	            					?>
 	            						<a href="#" name="../misnoticias/Cindex/editNoticias/<?php echo $not->id_noticia;  ?>" class='btn-crear btn btn-secondary btn-sm '><i class="fa fa-refresh"></i> Editar</a>
+
+	            						<a href="#" name="../misnoticias/Cimagenes/editImagnes/<?php echo $not->id_noticia;  ?>" class='btn-crear btn btn-secondary btn-sm '><i class="fa fa-picture-o"></i> Agregar imagen</a>
 	            						
 	            					</td>
 	            					<?php } ?>

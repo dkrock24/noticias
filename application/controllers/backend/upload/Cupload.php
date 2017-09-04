@@ -15,8 +15,7 @@ class Cupload extends CI_Controller {
 	//-----Metodo para cargar foto de perfil
 	public function do_upload()
 	{
-		//var_dump($_FILES);
-		//var_dump($_POST);
+
 		session_start();
 		$userLogged = $_SESSION['idUser'];
 		$config['upload_path'] = './assets/images/profilePics/';
@@ -42,6 +41,7 @@ class Cupload extends CI_Controller {
 		}
 		
 	}
+
 
 	//-----Metodo para cargar foto de perfil
 	public function upload_cvs()

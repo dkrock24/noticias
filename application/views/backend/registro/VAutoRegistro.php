@@ -52,7 +52,7 @@ $(document).ready(function ()
 <!--          Form auto registro  -->
     
 <div class="card">
-<header class="auth-header">
+<header class="auth-header" style="padding: 10px !important;">
     <h1 class="auth-title">
         <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> 
         <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> 
@@ -61,7 +61,7 @@ $(document).ready(function ()
     
     </h1>
 </header>
-<div class="auth-content">
+<div class="auth-content" style="padding: 10px 30px !important;">
     <form id="signup-form" action="../saveRegistro" enctype="multipart/form-data"  method="POST" novalidate="">
         
         <div class="form-group"> 
@@ -74,9 +74,24 @@ $(document).ready(function ()
             </div>
         </div>
         
-        <div class="form-group"> 
+        <div class="form-group">
             <label for="email">Correo electronico</label> 
             <input type="email" class="form-control underlined" name="email" id="email" placeholder="Correo electronico" required=""> 
+        </div>
+
+        <div class="form-group">
+            <label for="email">Pais</label> 
+            <select class="c-select form-control boxed" name="pais" id="pais">
+            <option value="N/A">N/A</option>
+            <?php
+            foreach ($paises as $value) 
+            {
+            ?>
+            <option value="<?php echo $value->id_pais ?>"><?php echo $value->nombre_pais?>s</option>
+            <?php
+            }
+            ?>  
+            </select> 
         </div>
 
         <div class="form-group"> 

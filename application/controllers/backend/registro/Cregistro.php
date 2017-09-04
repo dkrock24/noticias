@@ -12,8 +12,10 @@ class Cregistro extends CI_Controller {
 		$this->load->library('My_phpmailer');		
 	}
 
-	public function Autoregistro(){
-		$this->load->view('backend/registro/VAutoRegistro');
+	public function Autoregistro()
+	{
+		$data['paises'] = $this->registro_model->getPaises();	
+		$this->load->view('backend/registro/VAutoRegistro', $data);
 	}
 
 	public function VregistroCorrecto(){
@@ -27,7 +29,8 @@ class Cregistro extends CI_Controller {
 		$email = $_POST['email'];
         $textName = substr($_POST['nombres'], 0, 2);
         $token = $dateToken."_".strtoupper($textName); 
-		$this->registro_model->save_registro($_POST, $_FILES, $token);
+        $depID = $this->registro_model->getDepartamentoByPais($_POST['pais']);
+		$this->registro_model->save_registro($_POST, $_FILES, $token, $depID[0]['id_departamento']);
 		$this->envioToken($token, $email);
 		$this->load->view('backend/registro/VregistroCorrecto.php');
 

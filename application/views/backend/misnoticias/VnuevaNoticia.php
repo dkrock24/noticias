@@ -1,6 +1,7 @@
 
 
 <script src="/noticias/assets/nanospell/tinymce.min.js"></script>
+<script src="/noticias/assets/plugins/jcrop/cropOneImage.js"></script>
 
       
       <script>
@@ -19,7 +20,77 @@
       </script>
 
 <script>
-  $(document).ready(function(){
+  $(document).ready(function()
+  {
+
+    //--------Inactive tab si no hay ID de noticia
+     $('.tabImages').addClass('disabled');
+    //------------END----------------------------
+
+    //----------Upload image news---------------
+    $('#upload_file').submit(function(e)
+    {
+        e.preventDefault();
+        var imgVal = $('#userfile').val();
+        
+        if(imgVal !='')
+        {
+            var form = document.getElementById("upload_file");
+
+            $(".images-container").html("");
+
+            formData = new FormData($(this)[0]);
+            var blob = dataURLtoBlob(canvas.toDataURL('image/png'));
+            //---Add file blob to the form data
+            formData.append("userfile", blob);
+            
+            $.ajax
+            ({
+                url: "../misnoticias/Cimagenes/do_upload",
+                type: "POST",             
+                data: formData,   
+                contentType: false,      
+                cache: false,      
+                processData:false,    
+                success: function(data)
+                {
+                    //$('.tabImages').removeClass('disabled');
+                    $('#tab2default').addClass('fade in active');
+                    $('#tab1default').removeClass('active');
+
+                    $('#tab1default').addClass('disabled');
+                    
+
+                    var obj = JSON.parse(data);
+                    $.each(obj, function(i, item) 
+                    {                        
+                       var source = "/noticias/assets/imagenes_noticias/"+item.path_imagen;
+                       var filtro = (item.filtro == 0) ? 'onclick="applyEffect('+item.id_noticia_imagen+')"' : '';
+                        $(".images-container").append('<div class="image-container"><div class="controls"><span class="control-btn" '+filtro+' style="color: #f0ad4e;"><i class="fa fa-sun-o"></i></span><span onclick="deleteImage('+item.id_noticia_imagen+')" class="control-btn remove"><i class="fa fa-trash-o"></i></span> </div><div class="image" style="background-image:url('+source+')"></div></div>');
+                    });
+
+                    $("#views").empty();
+                    $("#userfile").val(null);
+                },
+                error:function(data)
+                {
+                    alert(data);
+                }
+            });
+            return false;
+        }
+        else
+        {
+            alert("Debe de seleccionar una imagen nuevamente");
+        }
+        
+    });
+
+    //---------END Upload image news---------------------
+
+
+
+
       // CONVERTIR FECHAS A TEXTO
       //$.noConflict();
         $("a#lista_pais").click(function(){        
@@ -34,6 +105,11 @@
 
 
 <style type="text/css">
+    .disabled
+    {
+        pointer-events:none;
+        opacity:0.4;
+    }
     .global_text{
         color: white;
     
@@ -102,7 +178,8 @@
 
                         <div class="panel-heading">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1default" data-toggle="tab">Nueva Noticia</a></li>
+                                <li class="active tabContent"><a href="#tab1default" data-toggle="tab">Nueva Noticia</a></li>
+                                <li class="active tabImages"><a href="#tab2default" data-toggle="tab">Imagenes Noticia</a></li>
                                 
                             </ul>
                         </div>
@@ -178,18 +255,56 @@
                                    
 
                                             <br>
-                                            <a class="btn btn-primary global_text" id="guardarData" name="../misnoticias/Cindex/crearNoticia/" alt="Guardar"><i class='fa fa-save'></i> Crear Noticia </a>
+                                            <a class="btn btn-primary global_text" id="guardarData" name="../misnoticias/Cindex/crearNoticia/" alt="Guardar"><i class='fa fa-save'></i> Guardar salir </a>
+
+                                            <a style="color: #fff;" class="btn btn-primary global_text" id="guardarDataOnly" name="../misnoticias/Cimagenes/crearNoticiaOnly/" alt="Guardar"><i class='fa fa-save'></i> Guardar</a>
 
                                         </form>
                                     </p>
                                 </div>
 
+                <div class="tab-pane" id="tab2default">
+                     <!-- Form para subir imagenes  -->
+                        <div class="conteFormUpload">
+                        <div class="display-error alert alert-warning" style="display: none;"> </div>
 
+                        <!-- Div para recortar imagen  -->
+                            <form id="upload_file" enctype="multipart-formdata">  
+                            <input class="btn btn-pill-left btn-secondary" type="file" name="userfile" id="userfile" size="20" />
+                            <br>
+                            <hr class="lineView" style="display: none;">
+                            <div id="views"></div>
+                            <button id="cropbutton" class="btn btn-primary" type="button" style="display: none;">Crop</button>
+                            <input type="submit" value="Agregar imagen" class="btn btn-success" />  
+                             <input type="hidden" id="NewsID" name="NewsID" value="0" />
+                            </form>
                             
+
+                            <hr>
+                        
+                            <!--   Cont list images news  -->
+                            <div class="form-group row"> 
+                            <p class="text-xs-center" style="text-align: left;margin-left: 12px;font-weight: bold;">Lista de imagenes</p>
+                            <div class="col-sm-10">
+                            <div class="images-container">  
+                           
+                            </div>
+                            </div>
+                        </div>
+                        <!--  Fin div que contiene imagen -->
+                                                   
+                        </div>
+
+
                             </div>
                         </div>
                     </div>
+
+
                 </div>
+
+
+
 
             
             </div>
@@ -199,6 +314,26 @@
 </div>
 
 
+   <!-- /.modal -->
+                <div class="modal fade" id="delete-modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                                <h4 class="modal-title"><i class="fa fa-warning"></i> Eliminar</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Desea eliminar estar imagen?</p>
+                            </div>
+                            <div class="modal-footer"> <button type="button" class="btn btn-primary SiDelete" data-dismiss="modal">Si</button> <button type="button" class="btn btn-secondary NotDelete" data-dismiss="modal">No</button> </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
 
 
 <script src="../../../js/tableGlobal.js"></script>
@@ -206,3 +341,46 @@
 
 <script type="text/javascript" src="../../../js/bootstrap.min.js" charset="UTF-8"></script>
 
+<script type="text/javascript">
+    
+    //--------Aplicar efecto a la imagen
+    function applyEffect(idNews) 
+    {
+        $.ajax
+        ({
+          url: "../misnoticias/Cimagenes/applyEffectImage",
+          type:"post",
+          data: {idNews:idNews},
+          success: function(message)
+          {
+            alert("La imagen se modifico exitosamente");
+            $(".pages").load("../misnoticias/Cimagenes/editImagnes/"+message);
+          },
+          error:function()
+          {
+            alert("failure");
+          }
+        });
+    }
+
+    //--------Eliminar imagen
+    function deleteImage(idNews) 
+    {
+        $.ajax
+        ({
+          url: "../misnoticias/Cimagenes/delete_image",
+          type:"post",
+          data: {idNews:idNews},
+          success: function(message)
+          {
+            alert("La imagen se elimino correctamente");
+            $(".pages").load("../misnoticias/Cimagenes/editImagnes/"+message);
+          },
+          error:function()
+          {
+            alert("failure");
+          }
+        });
+    }
+
+</script>
