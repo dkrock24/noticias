@@ -401,7 +401,7 @@
                                                         <li class="fecha_comntario">
                                                             <b><?php
 
-                                                                $reply_fecha = new DateTime($cmt->reply_fecha); 
+                                                                $reply_fecha = new DateTime($reply->reply_fecha); 
                                                                 echo date_format($reply_fecha,"M-d-Y H:i"); 
                                                                 ?>
                                                             </b>
