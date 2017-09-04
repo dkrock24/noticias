@@ -19,6 +19,7 @@ $( document ).ready(function()
 		    {
 		    	//$(".loading").hide();
 		       	$(".pages").load("/noticias/index.php/"+data);
+		       	$(".loading").hide();
 		    },
 		    error:function(){
 		    	$(".loading").hide();

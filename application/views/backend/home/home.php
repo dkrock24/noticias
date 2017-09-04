@@ -137,7 +137,7 @@
                             </li>
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <div class="img" style="background-image: url('../../../assets/images/avatars/<?php echo $usuario[0]->avatar; ?>')"> </div> 
+                                    <div class="img" style="background-image: url('../../../assets/images/avatars/no_user_logo.png<?php //echo $usuario[0]->avatar; ?>')"> </div> 
                                     <span class="name"><?php echo $usuario[0]->nickname; ?></span>
                                 </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
