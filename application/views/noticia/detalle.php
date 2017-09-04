@@ -11,10 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="/noticias/assets/font-awesome/font-awesome.css">
 
-    <link href="/noticias/css/style.css" rel="stylesheet">
+
     <link href="/noticias/css/fotorama.css" rel="stylesheet">
     <script src="/noticias/js/jquery.js"></script>
-    <script src="/noticias/js/slider.js"></script>
     <script src="/noticias/js/bootstrap.min.js"></script>
     <script src="/noticias/js/fotorama.js"></script>
 
