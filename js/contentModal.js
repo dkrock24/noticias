@@ -66,11 +66,15 @@ $( document ).ready(function()
 
     
     // Eliminar comentarios
-    $(".media-replied2").click(function(){
+    $(".btn-delete").click(function(){
          
             var url = $(this).attr('name');
-            $(this).hide();
-            $(this).remove();
+            var id = $(this).attr('id');
+            $("#reply"+id).hide();
+            $("#reply"+id).remove();
+
+            $("#cmt"+id).hide();
+            $("#cmt"+id).remove();
             $.ajax({
             url: url,  
             type: "post",

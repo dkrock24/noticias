@@ -378,7 +378,7 @@
                                                         $total_comentarios="";
                                                     }
                                                     ?>
-                                                    <li class="media">
+                                                    <li class="media comentario" id="cmt<?php echo $cmt->id_comentario ?>">
                                                         <a class="pull-left" href="#">
                                                             <img class="media-object img-circle" src="/noticias/assets/avatars_comentarios/<?php echo $cmt->avatar1; ?>.png" alt="profile">
                                                         </a>
@@ -401,7 +401,7 @@
                                                                     <a class="btn btn-primary btn-sm " data-toggle="collapse" href="#r<?php echo $cmt->id_comentario ?>">
                                                                         <span class="fa fa-comment"></span> <?php  echo $total_comentarios  ?> Comentarios
                                                                     </a>
-                                                                    <a class="btn btn-primary btn-sm " data-toggle="collapse" name="#r<?php echo $cmt->id_comentario ?>">
+                                                                    <a class="btn btn-primary btn-sm btn-delete" data-toggle="collapse" name="../noticia/Cnoticia/eliminar_comentario/<?php echo $cmt->id_comentario ?>" id="<?php echo $cmt->id_comentario ?>">
                                                                         <span class="fa fa-trash"></span>  Eliminar
                                                                     </a>
                                                                 </p>
@@ -420,7 +420,7 @@
                                                                     if( $reply->id_reply == $validador )
                                                                     {
                                                                     ?>
-                                                                        <li class="media media-replied2" name="../noticia/Cnoticia/eliminar_comentario/<?php echo $reply->id ?>" id="">
+                                                                        <li class="media media-replied2"  id="reply<?php echo $reply->id ?>">
                                                                             <a class="pull-left" href="#">
                                                                                 <img class="media-object img-circle" src="/noticias/assets/avatars_comentarios/<?php echo $reply->avatar2; ?>.png" alt="profile">
                                                                             </a>
@@ -434,7 +434,7 @@
                                                                                                 echo date_format($reply_fecha,"M-d-Y H:i"); 
                                                                                                 ?>
                                                                                             </b>
-                                                                                            <a class="btn btn-primary btn-sm " href="#" name="#r<?php echo $cmt->id_comentario ?>">
+                                                                                            <a class="btn btn-primary btn-sm btn-delete" href="#" id="<?php echo $reply->id ?>" name="../noticia/Cnoticia/eliminar_comentario/<?php echo $reply->id ?>">
                                                                                                 <span class="fa fa-trash"></span>  Eliminar
                                                                                             </a>
                                                                                             
