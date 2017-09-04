@@ -1,6 +1,7 @@
 <script>
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
+      $(".loading").hide();   
         $("a#lista_pais").click(function(){        
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);

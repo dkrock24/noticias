@@ -25,13 +25,15 @@
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
       //$.noConflict();
-        $("a#lista_pais").click(function(){        
+        $("a#lista_pais").click(function(){   
+            $(".loading").show();        
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
         });
+
+
         
     });
-
 
 </script>
 
@@ -504,6 +506,7 @@
 
         });
         */
+        $(".loading").hide();   
        
     });
 

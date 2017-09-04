@@ -1,7 +1,9 @@
 <script>
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
-        $("a#lista_pais").click(function(){        
+      $(".loading").hide();
+        $("a#lista_pais").click(function(){     
+            $(".loading").show();   
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
         });

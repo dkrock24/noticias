@@ -1,7 +1,10 @@
 $( document ).ready(function() 
 {
+	$(".loading").hide();
+
 	$("a#submenu").click(function()
 	{
+		$(".loading").show();
 		var pages 	= $(this).attr('href');	
 		var data 	= pages.substr(1);
 		var titulo 	= $(this).text();	
@@ -14,10 +17,11 @@ $( document ).ready(function()
 		    
 		    success: function()
 		    {
+		    	//$(".loading").hide();
 		       	$(".pages").load("/noticias/index.php/"+data);
-		     
 		    },
 		    error:function(){
+		    	$(".loading").hide();
 		        alert("nada..");
 
 		    }

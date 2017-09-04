@@ -1,9 +1,13 @@
 <script>
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
-        $("a#lista_pais").click(function(){        
+      $(".loading").hide();   
+
+        $("a#lista_pais").click(function(){    
+            $(".loading").show();       
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
+            $(".loading").hide();   
         });
 
 
@@ -27,7 +31,7 @@
         });
 
         $("#guardar").click(function(){
-            $(".sk-three-bounce").show();
+            $(".loading").show();   
         	$.ajax({
             url: "../admin/Cpais/savePais/",  
             type: "post",
@@ -36,7 +40,7 @@
                 success: function(data){                              	                	
                 	$(".pages").load("../admin/Cpais/index");
                     setTimeout(function() {
-                        $(".sk-three-bounce").css('display','none');
+                        $(".loading").hide();  
                     }, 1000);
                 },
                 error:function(){

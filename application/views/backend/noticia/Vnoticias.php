@@ -26,9 +26,10 @@
 
   <script type="text/javascript">
     $(function() {
-      $('.summernote').summernote({
-        height: 200
-      });
+    	      	
+      	$('.summernote').summernote({
+        	height: 200
+      	});
 
     });
   </script>
@@ -200,5 +201,12 @@
 </div>
 
 <script src="../../../js/contentModal.js"></script>
+
+<script>
+$(document).ready(function(){
+
+	$(".loading").hide();   
+});
+</script>
 
 

@@ -59,8 +59,11 @@ $( document ).ready(function()
 
 	$(".btn-crear").click(function()
     {
+        $(".loading").show();
         var url = $(this).attr('name');      
-        $(".pages").load(url);     
+        $(".pages").load(url);  
+        
+        
     });
 
 
@@ -89,7 +92,7 @@ $( document ).ready(function()
 
 
     $("#guardarData").click(function(){
-    	 
+    	 $(".loading").show();   
 		var abc = tinymce.get("contents").getContent();
 		$("#contents").html(abc);
 
@@ -102,6 +105,7 @@ $( document ).ready(function()
                 success: function(data){   
 
                 	$(".pages").load(data);
+                    $(".loading").hide();   
                 
                 },
                 error:function(){

@@ -16,6 +16,36 @@
         <link rel="stylesheet" href="/noticias/css/vendor.css">
         <!-- Theme initialization -->
 
+        <style>
+        .loading{
+          width:40px;
+          height:40px;
+          color:black;
+          border-radius:100px;
+          border:5px solid black;
+          border-top-color:rgba(0,0,0,0.3);
+          box-sizing:border-box;
+          position:absolute;
+          right:0%;
+          margin-top:-35px;
+          margin-left:-80px;
+          animation:loading 1.2s linear infinite;
+          -webkit-animation:loading 1.2s linear infinite;
+          z-index: 1000px;
+        }
+        @keyframes loading{
+          0%{transform:rotate(0deg)}
+          100%{transform:rotate(360deg)}
+        }
+        @-webkit-keyframes loading{
+          0%{-webkit-transform:rotate(0deg)}
+          100%{-webkit-transform:rotate(360deg)}
+        }
+
+        html{height:100%;}
+        body {background:#000;background:linear-gradient(#7D57C9, rgba(0, 0, 0, 0) 90%), linear-gradient(-45deg, #4DA2D6 25%, #000 75%) !important;background:-webkit-linear-gradient(#7D57C9, rgba(0, 0, 0, 0) 90%), -webkit-linear-gradient(-45deg, #4DA2D6 25%, #000 75%) !important;}
+        </style>
+
         
         <script type="text/javascript" src="/noticias/js/jquery.js"></script> 
         
@@ -256,6 +286,7 @@
                                     <div class="card-header bordered">
                                         <div class="header-block">
                                             <h3 class="title titulo_submenu"> BIENVENIDOS </h3>
+                                            <div class="loading"></div>
                                         </div>
                                         <div class="header-block pull-right"> </div>
                                     </div>

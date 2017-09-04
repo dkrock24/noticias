@@ -96,3 +96,10 @@
 </div>
 
 <script src="../../../js/contentModal.js"></script>
+
+
+<script>
+$(document).ready(function(){
+	$(".loading").hide();   
+});
+</script>
