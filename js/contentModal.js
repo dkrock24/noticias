@@ -59,13 +59,40 @@ $( document ).ready(function()
 
 	$(".btn-crear").click(function()
     {
+        $(".loading").show();
         var url = $(this).attr('name');      
-        $(".pages").load(url);     
+        $(".pages").load(url);  
+        
+        
+    });
+
+
+    
+    // Eliminar comentarios
+    $(".btn-delete").click(function(){
+         
+            var url = $(this).attr('name');
+            var id = $(this).attr('id');
+            $("#reply"+id).hide();
+            $("#reply"+id).remove();
+
+            $("#cmt"+id).hide();
+            $("#cmt"+id).remove();
+            $.ajax({
+            url: url,  
+            type: "post",
+
+                success: function(data){   
+                   
+                },
+                error:function(){
+                }
+            });
     });
 
 
     $("#guardarData").click(function(){
-    	 
+    	 $(".loading").show();   
 		var abc = tinymce.get("contents").getContent();
 		$("#contents").html(abc);
 
@@ -78,6 +105,68 @@ $( document ).ready(function()
                 success: function(data){   
 
                 	$(".pages").load(data);
+                    $(".loading").hide();   
+                
+                },
+                error:function(){
+                }
+            });
+    });
+
+    $("#guardarData2").click(function(){
+
+
+         	var url = $(this).attr('name');
+        	$.ajax({
+            url: url,  
+            type: "post",
+            data: $('#crearData2').serialize(),
+
+                success: function(data){   
+
+                	$(".pages").load(data);
+                
+                },
+                error:function(){
+                }
+            });
+    });
+
+
+     $("#guardarDataFront").click(function(){
+
+            $("#guardarDataFront").attr("disabled",true);
+         	var url = $(this).attr('name');
+        	$.ajax({
+            url: url,  
+            type: "post",
+            data: $('#crearData2').serialize(),
+
+                success: function(data){   
+
+                	location.reload();
+                
+                },
+                error:function(){
+                }
+            });
+    });
+
+    $(".input-custom2").click(function(){
+    	  var id = $(this).attr("name");
+    	  var cmt = $("#"+id).val();
+    	  var avatar = $("#avatar-respuesta").val();
+
+    	  var data = {"id_noticia":id,"cmt":cmt,"avatar":avatar}
+
+    	  $.ajax({
+            url: "../insert_respuesta/",  
+            type: "post",
+            data: data,
+
+                success: function(data){   
+
+                	location.reload();
                 
                 },
                 error:function(){

@@ -1,10 +1,10 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="es">
 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> Noticias </title>
+        <title> sisepudo.com </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,6 +16,40 @@
         <link rel="stylesheet" href="/noticias/css/vendor.css">
         <!-- Theme initialization -->
 
+<<<<<<< HEAD
+=======
+        <style>
+        .loading{
+          width:40px;
+          height:40px;
+          color:black;
+          border-radius:100px;
+          border:5px solid black;
+          border-top-color:rgba(0,0,0,0.3);
+          box-sizing:border-box;
+          position:absolute;
+          right:0%;
+          margin-top:-35px;
+          margin-left:-80px;
+          animation:loading 1.2s linear infinite;
+          -webkit-animation:loading 1.2s linear infinite;
+          z-index: 1000px;
+        }
+        @keyframes loading{
+          0%{transform:rotate(0deg)}
+          100%{transform:rotate(360deg)}
+        }
+        @-webkit-keyframes loading{
+          0%{-webkit-transform:rotate(0deg)}
+          100%{-webkit-transform:rotate(360deg)}
+        }
+
+        html{height:100%;}
+        body {background:#000;background:linear-gradient(#7D57C9, rgba(0, 0, 0, 0) 90%), linear-gradient(-45deg, #4DA2D6 25%, #000 75%) !important;background:-webkit-linear-gradient(#7D57C9, rgba(0, 0, 0, 0) 90%), -webkit-linear-gradient(-45deg, #4DA2D6 25%, #000 75%) !important;}
+        </style>
+
+        
+>>>>>>> master
         <script type="text/javascript" src="/noticias/js/jquery.js"></script> 
         
 
@@ -54,20 +88,13 @@
           <i class="fa fa-bars"></i>
         </button> </div>
                     <div class="header-block header-block-search hidden-sm-down">
-                        <form role="search">
-                            <div class="input-container"> <i class="fa fa-search"></i> <input type="search" placeholder="Buscar">
-                                <div class="underline"></div>
-                            </div>
-                        </form>
+                       Backend || Adminsitrativo - <?php echo date("M-d-Y"); ?>
                     </div>
 
                     <div class="header-block header-block-nav">
                         <ul class="nav-profile">
-                            <li class="notifications new"> <a href="" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <sup>
-                <span class="counter">8</span>
-              </sup>
+                          
+    
             </a>
                                 <div class="dropdown-menu notifications-dropdown-menu">
                                     <ul class="notifications-container">
@@ -113,7 +140,7 @@
                             </li>
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <div class="img" style="background-image: url('../../../assets/images/avatars/<?php echo $usuario[0]->avatar; ?>')"> </div> 
+                                    <div class="img" style="background-image: url('../../../assets/images/avatars/no_user_logo.png<?php //echo $usuario[0]->avatar; ?>')"> </div> 
                                     <span class="name"><?php echo $usuario[0]->nickname; ?></span>
                                 </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -262,6 +289,7 @@
                                     <div class="card-header bordered">
                                         <div class="header-block">
                                             <h3 class="title titulo_submenu"> BIENVENIDOS </h3>
+                                            <div class="loading"></div>
                                         </div>
                                         <div class="header-block pull-right"> </div>
                                     </div>
@@ -273,9 +301,9 @@
                     </section>
                 </article>
                 <footer class="footer">
-                    <div class="footer-block buttons"> Footer Texto </div>
+                    <div class="footer-block buttons">   © 2017 - sisepudo.com </div>
                     <div class="footer-block author">
-                       Mas Info Aqui
+                       
                     </div>
                 </footer>
                 <div class="modal fade" id="modal-media">

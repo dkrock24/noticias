@@ -6,7 +6,9 @@ class Cnoticia_model extends CI_Model
     const menu_noticias = 'sys_menu';
     const sub_menu_noticias = 'sys_submenu';
     const noticias = 'sys_noticia';
+    const noticias_config = 'sys_noticia_configuracion';
     const usuarios = 'sr_usuarios';
+    const noticias_cmt = 'sys_noticia_comentario';
         
 
     
@@ -157,12 +159,20 @@ class Cnoticia_model extends CI_Model
         $this->db->join(self::categoria,' on '. 
                         self::categoria.'.id_categoria = '.
                         self::noticias.'.id_categoria');    
+        $this->db->join(self::noticias_config,' on '. 
+                        self::noticias_config.'.id_noticia_config = '.
+                        self::noticias.'.id_noticia','left');
+        //$this->db->where(self::noticias.'.estado_noticia',1); 
+        $this->db->order_by(self::noticias_config.'.importante', "desc");
+        $this->db->order_by(self::noticias.'.estado_noticia', "desc");
+        $this->db->order_by(self::noticias.'.fecha_creacion_noticia', "asc");
+        
         $query = $this->db->get();
         
         if($query->num_rows() > 0 )
         {
             return $query->result();
-        }        
+        }
     }
 
     //Obtener la noticia segun el Id.
@@ -176,8 +186,12 @@ class Cnoticia_model extends CI_Model
         $this->db->join(self::categoria,' on '. 
                         self::categoria.'.id_categoria = '.
                         self::noticias.'.id_categoria'); 
+        $this->db->join(self::noticias_config,' on '. 
+                        self::noticias_config.'.id_noticia_config = '.
+                        self::noticias.'.id_noticia','left'); 
         $this->db->where(self::noticias.'.id_noticia',$id_noticia )   ;
         $query = $this->db->get();
+        //echo $this->db->queries[0];
         
         if($query->num_rows() > 0 )
         {
@@ -200,19 +214,98 @@ class Cnoticia_model extends CI_Model
     public function updateNoticia( $id_noticia , $data  ){
 
         parse_str( parse_url( $data['video'], PHP_URL_QUERY ), $my_array_of_vars );
+        if(isset($my_array_of_vars['v'])){
+            $video = $my_array_of_vars['v'];
+        }else
+        {
+            $video = $data['video'];
+        }
 
         $info = array(
             'id_titulo'         => $data['titulo'],
+            'titulo_largo'      => $data['titulo_largo'],
             'contenido'         => $data['contents'],
-            'video_url'         => $my_array_of_vars['v'],
+            'video_url'         => $video,
             'referencia'        => $data['referencia'],
             'link_referencia'   => $data['enlace'],
             'id_categoria'      => $data['categoria'],
-            'fecha_fin'         => $data['vencimiento'],
             'estado_noticia'    => $data['estado'],
             );
         $this->db->where('id_noticia', $id_noticia );
         $this->db->update(self::noticias, $info); 
     }
 
+    /****************************************|
+    |******     NOTICAS CONFIG      *********|
+    |****************************************/
+
+    public function get_validar_noticia( $id_noticia ){
+
+        $this->db->select('*');
+        $this->db->from(self::noticias_config);    
+        $this->db->where(self::noticias_config.'.id_noticia_config', $id_noticia );
+        $query = $this->db->get();
+        
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+    }
+
+    public function save_config_noticia( $id_noticia , $config  ,$dias ){
+
+        $importante=0;
+        $estado=0;
+        if(isset($config['importante_config'])){
+            $importante=1;
+        }
+        if(isset($config['activo_config'])){
+            $estado=1;
+        }
+        $data = array(
+            'id_noticia_config'        => $id_noticia,
+            'fecha_inicio'      => $config['inicio_config'],
+            'fecha_fin'         => $config['fin_config'],
+            'total_dias'        => $dias,
+            'total_restantes'   => $config['total_dias_restantes_noticia'],
+            'actualizado'       => date("Y-m-d H-i-s"),
+            'importante'        => $importante,
+            'estado_config'     => $estado,
+            );
+        $this->db->insert(self::noticias_config, $data);
+    }
+
+    public function update_config_noticia( $id_noticia , $config ,$dias ){
+
+        $importante=0;
+        $estado=0;
+        if(isset($config['importante_config'])){
+            $importante=1;
+        }
+        if(isset($config['activo_config'])){
+            $estado=1;
+        }
+        $data = array(
+            'id_noticia_config'        => $id_noticia,
+            'fecha_inicio'      => $config['inicio_config'],
+            'fecha_fin'         => $config['fin_config'],
+            'total_dias'        => $dias ,
+            'total_restantes'   => $config['total_dias_restantes_noticia'],
+            'actualizado'       => date("Y-m-d H-i-s"),
+            'importante'        => $importante,
+            'estado_config'     => $estado,
+            );
+        $this->db->where('id_noticia_config', $id_noticia );
+        $this->db->update(self::noticias_config, $data);
+    }
+
+
+    public function eliminar_comentario( $id_cmt ){
+
+        $this->db->where('id_comentario', $id_cmt );
+        $this->db->delete(self::noticias_cmt);
+    }
+
+ 
+    
 }

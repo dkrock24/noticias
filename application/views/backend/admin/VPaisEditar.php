@@ -1,20 +1,20 @@
 <script>
   $(document).ready(function(){
       // CONVERTIR FECHAS A TEXTO
+      $(".loading").hide();   
+
         $("a#enlance").click(function(){        
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
         });
 
         $("a#usuarios").click(function(){       
-        $(".sk-three-bounce").show(); 
+        $(".loading").show();   
             var ruta = $(this).attr('name');           
             $(".pages").load(ruta);
             $(".A").removeClass("active");
             $(".B").addClass("active");
-            setTimeout(function() {
-                        $(".sk-three-bounce").css('display','none');
-                    }, 1000);
+            $(".loading").hide();   
         });
 
         //Mostrar Departamentos mediante el pais

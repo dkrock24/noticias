@@ -5688,7 +5688,7 @@ body:not(.fixed-topbar) .main-content .page-content {
   margin-top: 7px;
 }
 .media-body p {
-  height: 27px;
+  /* height: 27px;*/
   overflow: hidden;
   text-overflow: ellipsis;
 }

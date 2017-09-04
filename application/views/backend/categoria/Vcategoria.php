@@ -144,6 +144,10 @@
 
     	}
 	}
+
+	$(document).ready(function(){
+		$(".loading").hide();   
+	});
 </script>
 
 <script src="../../../js/contentModal.js"></script>

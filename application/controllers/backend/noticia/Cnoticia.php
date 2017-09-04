@@ -8,7 +8,10 @@ class Cnoticia extends CI_Controller {
 		parent::__construct();		
 		$this->load->helper('url');		
 		$this->load->database('default');	
-		$this->load->model('backend/noticia/Cnoticia_model');			
+		$this->load->model('backend/noticia/Cnoticia_model');
+        $this->load->model('noticia/Noticia_model');
+
+        			
 	}
 
 	public function index()
@@ -97,6 +100,8 @@ class Cnoticia extends CI_Controller {
     {
         $data['noticias'] = $this->Cnoticia_model->editNoticias( $id_noticia );
         $data['categorias'] = $this->Cnoticia_model->getCategoriasNoticias(  );
+        $data['comentarios'] = $this->Noticia_model->getComentarios( $id_noticia );
+
         $this->load->view('backend/noticia/VnoticiasEdit.php', $data );        
     }
 
@@ -104,8 +109,38 @@ class Cnoticia extends CI_Controller {
 
         $this->Cnoticia_model->updateNoticia( $id_noticia , $_POST );
         echo "../noticia/Cnoticia/getNoticias/";
-
     }
+
+    public function save_config_noticia( $id_noticia ){
+
+
+
+        $datetime1  = new DateTime($_POST['inicio_config']);
+        $datetime2  = new DateTime($_POST['fin_config']);
+
+        $interval   = $datetime1->diff($datetime2);
+
+        $dias = $interval->format('%mm %ad %h:%i');
+
+        $existe_config = $this->Cnoticia_model->get_validar_noticia( $id_noticia );
+
+        if(!$existe_config){
+
+            $this->Cnoticia_model->save_config_noticia( $id_noticia , $_POST , $dias );
+
+        }else{
+
+            $this->Cnoticia_model->update_config_noticia( $id_noticia , $_POST ,$dias );
+        }
+        
+        echo "../noticia/Cnoticia/getNoticias/";
+    }
+
+    public function eliminar_comentario( $id_cmt ){
+        $this->Cnoticia_model->eliminar_comentario( $id_cmt );
+    }
+
+    
     
 
 }
