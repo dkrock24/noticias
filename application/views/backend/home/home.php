@@ -16,8 +16,7 @@
         <link rel="stylesheet" href="/noticias/css/vendor.css">
         <!-- Theme initialization -->
 
-<<<<<<< HEAD
-=======
+
         <style>
         .loading{
           width:40px;
@@ -49,7 +48,7 @@
         </style>
 
         
->>>>>>> master
+
         <script type="text/javascript" src="/noticias/js/jquery.js"></script> 
         
 
