@@ -47,8 +47,8 @@ class Cregistro extends CI_Controller {
 		//$mail->SMTPSecure = "tls";
 		$mail->Host = "smtp.gmail.com";  // specify main and backup server
 		$mail->Port = 465;
-        $mail->Username   = "blen7777@gmail.com";  // user email address
-        $mail->Password   = "2017@Pamebeya";            // password in GMail
+        $mail->Username   = "sisepudosv@gmail.com";  // user email address
+        $mail->Password   = "sisepudo2017!";            // password in GMail
         $mail->SetFrom('info@notiinfo.com', 'Noticias Online');  //Who is sending the email
         //$mail->AddReplyTo("blen7777@gmail.com","Notification");  //email address that receives the response
         $mail->Subject    = "Validacion de registro";
