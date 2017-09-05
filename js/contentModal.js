@@ -59,40 +59,13 @@ $( document ).ready(function()
 
 	$(".btn-crear").click(function()
     {
-        $(".loading").show();
         var url = $(this).attr('name');      
-        $(".pages").load(url);  
-        
-        
-    });
-
-
-    
-    // Eliminar comentarios
-    $(".btn-delete").click(function(){
-         
-            var url = $(this).attr('name');
-            var id = $(this).attr('id');
-            $("#reply"+id).hide();
-            $("#reply"+id).remove();
-
-            $("#cmt"+id).hide();
-            $("#cmt"+id).remove();
-            $.ajax({
-            url: url,  
-            type: "post",
-
-                success: function(data){   
-                   
-                },
-                error:function(){
-                }
-            });
+        $(".pages").load(url);     
     });
 
 
     $("#guardarData").click(function(){
-    	 $(".loading").show();   
+    	 
 		var abc = tinymce.get("contents").getContent();
 		$("#contents").html(abc);
 
@@ -105,7 +78,6 @@ $( document ).ready(function()
                 success: function(data){   
 
                 	$(".pages").load(data);
-                    $(".loading").hide();   
                 
                 },
                 error:function(){
@@ -113,8 +85,32 @@ $( document ).ready(function()
             });
     });
 
-    $("#guardarData2").click(function(){
+    $("#guardarDataOnly").click(function(){
+         
+        var abc = tinymce.get("contents").getContent();
+        $("#contents").html(abc);
 
+            var url = $(this).attr('name');
+            $.ajax({
+            url: url,  
+            type: "post",
+            data: $('#crearData').serialize(),
+
+                success: function(data)
+                {  
+                    $("#NewsID").val(data);
+                    $('.tabImages').removeClass('disabled');
+                    $('#tab2default').addClass('fade in active');
+
+                    $('#tab1default').removeClass('active');
+                    $('.tabContent').addClass('disabled');
+
+                }
+            });
+    });
+
+
+    $("#guardarData2").click(function(){
 
          	var url = $(this).attr('name');
         	$.ajax({
@@ -135,7 +131,7 @@ $( document ).ready(function()
 
      $("#guardarDataFront").click(function(){
 
-            $("#guardarDataFront").attr("disabled",true);
+
          	var url = $(this).attr('name');
         	$.ajax({
             url: url,  
