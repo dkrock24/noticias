@@ -74,6 +74,7 @@
                                 ?></td>
                         <td>
                           <a href="#" name="../usuarios/Cusuarios/editUsuarios/<?php echo $cat->id_usuario;  ?>" class='btn-crear btn btn-secondary btn-sm '><i class="fa fa-refresh"></i> Editar</a>
+                            <a href="#" name="../profile/Cprofile/ViewProfileAdmin/<?php echo $cat->id_usuario;  ?>" class='btn-crear btn btn-secondary btn-sm '><i class="fa fa-eye"></i> Ver</a>
                           
                         </td>
                       </tr>
