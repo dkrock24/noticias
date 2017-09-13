@@ -6,6 +6,8 @@
 $(document).ready(function () 
 {
 
+    var userID = $("#userID").val();
+
     $('#upload_file').submit(function(e)
     {
         e.preventDefault();
@@ -27,7 +29,7 @@ $(document).ready(function ()
                 if (data == 1) 
                 {
                     $(".modal-backdrop").remove();
-                    $(".pages").load('../profile/Cprofile/ViewProfile');
+                    $(".pages").load('../profile/Cprofile/ViewProfileAdmin/'+userID);
                 }
                 else
                 {
@@ -90,10 +92,50 @@ $(document).ready(function ()
             {
     
                 alert("Se modifico exitosamente");
-                $(".pages").load('../profile/Cprofile/ViewProfile');
+                $(".pages").load('../profile/Cprofile/ViewProfileAdmin/'+userID);
             }
         });
       
+    });
+
+    $(".aprobar").click(function()
+    {
+        if (confirm("Desea Aprobar este perfil?"))
+        {
+            var userID = $("#userID").val();
+            $.ajax
+             ({
+                url: "../profile/Cprofile/envioAccessos",
+                type:"post",  
+                data: {userID:userID},
+                success: function(data)
+                {
+        
+                    alert("Se aprobo exitosamente");
+                    $(".pages").load('../profile/Cprofile/ViewProfileAdmin/'+userID);
+                }
+            });
+        }
+    });
+
+    $(".desactivar").click(function()
+    {
+        if (confirm("Desea desactivar este perfil?"))
+        {
+            var userID = $("#userID").val();
+            $.ajax
+             ({
+                url: "../profile/Cprofile/desactivarProfile",
+                type:"post",  
+                data: {userID:userID},
+                success: function(data)
+                {
+        
+                    alert("Se desactivo exitosamente");
+                    $(".pages").load('../profile/Cprofile/ViewProfileAdmin/'+userID);
+                }
+            });
+        }
     });
 
 });
@@ -235,6 +277,18 @@ $(document).ready(function ()
         <div class="card-footer"> 
            <div class="header-block pull-right"> 
                <button type="button" class="btn btn-primary-outline editInfo">Editar</button>
+               <?php
+               if ($value->admin_aprobado == 0) 
+               {
+                   echo '<button type="button" class="btn btn-success-outline aprobar">Aprobar</button>';
+               }
+               else
+               {
+                    echo '<button type="button" class="btn btn-warning desactivar">Desactivar</button>';
+               }
+             
+               ?>
+                
             </div>
         </div>
     </div>

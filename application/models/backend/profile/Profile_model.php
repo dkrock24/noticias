@@ -22,6 +22,7 @@ class profile_model extends CI_Model
     public function savePersonalInfo($personaInfo)
     {
         $dateNow = date("YmdHis");
+        
         $data = array(
             'nombres'   => $personaInfo['nombre'], 
             'apellidos'   => $personaInfo['apellido'], 
@@ -29,12 +30,36 @@ class profile_model extends CI_Model
             'direccion'   => $personaInfo['direccion'], 
             'email'   => $personaInfo['email'], 
             'Aficiones'   => $personaInfo['aficiones'], 
-            'social_links'   => $personaInfo['linksSocial'], 
+            'social_links'   => $personaInfo['linksSocial'],
+            'usuario'   => $userName,
             'dui'   => $personaInfo['dui'], 
             'fecha'   => $personaInfo['cumple'], 
             'genero'   => $personaInfo['genero'], 
             'fecha_modificacion'   => $dateNow, 
 
+        );
+        $this->db->where('id_usuario', $personaInfo['userID']);    
+        $this->db->update(self::user,$data);
+    }
+
+
+    public function updateAccess($userID, $pass)
+    {   
+
+        $data = array(
+            'password'   => $pass, 
+            'admin_aprobado'   => 1, 
+        );
+        $this->db->where('id_usuario', $userID);    
+        $this->db->update(self::user,$data);
+    }
+
+    public function desactivarProfile($personaInfo)
+    {   
+
+        $data = array(
+            'estado'   => 0, 
+            'admin_aprobado'   => 0, 
         );
         $this->db->where('id_usuario', $personaInfo['userID']);    
         $this->db->update(self::user,$data);

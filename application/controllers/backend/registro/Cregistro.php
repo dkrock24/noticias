@@ -56,13 +56,27 @@ class Cregistro extends CI_Controller {
         poder continuar con el proceso de inscripcion tiene que copiar el siguiente token <b>".$token." </b> y pegar en el este link ->".$urlAddToken;
         $mail->AltBody    = "Plain text message";
         $destino = $email; // Who is addressed the email to
-        $mail->AddAddress($destino, "Enscripcion");
+        $mail->AddAddress($destino, "Inscripcion");
 
         if(!$mail->Send()) {
             $data["message"] = "Error: " . $mail->ErrorInfo;
         } else {
            $data["message"] = "Message sent correctly!";
         }
+	}
+
+	public function confirmRegister()
+	{
+		$registerStatus = $this->registro_model->getToken($_POST['code']);
+		if (empty($registerStatus))
+		{
+			echo "0";
+		} 
+		else 
+		{
+			$this->registro_model->update_confirmEmail($registerStatus[0]['id_usuario']);
+			echo "1";	
+		}
 	}
 	
 }

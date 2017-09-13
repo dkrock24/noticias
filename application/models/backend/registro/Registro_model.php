@@ -5,6 +5,7 @@ class registro_model extends CI_Model
     const libreria          = 'sr_librerias';
     const userTable          = 'sr_usuarios';
     const paises          = 'sys_pais';
+    const usuario          = 'sr_usuarios';
 
     public function __construct()
     {
@@ -28,6 +29,11 @@ class registro_model extends CI_Model
             //----------------------------------------------------------------------
         }
 
+        $userName = explode(" ", $register['nombres']);
+        $lastName = explode(" ", $register['apellidos']);
+        $nickName = $userName[0].".".$lastName[0];
+
+
         $dateNow = date("Y-m-d h:i:sa");
         $categorias = array(
              'nombres'  => $register['nombres'],
@@ -36,7 +42,10 @@ class registro_model extends CI_Model
              'email'    => $register['email'],
              'token_register'    =>  $token,
              'direccion'    => $register['direccion'],
+             'usuario'     => $nickName,
              'cv_user'     => $name,
+             'cargo'     => 3,
+             'rol'     => 3,
              'id_departamento'     => $depID,
              'estado'    => 1
              );
@@ -47,12 +56,32 @@ class registro_model extends CI_Model
     public function  getPaises()
     {
         $query = $this->db->query('Select p.id_pais, p.nombre_pais, p.estado from sys_pais p');
+        return $query->result(); 
+    }
+
+    public function  getToken($token)
+    {
+        $query = $this->db->query('Select u.id_usuario, u.token_register from
+            sr_usuarios u where u.token_register = "'.$token.'" and u.comprobacion_email = 0');
+        //echo $this->db->queries[0];
         return $query->result_array(); 
     }
+
+    
     public function  getDepartamentoByPais($paisID)
     {
         $query = $this->db->query('Select dp.id_departamento from sys_pais_departamento dp where dp.id_pais = '.$paisID.' limit 1');
         return $query->result_array(); 
+    }
+
+     public function update_confirmEmail($idUser)
+    {
+        $data = array
+        ( 
+            'comprobacion_email'   => 1, 
+        );
+        $this->db->where('id_usuario', $idUser);    
+        $this->db->update(self::usuario,$data);
     }
     
 }

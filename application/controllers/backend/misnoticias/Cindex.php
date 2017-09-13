@@ -35,7 +35,7 @@ class Cindex extends CI_Controller {
 
     	$data['categorias'] = $this->Noticia_model->getCategoriasNoticias( );
 
-		$this->load->view('backend/misnoticias/VnuevaNoticia.php', $data );     
+		$this->load->view('backend/misnoticias/VnuevaNoticia.php', $data);     
         //echo "../misnoticias/Cindex/index/";
     }
 
@@ -46,7 +46,6 @@ class Cindex extends CI_Controller {
 		//$this->load->view('backend/misnoticias/VnuevaNoticia.php', $data );     
         echo "../misnoticias/Cindex/index/";
     }
-
 
 
     
