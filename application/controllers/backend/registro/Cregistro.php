@@ -53,7 +53,7 @@ class Cregistro extends CI_Controller {
         //$mail->AddReplyTo("blen7777@gmail.com","Notification");  //email address that receives the response
         $mail->Subject    = "Validacion de registro";
         $mail->Body      = "Gracias por querer ser parte de esta plataforma. para 
-        poder continuar con el proceso de inscripcion tiene que copiar el siguiente token <b>".$token." </b> y pegar en el este link ->".$urlAddToken;
+        poder continuar con el proceso de inscripcion tiene que copiar el siguiente token <br><b>Token: ".$token." </b> link: ".$urlAddToken;
         $mail->AltBody    = "Plain text message";
         $destino = $email; // Who is addressed the email to
         $mail->AddAddress($destino, "Inscripcion");

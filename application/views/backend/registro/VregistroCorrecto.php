@@ -143,7 +143,7 @@ $(document).ready(function ()
 
          <div class="alert alert-success msgCorrect" style="display: none;">
          <p> <h3>Validacion exitosa</h3>
-         Su token fue valido, por el momento su perfil pasara a aprobacion y cuando este confirmado se enviaran las credenciales al coreo con el cual se registro.
+         Su token fue valido, por el momento su perfil pasara a aprobacion y cuando este confirmado se enviaran las credenciales al correo con el cual se registro.
             </p>
         </div>
 

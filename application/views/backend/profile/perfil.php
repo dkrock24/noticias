@@ -13,7 +13,15 @@ $(document).ready(function ()
         var blob = dataURLtoBlob(canvas.toDataURL('image/png'));
         //---Add file blob to the form data
         formData.append("userfile", blob);
-        
+
+        //------Open Modal Waiting
+        $(".ModalWait").modal
+        ({
+           backdrop: 'static', 
+           keyboard: false 
+        });
+        //----------Modal Wait End
+
         $.ajax
         ({
             url: "../upload/Cupload/do_upload",
@@ -24,6 +32,8 @@ $(document).ready(function ()
             processData:false,   
             success: function(data)
             {
+                $('.ModalWait').modal('toggle'); // Hide modal wait
+                
                 if (data == 1) 
                 {
                     $(".modal-backdrop").remove();
@@ -394,3 +404,26 @@ $(document).ready(function ()
 
 <?php } ?>
  
+
+
+<!-- Modal para esperar mientras se sube las fotos  -->
+<div class="modal fade ModalWait" id="modalWait" role="dialog" style="z-index: 3000;">
+<div class="modal-dialog modal-lg">
+<!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-content">
+          <h4 class="modal-title" style="background-color: #85CE36;padding: 20px;color: white;text-align: center;font-weight: bold;">
+          Espere un poco por favor
+          </h4>
+          <hr>
+
+        <div class="modal-body">
+    <div class="modal-body">
+      <img src="/noticias/assets/images/loader.gif">
+    </div>
+        <div class="modal-footer">
+        </div> 
+    </div>
+</div>
+</div>
+<!-- Fin del Codigo de funcionalidad de Modals para aagregar sucursales y metodos de pago --> 
