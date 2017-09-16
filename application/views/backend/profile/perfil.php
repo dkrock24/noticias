@@ -15,11 +15,9 @@ $(document).ready(function ()
         formData.append("userfile", blob);
 
         //------Open Modal Waiting
-        $(".ModalWait").modal
-        ({
-           backdrop: 'static', 
-           keyboard: false 
-        });
+        $(".ModalWait").show();
+        $(".conteFormUpload").hide();
+        $(".modal-footer").hide();
         //----------Modal Wait End
 
         $.ajax
@@ -32,7 +30,11 @@ $(document).ready(function ()
             processData:false,   
             success: function(data)
             {
-                $('.ModalWait').modal('toggle'); // Hide modal wait
+                 //------Open Modal Waiting
+                $(".ModalWait").hide();
+                $(".conteFormUpload").show();
+                $(".modal-footer").show();
+                //----------Modal Wait End
                 
                 if (data == 1) 
                 {
@@ -357,7 +359,7 @@ $(document).ready(function ()
 
 
 <!-- Modal para agregar foto de perfil-->
-<div class="modal fade modalProfile" id="modal" role="dialog" tabindex="1">
+<div class="modal fade modalProfile" id="modal" role="dialog" tabindex="1" data-backdrop="static" data-keyboard="false">
 <div class="modal-dialog modal-lg">
     
 <!-- Modal content-->
@@ -387,6 +389,15 @@ $(document).ready(function ()
         </form>
     </div>
     <!--  Fin div que contiene imagen -->
+
+
+    <!-- Modal para esperar mientras se sube las fotos  -->
+<div class="ModalWait" style="display: none;">
+    <center>
+      <img src="/noticias/assets/images/loader.gif">
+    </center>
+</div>
+<!-- Fin del Codigo de funcionalidad de Modals para aagregar sucursales y metodos de pago --> 
             
 
             
@@ -406,24 +417,3 @@ $(document).ready(function ()
  
 
 
-<!-- Modal para esperar mientras se sube las fotos  -->
-<div class="modal fade ModalWait" id="modalWait" role="dialog" style="z-index: 3000;">
-<div class="modal-dialog modal-lg">
-<!-- Modal content-->
-    <div class="modal-content">
-        <div class="modal-content">
-          <h4 class="modal-title" style="background-color: #85CE36;padding: 20px;color: white;text-align: center;font-weight: bold;">
-          Espere un poco por favor
-          </h4>
-          <hr>
-
-        <div class="modal-body">
-    <div class="modal-body">
-      <img src="/noticias/assets/images/loader.gif">
-    </div>
-        <div class="modal-footer">
-        </div> 
-    </div>
-</div>
-</div>
-<!-- Fin del Codigo de funcionalidad de Modals para aagregar sucursales y metodos de pago --> 

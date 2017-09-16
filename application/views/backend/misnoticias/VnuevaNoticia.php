@@ -43,6 +43,11 @@
             var blob = dataURLtoBlob(canvas.toDataURL('image/png'));
             //---Add file blob to the form data
             formData.append("userfile", blob);
+
+            //------Open Modal Waiting
+            $(".ModalWait").show();
+            $(".conteFormUpload").hide();
+             //----------Modal Wait End
             
             $.ajax
             ({
@@ -54,6 +59,12 @@
                 processData:false,    
                 success: function(data)
                 {
+
+                    //------Open Modal Waiting
+                    $(".ModalWait").hide();
+                    $(".conteFormUpload").show();
+                    //----------Modal Wait End
+
                     //$('.tabImages').removeClass('disabled');
                     $('#tab2default').addClass('fade in active');
                     $('#tab1default').removeClass('active');
@@ -294,6 +305,14 @@
                         <!--  Fin div que contiene imagen -->
                                                    
                         </div>
+
+                        <!-- Modal para esperar mientras se sube las fotos  -->
+                        <div class="ModalWait" style="display: none;">
+                            <center>
+                              <img src="/noticias/assets/images/loader.gif">
+                            </center>
+                        </div>
+
 
 
                             </div>
