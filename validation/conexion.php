@@ -4,7 +4,7 @@ function datos()
 {
 
 $usuario = "root";
-$password = "";
+$password = "lapizzeria2016!";
 $host = "localhost:3306";
 
 
@@ -21,7 +21,7 @@ $host = "localhost:3306";
 function login()
 {
 	$usuario = "root";
-	$password = "";
+	$password = "lapizzeria2016!";
 	$host = "localhost:3306";
 	return conexion($usuario,$password,$host);
 }
