@@ -77,11 +77,16 @@ class Noticia_model extends CI_Model
 
     // Total de noticias de la tabla
     public function record_count(){
-        $query = $this->db->query("select count(*) as total from sys_noticia as noticia 
-                                    join sys_noticia_tipo as tipo on tipo.id_noticia_tipo=noticia.id_tipo_noticia 
-                                    join sys_noticia_configuracion as config on config.id_noticia_config=noticia.id_noticia
-                                    where (config.fecha_inicio <= now() and config.fecha_fin >= now() or config.fecha_inicio is null ) and noticia.estado_noticia=1");
-        return $query->result(); 
+        $query = $this->db->query("SELECT COUNT(*) AS total
+                        FROM sys_noticia AS noticia
+                        JOIN sys_noticia_tipo AS tipo ON tipo.id_noticia_tipo=noticia.id_tipo_noticia
+                        JOIN sr_usuarios AS u ON u.id_usuario = noticia.id_usuario
+                        LEFT JOIN sys_noticia_configuracion AS config ON config.id_noticia_config=noticia.id_noticia
+                        JOIN sys_pais_departamento AS dep ON dep.id_departamento = u.id_departamento
+                        JOIN sys_pais AS pais ON pais.id_pais = dep.id_pais
+                        WHERE (config.fecha_inicio <= NOW() AND config.fecha_fin >= NOW() OR config.fecha_inicio IS NULL) 
+                        AND noticia.estado_noticia=1 AND pais.registro_legal='SV'");
+                                return $query->result(); 
     }
 
     public function fetch_data( $pagina, $limit ){

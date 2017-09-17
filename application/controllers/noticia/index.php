@@ -18,7 +18,7 @@ class Index extends CI_Controller {
     	$pais = $dataArray->geoplugin_countryCode;
 
 		$config = array();
-		$config['base_url'] = base_url().'/index.php/noticia/index/index';
+		$config['base_url'] = base_url().'/noticia/index/index';
 
 		$Total_temp = $this->Noticia_model->record_count();
 		$total_row = $Total_temp[0]->total;
@@ -52,10 +52,12 @@ class Index extends CI_Controller {
 
 		// To initialize "$config" array and set to pagination library.
 		$this->pagination->initialize($config);
-
+		//var_dump($this->uri->segment(4));
 		if($this->uri->segment(4))
 		{
-			$page = (($this->uri->segment(4))*2)-1 ;
+			$pagina = $this->uri->segment(4);
+
+			$page = (($pagina-1) * $config["per_page"]) ;
 		}
 		else
 		{
@@ -65,6 +67,7 @@ class Index extends CI_Controller {
 		$data["noticias"] = $this->Noticia_model->fetch_data($config["per_page"] , $page ,$pais );
 		$str_links = $this->pagination->create_links();
 		$data["links"] = explode('&nbsp;',$str_links );
+		//var_dump($str_links);
 
 
 

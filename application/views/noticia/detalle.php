@@ -311,7 +311,7 @@
                 <div class="small secondary  button-group2">
                 <a class="button"><i class="icono_boton fa fa-eye"></i> <?php echo $visitas[0]->total_visitas; ?> Visitas</a>
                 <a class="button"><i class="icono_boton fa fa-comment"></i> <?php echo $contador_cmt[0]->total_cmt; ?> Comentarios</a>
-                <a class="button"><i class="icono_boton fa fa-calendar"></i> Fecha : <?php $fecha = date_create($noticias_detalle[0]->fecha_creacion);
+                <a class="button"><i class="icono_boton fa fa-calendar"></i> Fecha : <?php $fecha = date_create($noticias_detalle[0]->fecha_creacion_noticia);
                                          echo date_format($fecha,"d-M-Y"); ?> </a>
                 <a class="button"><i class="icono_boton fa fa-user"></i> Por. <?php echo $noticias_detalle[0]->nickname; ?></a>
                
