@@ -33,7 +33,7 @@
                 <div class="card">
                     <header class="auth-header">
                         <h1 class="auth-title">
-                            <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div> Backend | Noticias </h1>
+                            <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div> Backend | sisepudo.com </h1>
                     </header>
                     <div class="auth-content">
                         <p class="text-xs-center">LOGIN PARA CONTINUAR</p>

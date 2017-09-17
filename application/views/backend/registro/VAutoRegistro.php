@@ -57,7 +57,7 @@ $(document).ready(function ()
         <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> 
         <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> 
         </div>
-         Auto registro 
+         Registro de Usuario
     
     </h1>
 </header>
@@ -65,22 +65,24 @@ $(document).ready(function ()
     <form id="signup-form" action="../saveRegistro" enctype="multipart/form-data"  method="POST" novalidate="">
         
         <div class="form-group"> 
-        <label for="firstname">Nombres Apellidos</label>
         <div class="row">
             <div class="col-sm-6"> 
+            <label>Nombres</label>
                 <input type="text" class="form-control underlined" name="nombres" id="nombres" placeholder="Nombres" required=""> 
             </div>
-            <div class="col-sm-6"> <input type="text" class="form-control underlined" name="apellidos" id="apellidos" placeholder="Apellidos" required=""> </div>
+            <div class="col-sm-6">
+            <label>Apellidos</label>
+             <input type="text" class="form-control underlined" name="apellidos" id="apellidos" placeholder="Apellidos" required=""> </div>
             </div>
         </div>
         
         <div class="form-group">
-            <label for="email">Correo electronico</label> 
+            <label for="email">Correo electrónico</label> 
             <input type="email" class="form-control underlined" name="email" id="email" placeholder="Correo electronico" required=""> 
         </div>
 
         <div class="form-group">
-            <label for="email">Pais</label> 
+            <label for="email">País</label> 
             <select class="c-select form-control boxed" name="pais" id="pais">
             <option value="N/A">N/A</option>
             <?php
@@ -100,7 +102,7 @@ $(document).ready(function ()
         </div>
                         
         <div class="form-group"> 
-        <label for="firstname">Curriculum Vitae </label>
+        <label for="firstname">Currículum Vitae </label>
         <div class="row">
             <div class="col-sm-6"> 
                 <input type="file" id="cvfile" name="cvfile" class="form-control underlined" accept="application/pdf" required=""> 
@@ -114,7 +116,7 @@ $(document).ready(function ()
         <div class="form-group"> 
             <label for="agree">
             <input class="checkbox" name="agree" id="agree" type="checkbox" required=""> 
-                <span>Acepta terminos y <a href="#">condiciones</a></span>
+                <span>Acepta términos y <a href="#">condiciones</a></span>
             </label> 
         </div>
         

@@ -96,7 +96,7 @@ $(document).ready(function ()
 <div class="card card-success">
 <div class="card-header">
         <div class="header-block">
-            <p class="title"> Su registro se envio correctamente!!! </p>
+            <p class="title"> Su registro se envió correctamente!!! </p>
         </div>
     </div>
     <div class="card-block">
@@ -104,12 +104,12 @@ $(document).ready(function ()
 
 
         <div class="validateContent">
-         <p>Es necesario que introdusca el codigo que le enviamos al correo que regisrto. Digite el codigo  y haga click en el boton enviar. Con esto inicia le proceso de validacion de identidad y luego pasara a un proceso de aprobacion.
+         <p>Es necesario que introdusca el código que le enviamos al correo que regisrto. Digité el código  y haga click en el boton envíar. Con esto inicia el proceso de validación de identidad y luego pasara a un proceso de aprobación.
             </p>
         <form id="signup-form" action="" enctype="multipart/form-data"  method="POST" novalidate="">
             
             <div class="form-group"> 
-            <label for="firstname">CODIGO DE VALIDACION</label>
+            <label for="firstname">CÓDIGO DE VALIDACIÓN</label>
             <div class="row">
                 <div class="col-sm-12"> 
                     <input type="text" class="form-control underlined" name="codigo" id="codigo" placeholder="Codigo" required=""> 
@@ -136,20 +136,20 @@ $(document).ready(function ()
              </div>
             </div>
             <div class="form-group"> 
-                <button type="button" class="btn btn-primary btn-lg btn-block" id="sendEmail"> Enviar </button> 
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="sendEmail"> Envíar </button> 
             </div>    
         </form>
         </div>
 
          <div class="alert alert-success msgCorrect" style="display: none;">
-         <p> <h3>Validacion exitosa</h3>
+         <p> <h3>Validación Exitosa</h3>
          Su token fue valido, por el momento su perfil pasara a aprobacion y cuando este confirmado se enviaran las credenciales al correo con el cual se registro.
             </p>
         </div>
 
 
          <div class="alert alert-warning msgWrong" style="display: none;">
-         <p><h3>Validacion erronea</h3><br>
+         <p><h3>Error en Validación</h3><br>
          - El token ingresado es incorrecto <br>
             - El token ya ha sido validado.
             </p>
@@ -158,7 +158,7 @@ $(document).ready(function ()
 </div>
     </div>
     <div class="card-footer">
-     <button type="button" class="btn btn-info btn-lg btn-block showToken">Enviar Nuevo Token</button>
+     <button type="button" class="btn btn-info btn-lg btn-block showToken">Envíar Nuevo Token</button>
      <button type="button" class="btn btn-info btn-lg btn-block validateToken" style="display: none;">Validar Token</button>
     </div>
 </div>     
