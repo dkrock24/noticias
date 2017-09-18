@@ -29,9 +29,27 @@ class registro_model extends CI_Model
             //----------------------------------------------------------------------
         }
 
-        $userName = explode(" ", $register['nombres']);
-        $lastName = explode(" ", $register['apellidos']);
-        $nickName = $userName[0].".".$lastName[0];
+        if(strpos($register['nombres'], " ") !== false) 
+        {
+          $userName = explode(" ", $register['nombres']);
+          $userName = $userName[0];
+        } 
+        else 
+        {
+          $userName = $register['nombres'];
+        }
+
+        if(strpos($register['apellidos'], " ") !== false) 
+        {
+            $lastName = explode(" ", $register['apellidos']);
+            $lastName = $lastName[0];
+        } 
+        else 
+        {
+          $lastName = $register['apellidos'];
+        }
+
+        $nickName = $userName.".".$lastName;
 
 
         $dateNow = date("Y-m-d h:i:sa");
@@ -44,8 +62,8 @@ class registro_model extends CI_Model
              'direccion'    => $register['direccion'],
              'usuario'     => $nickName,
              'cv_user'     => $name,
-             'cargo'     => 3,
-             'rol'     => 3,
+             'cargo'     => 4,
+             'rol'     => 4,
              'id_departamento'     => $depID,
              'estado'    => 1
              );
