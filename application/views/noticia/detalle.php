@@ -200,6 +200,18 @@
     .icono_boton{
         color: #fff;
     }
+     .registrate{
+        display: inline-block;
+        float: right;
+        position: relative;
+        margin-top: -45px;
+        background: black;
+    }
+    .column2{
+        height: 80px;
+        box-sizing: inherit;
+        position: relative;
+    }
 
 
     </style>
@@ -210,6 +222,9 @@
 
         <div class="row column titulo_pagina">
             <a href="/noticias/index.php/noticia/index/index"><h3><p class="lead_home">sisepudo.com</p></h3></a>
+            <a class="button registrate" href="/noticias/index.php/backend/index/index">Login</a>
+            <a class="button registrate" href="/noticias/index.php/noticia/index/contactanos">Contáctanos</a>
+            <a class="button registrate" href="/noticias/index.php/backend/registro/Cregistro/Autoregistro/">Registrate</a>
         </div>
 
         <!-- Navigation -->
@@ -487,43 +502,41 @@
     
 
 <footer>
+
   <div class="row expanded callout secondary">
 
     <div class="small-6 large-3 columns">
-      <p class="lead">Offices</p>
+        <p class="lead">Contáctanos</p>
+        <ul class="menu vertical">
+            <li><a href="/noticias/index.php/noticia/index/contactanos"><i class="fi-social-twitter"></i> Contáctanos</a></li>
+        </ul>
+    </div>
+
+    <div class="small-6 large-3 columns">
+      <p class="lead"> Copyright © 2017 </p>
       <ul class="menu vertical">
-        <li><a href="#">One</a></li>
+        <li>Todos los Derechos Reservados</li>
 
       </ul>
     </div>
 
     <div class="small-6 large-3 columns">
-      <p class="lead">Solar Systems</p>
+      <p class="lead">  </p>
       <ul class="menu vertical">
-        <li><a href="#">One</a></li>
+        <li><a href="#"></a></li>
 
       </ul>
     </div>
 
     <div class="small-6 large-3 columns">
-      <p class="lead">Contact</p>
+      <p class="lead"></p>
       <ul class="menu vertical">
-        <li><a href="#"><i class="fi-social-twitter"></i> Twitter</a></li>
-
-      </ul>
-    </div>
-
-    <div class="small-6 large-3 columns">
-      <p class="lead">Offices</p>
-      <ul class="menu vertical">
-        <li><a href="#">One</a></li>
+        <li><a href="#"></a></li>
 
       </ul>
     </div>
 
   </div>
-
-
 </footer>
 
     
