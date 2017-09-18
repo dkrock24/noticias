@@ -9,6 +9,7 @@ class Cnoticia_model extends CI_Model
     const noticias_config = 'sys_noticia_configuracion';
     const usuarios = 'sr_usuarios';
     const noticias_cmt = 'sys_noticia_comentario';
+    const sys_contacto = 'sys_contacto';
         
 
     
@@ -304,6 +305,18 @@ class Cnoticia_model extends CI_Model
 
         $this->db->where('id_comentario', $id_cmt );
         $this->db->delete(self::noticias_cmt);
+    }
+
+    public function getContacto(){
+        $this->db->select('*');
+        $this->db->from(self::sys_contacto);        
+        $this->db->order_by("id_contacto desc");
+        $query = $this->db->get();
+        
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
     }
 
  

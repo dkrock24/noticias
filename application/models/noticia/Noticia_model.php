@@ -6,6 +6,9 @@ class Noticia_model extends CI_Model
     const usuario   = 'sr_usuarios';
     const noticia_contador = 'sys_noticia_contador';
     const comentario = 'sys_noticia_comentario';
+    const sys_contacto = 'sys_contacto';
+
+    
     
     public function __construct()
     {
@@ -159,6 +162,19 @@ class Noticia_model extends CI_Model
             );        
         $this->db->insert(self::comentario, $data);  
     }
+
+    public function guarda_contacto( $contacto ){
+
+        $data = array(
+            'nombre'        => $contacto['nombre'],
+            'correo'        => $contacto['correo'],
+            'telefono'      => $contacto['telefono'],
+            'comentario'    =>$contacto['comentario'],
+            'fecha'         => date("Y-m-d"),
+            );        
+        $this->db->insert(self::sys_contacto, $data);  
+    }
+    
 
 
     

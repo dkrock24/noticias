@@ -133,5 +133,16 @@ class Index extends CI_Controller {
 		$this->detalle( $_POST['id_noticia'] );
 	}
 
+	public function contactanos(){
+		$this->load->view('noticia/contactanos.php');
+	}
+
+	public function guarda_contacto(){
+
+		$this->Noticia_model->guarda_contacto( $_POST );
+		
+		$this->load->view('noticia/contactanos.php');
+	}
+
 	
 }
