@@ -73,7 +73,10 @@ class registro_model extends CI_Model
 
     public function  getPaises()
     {
-        $query = $this->db->query('Select p.id_pais, p.nombre_pais, p.estado from sys_pais p');
+        $query = $this->db->query('Select p.id_pais, p.nombre_pais, p.estado from sys_pais p
+inner join sys_pais_departamento d ON d.id_pais = p.id_pais
+where p.estado =1
+group by p.id_pais');
         return $query->result(); 
     }
 
