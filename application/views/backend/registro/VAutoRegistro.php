@@ -86,7 +86,7 @@ $(document).ready(function ()
             foreach ($paises as $value) 
             {
             ?>
-            <option value="<?php echo $value->id_pais ?>"><?php echo $value->nombre_pais?>s</option>
+            <option value="<?php echo $value->id_pais ?>"><?php echo $value->nombre_pais?></option>
             <?php
             }
             ?>  

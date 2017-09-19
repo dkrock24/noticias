@@ -87,7 +87,7 @@ class usuarios_model extends CI_Model
         $this->db->select('*');
         $this->db->from(self::usuarios);
         $this->db->join(self::cargos,' on '. self::cargos .'.id_cargo = '.self::usuarios.'.cargo');
-        $this->db->where(self::usuarios.'.cargo','3'); 
+        $this->db->where(self::usuarios.'.cargo','4'); 
         $query = $this->db->get();
         //echo $this->db->queries[0];        
         if($query->num_rows() > 0 )
