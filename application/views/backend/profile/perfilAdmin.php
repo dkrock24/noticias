@@ -264,9 +264,9 @@ $(document).ready(function ()
                 <?php 
                         if ($value->cv_user != null) 
                         {
-                            echo "<button type='button' class='btn btn-info viewCV'><em class='fa fa-file-text'></em>  Ver</button>";
+                            echo "<a href='../../../assets/filesCV/".$value->cv_user."' TARGET='_new'><button type='button' class='btn btn-info viewCV'><em class='fa fa-file-text'></em>  Ver</button></a>";
                         } 
-                        else 
+                        else
                         {
                             echo "No data";
                         }

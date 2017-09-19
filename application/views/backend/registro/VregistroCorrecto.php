@@ -96,7 +96,7 @@ $(document).ready(function ()
 <div class="card card-success">
 <div class="card-header">
         <div class="header-block">
-            <p class="title"> Su registro se envio correctamente!!! </p>
+            <p class="title"> Su registro se envió correctamente!!! </p>
         </div>
     </div>
     <div class="card-block">
@@ -104,7 +104,7 @@ $(document).ready(function ()
 
 
         <div class="validateContent">
-         <p>Es necesario que introdusca el codigo que le enviamos al correo que regisrto. Digite el codigo  y haga click en el boton enviar. Con esto inicia le proceso de validacion de identidad y luego pasara a un proceso de aprobacion.
+       <p>Es necesario que introduzca el código que le enviamos al correo que registro. Digite el codigo  y haga click en el botón enviar. Con esto inicia el proceso de validación de identidad y luego pasara a un proceso de aprobación.
             </p>
         <form id="signup-form" action="" enctype="multipart/form-data"  method="POST" novalidate="">
             
@@ -123,12 +123,12 @@ $(document).ready(function ()
         </div>
 
         <div class="newToekn" style="display: none;">
-         <p>Tiene que ingresar el correo electronico con el que creo su cuenta para que se le pueda enviar el token.
+         <p>Tiene que ingresar el correo electrónico con el que creo su cuenta para que se le pueda enviar el token.
             </p>
             <form id="signup-form" action="" enctype="multipart/form-data"  method="POST" novalidate="">
             
             <div class="form-group"> 
-            <label for="firstname">Correo electronico</label>
+            <label for="firstname">Correo electrónico</label>
             <div class="row">
                 <div class="col-sm-12"> 
                     <input type="text" class="form-control underlined" name="Pemal" id="Pemal" placeholder="Correo electronico" required=""> 
@@ -142,14 +142,14 @@ $(document).ready(function ()
         </div>
 
          <div class="alert alert-success msgCorrect" style="display: none;">
-         <p> <h3>Validacion exitosa</h3>
-         Su token fue valido, por el momento su perfil pasara a aprobacion y cuando este confirmado se enviaran las credenciales al correo con el cual se registro.
+         <p> <h3>Validación exitosa</h3>
+         Su token fue validado, por el momento su perfil pasará a aprobacion y cuando esté confirmado se enviará las credenciales al correo con el cual se registro.
             </p>
         </div>
 
 
          <div class="alert alert-warning msgWrong" style="display: none;">
-         <p><h3>Validacion erronea</h3><br>
+         <p><h3>Validación errónea</h3><br>
          - El token ingresado es incorrecto <br>
             - El token ya ha sido validado.
             </p>
