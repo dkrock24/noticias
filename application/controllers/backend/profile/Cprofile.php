@@ -46,12 +46,12 @@ class Cprofile extends CI_Controller {
 	}
 
 	public function envioAccessos()
-	{
-		$data['datosUser'] = $this->profile_model->getUserData($_POST['userID']);
-
-		$nombre = $data['datosUser']['nombres'];
-		$usuario = $data['datosUser']['usuario'];
-		$email = $data['datosUser']['email'];
+	{	
+		$data = $this->profile_model->getUserDatas($_POST['userID']);
+		//var_dump($data);
+		$nombre = $data[0]['nombres'];
+		$usuario = $data[0]['usuario'];
+		$email = $data[0]['email'];
 
 		//------------------Generar pass
 		$dateToken = date("YmdHis");

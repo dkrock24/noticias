@@ -19,6 +19,14 @@ class profile_model extends CI_Model
         
     }
 
+    public function getUserDatas($userLogged)
+    {
+         $query = $this->db->query('Select * from sr_usuarios u
+                                    where u.id_usuario ='.$userLogged);
+         return $query->result_array(); 
+        
+    }
+
     public function savePersonalInfo($personaInfo)
     {
         $dateNow = date("YmdHis");
@@ -47,7 +55,7 @@ class profile_model extends CI_Model
     {   
 
         $data = array(
-            'password'   => $pass, 
+            'password'   => sha1($pass), 
             'admin_aprobado'   => 1, 
         );
         $this->db->where('id_usuario', $userID);    
