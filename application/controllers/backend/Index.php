@@ -49,13 +49,39 @@ class Index extends CI_Controller {
 		}
 	}
 
+	public function logsLogin(){
+		// Devuelve todos los logs de acceso para la grafica de lineas
+		$log_login = $this->logs_model->getAllLogs();
+
+		echo json_encode( $log_login );
+	}
+
+	public function getLogsNoticias(){
+		// Devuelve todos los logs de noticias creadas para la grafica de barras
+		$log_login = $this->logs_model->getLogsNoticias();
+
+		echo json_encode( $log_login );
+	}
+
+	public function getNoticiasActivasGrafica(){
+		// Devuelve todos los logs de noticias creadas para la grafica de barras
+		$log_login = $this->logs_model->getNoticiasActivasGrafica();
+
+		echo json_encode( $log_login );
+	}
+
+	public function getCategoriasGrafica(){
+		// Devuelve todos los logs de noticias creadas para la grafica de barras
+		$log_login = $this->logs_model->getCategoriasGrafica();
+
+		echo json_encode( $log_login );
+	}
+
 	public function home($rol,$idUsuario){	
 		//session_start();
-		
-		
 
-
-		$_SESSION['idUser']		=$idUsuario;
+		$_SESSION['idUser']		= $idUsuario;
+		$_SESSION['rol']		= $rol;
 		if($_POST)
 		{
 			$this->logs_model->setLog(1,null,$idUsuario);	
@@ -68,7 +94,9 @@ class Index extends CI_Controller {
 		$configuracion['submenu']	= $this->login_model->submenu($rol);
 		$configuracion['empresa'] 	= $this->login_model->empresa();	
 		$configuracion['usuario'] 	= $this->login_model->getUserByID($idUsuario);	
-		$configuracion['sucursal'] 	= $this->login_model->getSucursal($idUsuario);	
+		$configuracion['sucursal'] 	= $this->login_model->getSucursal($idUsuario);
+		$configuracion['rol']		= $rol;
+		
 
 		$this->load->view('backend/home/home',$configuracion);	
 	}

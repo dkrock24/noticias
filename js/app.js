@@ -65,6 +65,7 @@ function animate(options) {
 }
 
 $(function() {
+
 	var $itemActions = $(".item-actions-dropdown");
 
 	$(document).on('click',function(e) {
@@ -681,6 +682,7 @@ $(function() {
 });
 $(function() {
     
+    
     if (!$('#morris-one-line-chart').length) {
         return false;
     }
@@ -883,6 +885,8 @@ $(function() {
 
 });
 $(function() {
+    var rol = $("#rol_usuario").val();
+  
 
     if (!$('#dashboard-visits-chart').length) {
         return false;
@@ -917,23 +921,44 @@ $(function() {
             case 'visits':
                 drawVisitsChart();
                 break;
-             case 'downloads':
+            case 'downloads':
                 drawDownloadsChart();
+            case 'categorias':
+                drawCategoriasChart();
                 break;
         }
     }
+var dataVisits;
+var a = [];
+    function dame(){
+         
+
+         $.ajax({
+            url: "/noticias/index.php/backend/index/logsLogin/",
+            type:"POST",
+            dataType: 'json',
+            
+            success: function(data)
+            {
+                //alert(data[0]['fecha']);
+
+                 $.each(data, function(key,val) {
+                    a.push( { x: val['fecha'], y: val['total'] }); 
+                    
+                });
+                dataVisits = a;
+
+            },
+            error:function(){
+                alert("Erro al cargar Estadisticas1..");
+
+            }
+        });
+    }
+  dame();
+   
 
     function drawVisitsChart(){
-        var dataVisits = [
-            { x: '2015-09-01', y: 70},
-            { x: '2015-09-02', y: 75 },
-            { x: '2015-09-03', y: 50},
-            { x: '2015-09-04', y: 75 },
-            { x: '2015-09-05', y: 50 },
-            { x: '2015-09-06', y: 75 },
-            { x: '2015-09-07', y: 86 } 
-        ];
-
 
         Morris.Line({
             element: 'dashboard-visits-chart',
@@ -941,8 +966,8 @@ $(function() {
             xkey: 'x',
             ykeys: ['y'],
             ymin: 'auto 40',
-            labels: ['Visits'],
-            xLabels: "day",
+            labels: ['Visitas'],
+            xLabels: "month",
             hideHover: 'auto',
             yLabelFormat: function (y) {
                 // Only integers
@@ -963,58 +988,44 @@ $(function() {
         });
     }
 
+var dataNoticias;
+var noticias = [];
+
+    function getNoticias(){
+         
+
+         $.ajax({
+            url: "/noticias/index.php/backend/index/getLogsNoticias",
+            type:"POST",
+            dataType: 'json',
+            
+            success: function(data)
+            {
+                //alert(data[0]['fecha']);
+
+                 $.each(data, function(key,val) {
+                    noticias.push( { mes: val['mes'], downloads: val['total'] }); 
+                    
+                });
+                dataNoticias = noticias;
+
+            
+            },
+            error:function(){
+                alert("Erro al cargar Estadisticas2..");
+
+            }
+        });
+    }
+    getNoticias();
     function drawDownloadsChart(){
-
-        var dataDownloads = [
-            { 
-                year: '2006',
-                downloads: 1300
-            },
-            { 
-                year: '2007', 
-                downloads: 1526
-            },
-            { 
-                year: '2008', 
-                downloads: 2000
-            },
-            { 
-                year: '2009', 
-                downloads: 1800
-            },
-            { 
-                year: '2010', 
-                downloads: 1650
-            },    
-            { 
-                year: '2011', 
-                downloads: 620
-            },
-            { 
-                year: '2012', 
-                downloads: 1000
-            },
-            { 
-                year: '2013', 
-                downloads: 1896
-            },
-            { 
-                year: '2014', 
-                downloads: 850
-            },
-            { 
-                year: '2015', 
-                downloads: 1500
-            }  
-        ];
-
 
         Morris.Bar({
             element: 'dashboard-downloads-chart',
-            data: dataDownloads,
-            xkey: 'year',
+            data: dataNoticias,
+            xkey: 'mes',
             ykeys: ['downloads'],
-            labels: ['Downloads'],
+            labels: ['Total'],
             hideHover: 'auto',
             resize: true,
             barColors: [
@@ -1023,6 +1034,57 @@ $(function() {
             ],
         });
     }
+
+    // Categorias
+var dataCategoria;
+var categoria = [];
+    function getCategorias(){
+         
+
+         $.ajax({
+            url: "/noticias/index.php/backend/index/getCategoriasGrafica",
+            type:"POST",
+            dataType: 'json',
+            
+            success: function(data)
+            {
+                //alert(data[0]['fecha']);
+
+                 $.each(data, function(key,val) {
+                    categoria.push( { categ: val['nombre_categoria'], total: val['Total'] }); 
+                    
+                });
+                dataCategoria = categoria;
+
+            
+            },
+            error:function(){
+                alert("Erro al cargar Estadisticas3..");
+
+            }
+        });
+    }
+    getCategorias();
+    function drawCategoriasChart(){
+
+        Morris.Bar({
+            element: 'dashboard-categorias-chart',
+            data: dataCategoria,
+            xkey: 'categ',
+            ykeys: ['total'],
+            labels: ['Total'],
+            hideHover: 'auto',
+            resize: true,
+            barColors: [
+                config.chart.colorPrimary.toString(),
+                tinycolor(config.chart.colorPrimary.toString()).darken(10).toString()
+            ],
+        });
+    }
+
+
+
+
 });
 
 
@@ -1036,15 +1098,41 @@ $(function() {
         return false;
     } 
 
+    var dataNoticias;
+    var noticias = [];
+
+    function getNoticiasActivas(){
+         
+         $.ajax({
+            url: "/noticias/index.php/backend/index/getNoticiasActivasGrafica",
+            type:"POST",
+            dataType: 'json',
+            
+            success: function(data)
+            {
+                //alert(data[0]['fecha']);
+
+                noticias.push( { label: 'Inactivas', value: data[0]['Inactivos'] }); 
+                noticias.push( { label: 'Activas', value: data[0]['Activos'] }); 
+                noticias.push( { label: 'Vencidas', value: data[0]['Vencidas'] });
+                dataNoticias = noticias;
+            
+            },
+            error:function(){
+                alert("Erro al cargar Estadisticas4..");
+
+            }
+        });
+    }
+    getNoticiasActivas();
+
     function drawSalesChart(){
 
     $dashboardSalesBreakdownChart.empty();
 
         Morris.Donut({
             element: 'dashboard-sales-breakdown-chart',
-            data: [{ label: "Download Sales", value: 12 },
-                { label: "In-Store Sales", value: 30 },
-                { label: "Mail-Order Sales", value: 20 } ],
+            data: dataNoticias,
             resize: true,
             colors: [
                 tinycolor(config.chart.colorPrimary.toString()).lighten(10).toString(),

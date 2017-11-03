@@ -43,6 +43,8 @@
           100%{-webkit-transform:rotate(360deg)}
         }
 
+
+
         html{height:100%;}
         body {background:#000;background:linear-gradient(#7D57C9, rgba(0, 0, 0, 0) 90%), linear-gradient(-45deg, #4DA2D6 25%, #000 75%) !important;background:-webkit-linear-gradient(#7D57C9, rgba(0, 0, 0, 0) 90%), -webkit-linear-gradient(-45deg, #4DA2D6 25%, #000 75%) !important;}
         </style>
@@ -74,6 +76,12 @@
             }
         </script>
         <style type="text/css">
+
+        .footer{
+                background-color: #d7dde4;
+        }
+
+
         select.form-control:not([size]):not([multiple]) {
         height: calc(3.5rem - 3px);
     }</style>
@@ -87,7 +95,7 @@
           <i class="fa fa-bars"></i>
         </button> </div>
                     <div class="header-block header-block-search hidden-sm-down">
-                       Backend || Adminsitrativo - <?php echo date("M-d-Y"); ?>
+                       Adminsitración Noticias - <?php echo date("M-d-Y"); ?>
                     </div>
 
                     <div class="header-block header-block-nav">
@@ -292,7 +300,55 @@
                                         </div>
                                         <div class="header-block pull-right"> </div>
                                     </div>
-                                    <div class="pages">
+                                    <div class="pages">   
+                                    <input type="hidden" name="rol" id="rol_usuario" value="<?php echo $rol ?>">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col col-xs-12 col-sm-12 col-md-6 col-xl-7 history-col">
+                                                <div class="card sameheight-item" data-exclude="xs">
+                                                    <div class="card-header card-header-sm bordered">
+                                                        <div class="header-block">
+                                                            <h3 class="title">Estadisticas</h3>
+                                                        </div>
+                                                        <ul class="nav nav-tabs pull-right" role="tablist">
+                                                            <li class="nav-item"> <a class="nav-link active" href="#visits" role="tab" data-toggle="tab">Visitas</a> </li>
+                                                            <li class="nav-item"> <a class="nav-link" href="#downloads" role="tab" data-toggle="tab">Noticias</a> </li>
+                                                            <li class="nav-item"> <a class="nav-link" href="#categorias" role="tab" data-toggle="tab">Categorias</a> </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div class="tab-content">
+                                                            <div role="tabpanel" class="tab-pane active fade in" id="visits">
+                                                                <p class="title-description"> Número de visitas al sistema </p>
+                                                                <div id="dashboard-visits-chart"></div>
+                                                            </div>
+                                                            <div role="tabpanel" class="tab-pane fade" id="downloads">
+                                                                <p class="title-description"> Número de noticias creadas </p>
+                                                                <div id="dashboard-downloads-chart"></div>
+                                                            </div>
+                                                            <div role="tabpanel" class="tab-pane fade" id="categorias">
+                                                                <p class="title-description"> Categorias de noticias mas usadas </p>
+                                                                <div id="dashboard-categorias-chart"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4">
+                                                <div class="card sameheight-item sales-breakdown" data-exclude="xs,sm,lg">
+                                                    <div class="card-header">
+                                                        <div class="header-block">
+                                                            <h3 class="title"> Noticias de Ultimos 6 meses </h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div class="dashboard-sales-breakdown-chart" id="dashboard-sales-breakdown-chart"></div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
